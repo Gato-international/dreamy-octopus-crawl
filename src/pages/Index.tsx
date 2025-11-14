@@ -16,17 +16,17 @@ const Index = () => {
       </video>
       <div className="absolute z-10 inset-0 bg-black/50"></div>
       
-      <div className="relative z-20 container mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
-        <div className="text-left">
+      <div className="relative z-20 container mx-auto px-4 grid md:grid-cols-5 gap-8 items-center">
+        <div className="md:col-span-2 text-left">
           <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
             Fragancao – Where Luxury Meets Innovation
           </h1>
         </div>
-        <div className="flex items-center justify-center">
+        <div className="md:col-span-3 flex items-center justify-center">
           <img 
             src="/fragrance-machine.png" 
             alt="Fragrance Vending Machine" 
-            className="w-full max-w-2xl h-auto object-contain"
+            className="w-full h-auto object-contain"
           />
         </div>
       </div>
