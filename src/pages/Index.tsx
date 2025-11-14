@@ -38,7 +38,7 @@ const Index = () => {
                         </div>
                     </div>
                     <div className="absolute inset-0 top-14 -z-10">
-                        <div className="aspect-[2/3] absolute inset-1 overflow-hidden rounded-3xl border border-black/10 sm:aspect-video lg:rounded-[3rem] dark:border-white/5">
+                        <div className="relative aspect-[2/3] absolute inset-1 overflow-hidden rounded-3xl border border-black/10 sm:aspect-video lg:rounded-[3rem] dark:border-white/5">
                             <video
                                 autoPlay
                                 loop
@@ -46,6 +46,7 @@ const Index = () => {
                                 playsInline
                                 className="size-full object-cover"
                                 src="/Untitled design (1).mp4"></video>
+                            <div className="absolute inset-0 bg-black/50"></div>
                         </div>
                     </div>
                 </div>
