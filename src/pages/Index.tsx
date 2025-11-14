@@ -15,8 +15,18 @@ const Index = () => {
   const animationStart = 0.2;
   const animationEnd = 0.8;
 
-  const x = useTransform(scrollYProgress, [animationStart, animationEnd], ["0%", "-75%"]);
-  const y = useTransform(scrollYProgress, [animationStart, animationEnd], ["0vh", "115vh"]);
+  // By adding a middle keyframe, we transform the path from a straight line to a gentle curve.
+  const x = useTransform(
+    scrollYProgress,
+    [animationStart, (animationStart + animationEnd) / 2, animationEnd],
+    ["0%", "-20%", "-75%"]
+  );
+  const y = useTransform(
+    scrollYProgress,
+    [animationStart, (animationStart + animationEnd) / 2, animationEnd],
+    ["0vh", "50vh", "115vh"]
+  );
+  
   const scale = useTransform(scrollYProgress, [animationStart, animationEnd], [1, 0.6]);
   
   // The animating image fades out as the "sticky" one in the Feature component fades in.
