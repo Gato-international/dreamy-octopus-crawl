@@ -6,13 +6,19 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { motion, useTransform, type MotionValue } from "framer-motion";
 
-function Feature() {
+function Feature({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) {
+  const carouselOpacity = useTransform(scrollYProgress, [0.4, 0.6], [1, 0]);
+
   return (
     <div className="w-full py-20 lg:py-40">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 justify-end items-end gap-10">
-          <div className="w-full max-w-full px-6">
+          <motion.div 
+            style={{ opacity: carouselOpacity }}
+            className="w-full max-w-full px-6"
+          >
             <Carousel>
               <CarouselContent>
                 {Array.from({ length: 5 }).map((_, index) => (
@@ -30,7 +36,7 @@ function Feature() {
               <CarouselPrevious />
               <CarouselNext />
             </Carousel>
-          </div>
+          </motion.div>
           <div className="flex gap-4 flex-col items-start">
             <div>
               <Badge>Platform</Badge>

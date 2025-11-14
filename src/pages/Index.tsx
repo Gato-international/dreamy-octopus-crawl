@@ -9,16 +9,27 @@ const Index = () => {
   const featureRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: featureRef,
-    offset: ["start end", "center center"],
+    offset: ["start end", "end end"],
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-125%"]);
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.6]);
-  const opacity = useTransform(scrollYProgress, [0.95, 1], [1, 0]);
+  const x = useTransform(scrollYProgress, [0, 0.5], ["30vw", "-22vw"]);
+  const y = useTransform(scrollYProgress, [0, 0.5], ["0vh", "120vh"]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.6]);
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.7, 1], [0, 1, 1]);
 
   return (
     <>
+      <motion.div
+        className="fixed top-0 left-0 w-1/2 md:w-1/3 z-30 pointer-events-none"
+        style={{ x, y, scale, opacity: imageOpacity }}
+      >
+        <img 
+          src="/fragrance-machine.png" 
+          alt="Fragrance Vending Machine" 
+          className="w-full h-auto object-contain"
+        />
+      </motion.div>
+
       <section className="relative h-screen w-full flex items-center overflow-hidden">
         <video
           src={videoSrc}
@@ -38,20 +49,20 @@ const Index = () => {
               Fragancao – Where Luxury Meets Innovation
             </h1>
           </div>
-          <motion.div 
-            className="md:col-span-3"
-            style={{ x, y, scale, opacity, zIndex: 10 }}
-          >
-            <img 
-              src="/fragrance-machine.png" 
-              alt="Fragrance Vending Machine" 
-              className="w-full h-auto object-contain"
-            />
-          </motion.div>
+          {/* Placeholder for the animated image */}
+          <div className="md:col-span-3">
+             <motion.div style={{ opacity: useTransform(scrollYProgress, [0, 0.1], [1, 0]) }}>
+                <img 
+                  src="/fragrance-machine.png" 
+                  alt="Fragrance Vending Machine" 
+                  className="w-full h-auto object-contain"
+                />
+             </motion.div>
+          </div>
         </div>
       </section>
       <div ref={featureRef}>
-        <Feature />
+        <Feature scrollYProgress={scrollYProgress} />
       </div>
     </>
   );
