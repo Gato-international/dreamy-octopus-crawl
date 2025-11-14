@@ -12,10 +12,15 @@ const Index = () => {
     offset: ["start end", "end end"],
   });
 
-  const x = useTransform(scrollYProgress, [0, 0.5], ["30vw", "-22vw"]);
-  const y = useTransform(scrollYProgress, [0, 0.5], ["0vh", "120vh"]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.6]);
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.7, 1], [0, 1, 1]);
+  // Slower animation over a longer scroll distance ([0.2, 0.8])
+  // Corrected final position (x: "10vw", y: "115vh")
+  const x = useTransform(scrollYProgress, [0.2, 0.8], ["30vw", "10vw"]);
+  const y = useTransform(scrollYProgress, [0.2, 0.8], ["0vh", "115vh"]);
+  const scale = useTransform(scrollYProgress, [0.2, 0.8], [1, 0.6]);
+  
+  // Smoother cross-fade between placeholder and moving image
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
+  const placeholderOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
   return (
     <>
@@ -51,7 +56,7 @@ const Index = () => {
           </div>
           {/* Placeholder for the animated image */}
           <div className="md:col-span-3">
-             <motion.div style={{ opacity: useTransform(scrollYProgress, [0, 0.1], [1, 0]) }}>
+             <motion.div style={{ opacity: placeholderOpacity }}>
                 <img 
                   src="/fragrance-machine.png" 
                   alt="Fragrance Vending Machine" 
