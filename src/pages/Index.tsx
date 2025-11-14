@@ -44,7 +44,7 @@ const Index = () => {
                                 loop
                                 muted
                                 playsInline
-                                className="size-full object-cover opacity-50 invert dark:opacity-35 dark:invert-0 dark:lg:opacity-75"
+                                className="size-full object-cover"
                                 src="/Untitled design (1).mp4"></video>
                         </div>
                     </div>
