@@ -17,7 +17,7 @@ const Index = () => {
       <div className="absolute z-10 inset-0 bg-black/50"></div>
       <div className="relative z-20 px-4 text-white">
         <h1 className="text-4xl md:text-6xl font-bold mb-4">
-          Immersive Video Experience
+          Fragancao – Where Luxury Meets Innovation
         </h1>
         <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
           Welcome to our homepage. Below you can see our featured video.
