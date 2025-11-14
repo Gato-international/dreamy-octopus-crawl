@@ -1,42 +1,25 @@
 import { Badge } from "@/components/ui/badge";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { motion, useTransform, type MotionValue } from "framer-motion";
 
 function Feature({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) {
-  const carouselOpacity = useTransform(scrollYProgress, [0.4, 0.6], [1, 0]);
+  const stickyImageOpacity = useTransform(scrollYProgress, [0.7, 0.8], [0, 1]);
 
   return (
     <div className="w-full py-20 lg:py-40">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 justify-end items-end gap-10">
-          <motion.div 
-            style={{ opacity: carouselOpacity }}
-            className="w-full max-w-full px-6"
-          >
-            <Carousel>
-              <CarouselContent>
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <CarouselItem key={index}>
-                    <div className="rounded-md aspect-video bg-muted overflow-hidden">
-                      <img
-                        src={`https://source.unsplash.com/random/1600x900?technology&sig=${index}`}
-                        alt={`Platform Screenshot ${index + 1}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
-          </motion.div>
+          {/* This container holds the "sticky" image that appears at the end of the animation */}
+          <div className="w-full max-w-full px-6">
+            <motion.div style={{ opacity: stickyImageOpacity }}>
+              <img
+                src="/fragrance-machine.png"
+                alt="Fragrance Vending Machine"
+                className="w-full h-auto object-contain"
+                // We apply the same scale as the animation's end-state for a seamless transition
+                style={{ transform: 'scale(0.6)' }}
+              />
+            </motion.div>
+          </div>
           <div className="flex gap-4 flex-col items-start">
             <div>
               <Badge>Platform</Badge>

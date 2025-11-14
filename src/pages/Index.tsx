@@ -19,7 +19,8 @@ const Index = () => {
   const y = useTransform(scrollYProgress, [animationStart, animationEnd], ["0vh", "115vh"]);
   const scale = useTransform(scrollYProgress, [animationStart, animationEnd], [1, 0.6]);
   
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
+  // The animating image fades out as the "sticky" one in the Feature component fades in.
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.1, 0.7, 0.8], [0, 1, 1, 0]);
   const placeholderOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
   return (
