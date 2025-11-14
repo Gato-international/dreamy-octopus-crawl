@@ -24,11 +24,11 @@ interface MediaContentCollection {
 
 const sampleMediaContent: MediaContentCollection = {
   video: {
-    src: '/hero-video.mp4',
+    src: 'https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYuZ5R8ahEEZ4aQK56LizRdfBSqeDMsmUIrJN1',
     poster:
-      'https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?q=80&w=1920&auto=format&fit=crop',
+      'https://images.pexels.com/videos/5752729/space-earth-universe-cosmos-5752729.jpeg',
     background:
-      'https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?q=80&w=1920&auto=format&fit=crop',
+      'https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYMNjMlBUYHaeYpxduXPVNwf8mnFA61L7rkcoS',
     title: 'Immersive Video Experience',
     date: 'Cosmic Journey',
     scrollToExpand: 'Scroll to Expand Demo',
