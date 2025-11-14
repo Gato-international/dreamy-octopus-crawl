@@ -26,7 +26,7 @@ const Index = () => {
           <img 
             src="/fragrance-machine.png" 
             alt="Fragrance Vending Machine" 
-            className="w-full max-w-lg h-auto object-contain"
+            className="w-full max-w-2xl h-auto object-contain"
           />
         </div>
       </div>
