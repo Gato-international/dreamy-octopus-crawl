@@ -15,19 +15,17 @@ const Index = () => {
   const animationStart = 0.2;
   const animationEnd = 0.8;
 
-  // By adding a middle keyframe, we transform the path from a straight line to a gentle curve.
+  // Adjusted the animation path to match the curve from your screenshot.
   const x = useTransform(
     scrollYProgress,
     [animationStart, (animationStart + animationEnd) / 2, animationEnd],
-    ["0%", "-20%", "-75%"]
+    ["0%", "-10%", "-75%"]
   );
   const y = useTransform(
     scrollYProgress,
     [animationStart, (animationStart + animationEnd) / 2, animationEnd],
-    ["0vh", "50vh", "115vh"]
+    ["0vh", "60vh", "115vh"]
   );
-  
-  const scale = useTransform(scrollYProgress, [animationStart, animationEnd], [1, 0.6]);
   
   // The animating image fades out as the "sticky" one in the Feature component fades in.
   const imageOpacity = useTransform(scrollYProgress, [0, 0.1, 0.7, 0.8], [0, 1, 1, 0]);
@@ -42,7 +40,7 @@ const Index = () => {
                 <div className="md:col-span-2" /> {/* Spacer to push the image to the right */}
                 <motion.div
                     className="md:col-span-3"
-                    style={{ x, y, scale, opacity: imageOpacity }}
+                    style={{ x, y, opacity: imageOpacity }}
                 >
                     <img 
                         src="/fragrance-machine.png" 

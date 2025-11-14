@@ -15,8 +15,6 @@ function Feature({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) 
                 src="/fragrance-machine.png"
                 alt="Fragrance Vending Machine"
                 className="w-full h-auto object-contain"
-                // We apply the same scale as the animation's end-state for a seamless transition
-                style={{ transform: 'scale(0.6)' }}
               />
             </motion.div>
           </div>
