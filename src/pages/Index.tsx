@@ -12,28 +12,36 @@ const Index = () => {
     offset: ["start end", "end end"],
   });
 
-  // Slower animation over a longer scroll distance ([0.2, 0.8])
-  // Corrected final position (x: "10vw", y: "115vh")
-  const x = useTransform(scrollYProgress, [0.2, 0.8], ["30vw", "10vw"]);
-  const y = useTransform(scrollYProgress, [0.2, 0.8], ["0vh", "115vh"]);
-  const scale = useTransform(scrollYProgress, [0.2, 0.8], [1, 0.6]);
+  const animationStart = 0.2;
+  const animationEnd = 0.8;
+
+  const x = useTransform(scrollYProgress, [animationStart, animationEnd], ["0%", "-75%"]);
+  const y = useTransform(scrollYProgress, [animationStart, animationEnd], ["0vh", "115vh"]);
+  const scale = useTransform(scrollYProgress, [animationStart, animationEnd], [1, 0.6]);
   
-  // Smoother cross-fade between placeholder and moving image
   const imageOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
   const placeholderOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
   return (
     <>
-      <motion.div
-        className="fixed top-0 left-0 w-1/2 md:w-1/3 z-30 pointer-events-none"
-        style={{ x, y, scale, opacity: imageOpacity }}
-      >
-        <img 
-          src="/fragrance-machine.png" 
-          alt="Fragrance Vending Machine" 
-          className="w-full h-auto object-contain"
-        />
-      </motion.div>
+      {/* This container holds the animating image. It's fixed and mirrors the hero layout to ensure the animation starts from the correct position. */}
+      <div className="fixed top-0 left-0 w-full h-screen pointer-events-none z-30">
+        <div className="container mx-auto px-4 h-full flex items-center">
+            <div className="w-full grid md:grid-cols-5 gap-8 items-center">
+                <div className="md:col-span-2" /> {/* Spacer to push the image to the right */}
+                <motion.div
+                    className="md:col-span-3"
+                    style={{ x, y, scale, opacity: imageOpacity }}
+                >
+                    <img 
+                        src="/fragrance-machine.png" 
+                        alt="Fragrance Vending Machine" 
+                        className="w-full h-auto object-contain"
+                    />
+                </motion.div>
+            </div>
+        </div>
+      </div>
 
       <section className="relative h-screen w-full flex items-center overflow-hidden">
         <video
