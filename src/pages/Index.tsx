@@ -21,9 +21,6 @@ const Index = () => {
           <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
             Fragancao – Where Luxury Meets Innovation
           </h1>
-          <p className="text-lg md:text-xl text-white/90 max-w-xl">
-            Discover a new era of fragrance with our state-of-the-art vending solutions, bringing premium scents to you, instantly.
-          </p>
         </div>
         <div className="flex items-center justify-center">
           <img 
