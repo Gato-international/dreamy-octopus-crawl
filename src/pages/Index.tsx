@@ -1,8 +1,10 @@
 import { Hero as HeroSection2 } from "@/components/ui/hero-with-group-of-images-text-and-two-buttons";
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 
 const Index = () => {
   const videoSrc = 'https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYuZ5R8ahEEZ4aQK56LizRdfBSqeDMsmUIrJN1';
   const posterSrc = 'https://images.pexels.com/videos/5752729/space-earth-universe-cosmos-5752729.jpeg';
+  const words = `De Luxe Vending machine biedt een exclusieve geurervaring in een elegant, high-end design. Dit luxe apparaat spuit premium parfums, zorgvuldig geselecteerd om klanten een moment van verfijning en luxe te bieden. Met vijf exclusieve geuren biedt de machine een snelle, verfrissende ervaring voor iedereen die zich wil omhullen in een verfijnde geur. Het moderne ontwerp voegt bovendien extra luxe toe aan elke locatie, terwijl de gebruiksvriendelijke interface zorgt voor een moeiteloze en plezierige ervaring.`;
 
   return (
     <>
@@ -36,6 +38,11 @@ const Index = () => {
       </section>
       <section>
         <HeroSection2 />
+      </section>
+      <section className="py-20 lg:py-40">
+        <div className="container mx-auto">
+          <TextGenerateEffect words={words} className="text-center" />
+        </div>
       </section>
     </>
   );
