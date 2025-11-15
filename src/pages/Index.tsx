@@ -15,11 +15,11 @@ const Index = () => {
   const animationStart = 0.2;
   const animationEnd = 0.8;
 
-  // I've increased the negative x-values to make the curve wider and more pronounced.
+  // I've made the x-values much more negative to create a very wide, sweeping curve to the left.
   const x = useTransform(
     scrollYProgress,
     [animationStart, 0.4, 0.6, animationEnd],
-    ["0%", "-15%", "-55%", "-75%"]
+    ["0%", "-35%", "-65%", "-75%"]
   );
   const y = useTransform(
     scrollYProgress,
