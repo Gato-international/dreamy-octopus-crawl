@@ -2,14 +2,14 @@
 
 import { cn } from "@/lib/utils";
 import {
-  IconAdjustmentsBolt,
-  IconCloud,
+  Icon24Hours,
   IconCurrencyDollar,
-  IconEaseInOut,
-  IconHeart,
-  IconHelp,
-  IconRouteAltLeft,
-  IconTerminal2,
+  IconDiamond,
+  IconEye,
+  IconGears,
+  IconMapPin,
+  IconShieldCheck,
+  IconStar,
 } from "@tabler/icons-react";
 import React from "react";
 
@@ -23,37 +23,37 @@ export function FeaturesSectionWithHoverEffects() {
     {
       title: "24/7 Self-Service",
       description: "Fully autonomous and always available during your opening hours for maximum convenience.",
-      icon: <IconEaseInOut />,
+      icon: <Icon24Hours />,
     },
     {
       title: "Luxurious Eyecatcher",
       description: "A modern and elegant design that instantly enhances the appeal of your location.",
-      icon: <IconHeart />,
+      icon: <IconDiamond />,
     },
     {
       title: "Strategic Placement",
       description: "Perfect for high-traffic zones such as entrances, restrooms, and walkways.",
-      icon: <IconRouteAltLeft />,
+      icon: <IconMapPin />,
     },
     {
       title: "Efficient & Autonomous",
       description: "The machine operates completely independently, leading to maximum profitability.",
-      icon: <IconAdjustmentsBolt />,
+      icon: <IconGears />,
     },
     {
       title: "Unique Customer Experience",
       description: "Offer your visitors an unforgettable and interactive moment of sophistication.",
-      icon: <IconTerminal2 />,
+      icon: <IconStar />,
     },
     {
       title: "Maximum Visibility",
       description: "Ideal for food courts or entertainment areas to attract a wide audience.",
-      icon: <IconCloud />,
+      icon: <IconEye />,
     },
     {
       title: "Hassle-Free Management",
       description: "We handle installation, maintenance, and inventory. You don't have to do a thing.",
-      icon: <IconHelp />,
+      icon: <IconShieldCheck />,
     },
   ];
   return (
