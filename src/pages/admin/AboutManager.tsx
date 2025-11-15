@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { showSuccess, showError } from '@/utils/toast';
 
-const AboutManager = () => {
+function AboutManager() {
   const [content, setContent] = useState({
     about_headline: '',
     about_subheadline: '',
@@ -49,7 +49,6 @@ const AboutManager = () => {
   };
 
   const handleSave = async () => {
-    // Validate JSON for images
     if (content.about_images) {
       try {
         JSON.parse(content.about_images);
@@ -138,6 +137,6 @@ const AboutManager = () => {
       </Card>
     </div>
   );
-};
+}
 
 export default AboutManager;
