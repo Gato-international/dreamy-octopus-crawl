@@ -42,20 +42,45 @@ const Index = () => {
         <div className="container mx-auto">
           <div className="text-center max-w-4xl mx-auto">
             <p className="dark:text-white text-black text-2xl leading-snug tracking-wide">
-              De Luxe Vending machine biedt een exclusieve geurervaring in een
-              elegant, high-end design. Dit luxe apparaat spuit premium{" "}
+              De Luxe Vending machine biedt een exclusieve{" "}
+              <LinkPreview
+                url="https://en.wikipedia.org/wiki/Olfaction"
+                className="font-bold bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-pink-500"
+              >
+                geurervaring
+              </LinkPreview>{" "}
+              in een elegant, high-end{" "}
+              <LinkPreview
+                url="https://dribbble.com/"
+                className="font-bold bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-pink-500"
+              >
+                design
+              </LinkPreview>
+              . Dit luxe apparaat spuit premium{" "}
               <LinkPreview
                 url="https://www.fragrantica.com/"
                 className="font-bold bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-pink-500"
               >
                 parfums
               </LinkPreview>
-              , zorgvuldig geselecteerd om klanten een moment van verfijning en
-              luxe te bieden. Met vijf exclusieve geuren biedt de machine een
+              , zorgvuldig geselecteerd om klanten een moment van verfijning en{" "}
+              <LinkPreview
+                url="https://www.chanel.com/"
+                className="font-bold bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-pink-500"
+              >
+                luxe
+              </LinkPreview>{" "}
+              te bieden. Met vijf exclusieve geuren biedt de machine een
               snelle, verfrissende ervaring voor iedereen die zich wil omhullen
               in een verfijnde geur. Het moderne ontwerp voegt bovendien extra
-              luxe toe aan elke locatie, terwijl de gebruiksvriendelijke
-              interface zorgt voor een moeiteloze en plezierige ervaring.
+              luxe toe aan elke locatie, terwijl de gebruiksvriendelijke{" "}
+              <LinkPreview
+                url="https://www.nngroup.com/articles/user-interface-design/"
+                className="font-bold bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-pink-500"
+              >
+                interface
+              </LinkPreview>{" "}
+              zorgt voor een moeiteloze en plezierige ervaring.
             </p>
           </div>
         </div>
