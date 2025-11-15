@@ -25,9 +25,10 @@ const item: CarouselItem = {
   url: '/fragrance-machine-gallery.png',
   title: 'Fragrance Vending Machine',
   hotspots: [
-    { x: 48, y: 45, title: 'Touch Screen Display', description: 'A high-resolution 27-inch touch screen for easy fragrance selection and an interactive experience.' },
-    { x: 25, y: 78, title: 'Fragrance Nozzle', description: 'Dispenses a fine, precise mist of your chosen luxury fragrance.' },
-    { x: 75, y: 78, title: 'Payment Terminal', description: 'Accepts all major credit cards and contactless payments for a seamless transaction.' }
+    { x: 15, y: 50, title: 'Afmetingen', description: 'Ongeveer 60cm breed, 60cm diep, en 180cm hoog.' },
+    { x: 85, y: 90, title: 'Voeding', description: 'Werkt op een standaard 230V stopcontact.' },
+    { x: 50, y: 25, title: 'Plaatsing & Onderhoud', description: 'De plaatsing en het onderhoud worden volledig door ons verzorgd.' },
+    { x: 50, y: 65, title: 'Voorraadbeheer', description: 'Wij vullen, controleren en onderhouden de voorraad in de machine.' }
   ]
 };
 
