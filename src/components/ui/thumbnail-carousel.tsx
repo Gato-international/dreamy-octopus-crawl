@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useMotionValue, animate } from 'framer-motion';
+import { motion, useMotionValue, animate, PanInfo } from 'framer-motion';
 import Hotspot from './Hotspot';
+import { produce } from 'immer';
 
 interface HotspotData {
   x: number;
@@ -16,7 +17,7 @@ interface CarouselItem {
   hotspots?: HotspotData[];
 }
 
-const items: CarouselItem[] = [
+const initialItems: CarouselItem[] = [
   {
     id: 0,
     url: '/fragrance-machine-gallery.png',
@@ -129,7 +130,7 @@ function Thumbnails({ index, setIndex }: { index: number, setIndex: (index: numb
         }
       `}</style>
       <div className='flex gap-0.5 h-20 pb-2' style={{ width: 'fit-content' }}>
-        {items.map((item, i) => (
+        {initialItems.map((item, i) => (
           <motion.button
             key={item.id}
             onClick={() => setIndex(i)}
@@ -166,9 +167,39 @@ function Thumbnails({ index, setIndex }: { index: number, setIndex: (index: numb
 export default function ThumbnailCarousel() {
   const [index, setIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const [items, setItems] = useState(initialItems);
   const containerRef = useRef<HTMLDivElement>(null);
+  const imageContainerRef = useRef<HTMLDivElement>(null);
 
   const x = useMotionValue(0);
+
+  const handleHotspotDragEnd = (
+    itemIndex: number,
+    hotspotIndex: number,
+    info: PanInfo
+  ) => {
+    if (!imageContainerRef.current) return;
+
+    const { offsetWidth, offsetHeight } = imageContainerRef.current;
+    const newX = ((info.point.x - imageContainerRef.current.getBoundingClientRect().left) / offsetWidth) * 100;
+    const newY = ((info.point.y - imageContainerRef.current.getBoundingClientRect().top) / offsetHeight) * 100;
+
+    const newItems = produce(items, draft => {
+      if (draft[itemIndex]?.hotspots) {
+        draft[itemIndex].hotspots![hotspotIndex].x = newX;
+        draft[itemIndex].hotspots![hotspotIndex].y = newY;
+      }
+    });
+
+    console.log(`New hotspot data for item ${itemIndex}, hotspot ${hotspotIndex}:`, {
+      x: parseFloat(newX.toFixed(2)),
+      y: parseFloat(newY.toFixed(2)),
+      title: items[itemIndex].hotspots![hotspotIndex].title,
+      description: items[itemIndex].hotspots![hotspotIndex].description,
+    });
+
+    setItems(newItems);
+  };
 
   useEffect(() => {
     if (!isDragging && containerRef.current) {
@@ -184,7 +215,7 @@ export default function ThumbnailCarousel() {
   }, [index, x, isDragging]);
 
   return (
-    <div className='w-full max-w-3xl mx-auto p-4 lg:p-10'>
+    <div className='w-full max-w-3xl mx-auto p-4 lg-p-10'>
       <div className='flex flex-col gap-3'>
         {/* Main Carousel */}
         <div className='relative overflow-hidden rounded-lg bg-gray-100' ref={containerRef}>
@@ -202,36 +233,34 @@ export default function ThumbnailCarousel() {
 
               let newIndex = index;
 
-              // If fast swipe, use velocity
               if (Math.abs(velocity) > 500) {
                 newIndex = velocity > 0 ? index - 1 : index + 1;
               }
-              // Otherwise use offset threshold (30% of container width)
               else if (Math.abs(offset) > containerWidth * 0.3) {
                 newIndex = offset > 0 ? index - 1 : index + 1;
               }
 
-              // Clamp index
               newIndex = Math.max(0, Math.min(items.length - 1, newIndex));
               setIndex(newIndex);
             }}
             style={{ x }}
           >
             {items.map((item, i) => (
-              <div key={item.id} className='relative shrink-0 w-full h-[400px]'>
+              <div key={item.id} className='relative shrink-0 w-full h-[400px]' ref={i === index ? imageContainerRef : null}>
                 <img
                   src={item.url}
                   alt={item.title}
                   className='w-full h-full object-cover rounded-lg select-none pointer-events-none'
                   draggable={false}
                 />
-                {i === index && item.hotspots?.map((hotspot, hotspotIndex) => (
+                {item.hotspots?.map((hotspot, hotspotIndex) => (
                   <Hotspot
                     key={hotspotIndex}
                     x={hotspot.x}
                     y={hotspot.y}
                     title={hotspot.title}
                     description={hotspot.description}
+                    onDragEnd={(event, info) => handleHotspotDragEnd(i, hotspotIndex, info)}
                   />
                 ))}
               </div>
