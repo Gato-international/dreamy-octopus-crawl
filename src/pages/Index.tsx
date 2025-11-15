@@ -15,11 +15,11 @@ const Index = () => {
   const animationStart = 0.2;
   const animationEnd = 0.8;
 
-  // By adding more keyframes, we can create a much smoother and more defined animation path.
+  // I've increased the negative x-values to make the curve wider and more pronounced.
   const x = useTransform(
     scrollYProgress,
     [animationStart, 0.4, 0.6, animationEnd],
-    ["0%", "-5%", "-40%", "-75%"]
+    ["0%", "-15%", "-55%", "-75%"]
   );
   const y = useTransform(
     scrollYProgress,
