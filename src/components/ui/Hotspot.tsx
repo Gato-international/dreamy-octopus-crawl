@@ -3,25 +3,20 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import { motion, PanInfo } from "framer-motion";
 
 interface HotspotProps {
   x: number;
   y: number;
   title: string;
   description: string;
-  onDragEnd: (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => void;
 }
 
-const Hotspot = ({ x, y, title, description, onDragEnd }: HotspotProps) => {
+const Hotspot = ({ x, y, title, description }: HotspotProps) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <motion.button
-          drag
-          dragMomentum={false}
-          onDragEnd={onDragEnd}
-          className="absolute w-6 h-6 -translate-x-1/2 -translate-y-1/2 cursor-move z-20"
+        <button
+          className="absolute w-6 h-6 -translate-x-1/2 -translate-y-1/2"
           style={{ left: `${x}%`, top: `${y}%` }}
           aria-label={`More info about ${title}`}
         >
@@ -29,7 +24,7 @@ const Hotspot = ({ x, y, title, description, onDragEnd }: HotspotProps) => {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-4 w-4 bg-sky-500 border-2 border-white"></span>
           </span>
-        </motion.button>
+        </button>
       </PopoverTrigger>
       <PopoverContent>
         <div className="grid gap-4">
