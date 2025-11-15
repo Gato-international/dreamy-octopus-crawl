@@ -16,10 +16,7 @@ function Hero() {
                 Where Every Spray Becomes an Experience
               </h1>
               <p className="text-xl leading-relaxed tracking-tight text-muted-foreground max-w-md text-left">
-                Managing a small business today is already tough. Avoid further
-                complications by ditching outdated, tedious trade methods. Our
-                goal is to streamline SMB trade, making it easier and faster than
-                ever.
+                Choose. Tap. Spray. Our Parfum Vending Machines offer visitors instant access to premium fragrances with seamless contactless payment. Whether it's a quick refresh after the gym, before a night out, or during a shopping break – luxury is just three seconds away.
               </p>
             </div>
             <div className="flex flex-row gap-4">
