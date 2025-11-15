@@ -32,8 +32,8 @@ function Hero() {
             <div className="bg-muted rounded-md aspect-square flex items-center justify-center p-12">
               <img src="/select-finger.png" alt="Select fragrance" className="w-full h-full object-contain" />
             </div>
-            <div className="bg-muted rounded-md row-span-2 flex items-center justify-center">
-              <span className="text-muted-foreground text-sm">500 x 1016</span>
+            <div className="rounded-md row-span-2">
+              <img src="/fragrance-spray.png" alt="Person spraying fragrance" className="w-full h-full object-cover rounded-md" />
             </div>
             <div className="bg-muted rounded-md aspect-square flex items-center justify-center p-12">
               <img src="/spray-bottle.png" alt="Spray fragrance" className="w-full h-full object-contain" />
