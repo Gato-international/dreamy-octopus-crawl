@@ -7,7 +7,8 @@ import MainLayout from "./components/layout/MainLayout";
 import Index from "./pages/Index";
 import Contact from "./pages/Contact";
 import Pricing from "./pages/Pricing";
-import Admin from "./pages/Admin";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,7 +26,8 @@ const App = () => (
             <Route path="/pricing" element={<Pricing />} />
             <Route path="*" element={<NotFound />} />
           </Route>
-          <Route path="/fragadmin99201" element={<Admin />} />
+          <Route path="/fragadmin99201" element={<Login />} />
+          <Route path="/admin/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
