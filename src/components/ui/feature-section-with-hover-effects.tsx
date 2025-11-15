@@ -16,43 +16,43 @@ import React from "react";
 export function FeaturesSectionWithHoverEffects() {
   const features = [
     {
-      title: "Hogere Omzet, Lagere Kosten",
-      description: "Genereer extra inkomsten per vierkante meter zonder de noodzaak voor extra personeel.",
+      title: "Higher Revenue, Lower Costs",
+      description: "Generate extra revenue per square meter without the need for additional staff.",
       icon: <IconCurrencyDollar />,
     },
     {
       title: "24/7 Self-Service",
-      description: "Volledig autonoom en altijd beschikbaar binnen uw openingstijden voor maximaal gemak.",
+      description: "Fully autonomous and always available during your opening hours for maximum convenience.",
       icon: <IconEaseInOut />,
     },
     {
-      title: "Luxe Eyecatcher",
-      description: "Een modern en elegant design dat de uitstraling van uw locatie direct verhoogt.",
+      title: "Luxurious Eyecatcher",
+      description: "A modern and elegant design that instantly enhances the appeal of your location.",
       icon: <IconHeart />,
     },
     {
-      title: "Strategische Plaatsing",
-      description: "Perfect voor high-traffic zones zoals entrees, toiletten, en looproutes.",
+      title: "Strategic Placement",
+      description: "Perfect for high-traffic zones such as entrances, restrooms, and walkways.",
       icon: <IconRouteAltLeft />,
     },
     {
-      title: "Efficiënt & Autonoom",
-      description: "De machine werkt volledig zelfstandig, wat leidt tot maximale winstgevendheid.",
+      title: "Efficient & Autonomous",
+      description: "The machine operates completely independently, leading to maximum profitability.",
       icon: <IconAdjustmentsBolt />,
     },
     {
-      title: "Unieke Klantbeleving",
-      description: "Bied uw bezoekers een onvergetelijk en interactief moment van verfijning.",
+      title: "Unique Customer Experience",
+      description: "Offer your visitors an unforgettable and interactive moment of sophistication.",
       icon: <IconTerminal2 />,
     },
     {
-      title: "Maximale Zichtbaarheid",
-      description: "Ideaal voor food courts of uitgaansgebieden om een breed publiek aan te trekken.",
+      title: "Maximum Visibility",
+      description: "Ideal for food courts or entertainment areas to attract a wide audience.",
       icon: <IconCloud />,
     },
     {
-      title: "Zorgeloos Beheer",
-      description: "Wij verzorgen de plaatsing, het onderhoud en de voorraad. U hoeft niets te doen.",
+      title: "Hassle-Free Management",
+      description: "We handle installation, maintenance, and inventory. You don't have to do a thing.",
       icon: <IconHelp />,
     },
   ];

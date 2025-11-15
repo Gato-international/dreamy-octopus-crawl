@@ -42,45 +42,42 @@ const Index = () => {
           <div className="text-center max-w-4xl mx-auto">
             <h2 className="text-4xl font-bold mb-8 text-white">What is Fragancoa?</h2>
             <p className="text-white text-2xl leading-snug tracking-wide">
-              De Luxe Vending machine biedt een exclusieve{" "}
+              The Deluxe Vending machine offers an exclusive{" "}
               <LinkPreview
                 url="https://en.wikipedia.org/wiki/Olfaction"
                 className="font-bold bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-pink-500"
               >
-                geurervaring
+                scent experience
               </LinkPreview>{" "}
-              in een elegant, high-end{" "}
+              in an elegant, high-end{" "}
               <LinkPreview
                 url="https://dribbble.com/"
                 className="font-bold bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-pink-500"
               >
                 design
               </LinkPreview>
-              . Dit luxe apparaat spuit premium{" "}
+              . This luxury device dispenses premium{" "}
               <LinkPreview
                 url="https://www.fragrantica.com/"
                 className="font-bold bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-pink-500"
               >
-                parfums
+                perfumes
               </LinkPreview>
-              , zorgvuldig geselecteerd om klanten een moment van verfijning en{" "}
+              , carefully selected to offer customers a moment of sophistication and{" "}
               <LinkPreview
                 url="https://www.chanel.com/"
                 className="font-bold bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-pink-500"
               >
-                luxe
-              </LinkPreview>{" "}
-              te bieden. Met vijf exclusieve geuren biedt de machine een
-              snelle, verfrissende ervaring voor iedereen die zich wil omhullen
-              in een verfijnde geur. Het moderne ontwerp voegt bovendien extra
-              luxe toe aan elke locatie, terwijl de gebruiksvriendelijke{" "}
+                luxury
+              </LinkPreview>
+              . With five exclusive fragrances, the machine provides a quick, refreshing experience for anyone looking to envelop themselves in a refined scent. The modern design also adds extra luxury to any location, while the user-friendly{" "}
               <LinkPreview
                 url="https://www.nngroup.com/articles/user-interface-design/"
                 className="font-bold bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-pink-500"
               >
                 interface
               </LinkPreview>{" "}
-              zorgt voor een moeiteloze en plezierige ervaring.
+              ensures an effortless and enjoyable experience.
             </p>
           </div>
         </div>
