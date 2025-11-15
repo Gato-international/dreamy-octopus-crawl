@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,53 +10,36 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
-const pricingTiers = [
-  {
-    name: "Plaatsing",
-    description: "Ideaal voor enkele locaties zoals hotels, restaurants of boetieks.",
-    price: "Omzetdeling",
-    features: [
-      "1 Deluxe Vending Machine",
-      "Geen investeringskosten",
-      "Aantrekkelijke omzetdeling",
-      "Maandelijks onderhoud & bijvullen",
-      "24/7 Online Support",
-    ],
-    cta: "Word Partner",
-    popular: false,
-  },
-  {
-    name: "Franchise",
-    description: "Perfect voor bedrijven met meerdere locaties of ketens.",
-    price: "Hogere Omzetdeling",
-    features: [
-      "Tot 10 machines",
-      "Verbeterde omzetdeling",
-      "Prioriteitssupport via telefoon & e-mail",
-      "Tweewekelijks onderhoud & bijvullen",
-      "Toegang tot analytics dashboard",
-    ],
-    cta: "Vraag een offerte aan",
-    popular: true,
-  },
-  {
-    name: "Enterprise",
-    description: "Voor grootschalige, op maat gemaakte implementaties en unieke merkervaringen.",
-    price: "Model op Maat",
-    features: [
-      "Onbeperkt aantal machines",
-      "Machine design & branding op maat",
-      "Persoonlijke accountmanager",
-      "Onderhoud op aanvraag",
-      "Geavanceerde API-integratie",
-    ],
-    cta: "Neem contact op",
-    popular: false,
-  },
-];
+type PricingTier = {
+  id: string;
+  name: string;
+  description: string;
+  price: string;
+  features: string[];
+  cta: string;
+  popular: boolean;
+};
 
 const Pricing = () => {
+  const [pricingTiers, setPricingTiers] = useState<PricingTier[]>([]);
+
+  useEffect(() => {
+    const fetchPricingTiers = async () => {
+      const { data, error } = await supabase
+        .from("pricing_tiers")
+        .select("*")
+        .order("sort_order");
+      if (error) {
+        console.error("Error fetching pricing tiers:", error);
+      } else {
+        setPricingTiers(data);
+      }
+    };
+    fetchPricingTiers();
+  }, []);
+
   return (
     <div className="container max-w-screen-lg py-12 pt-24 sm:pt-32">
       <div className="text-center mb-12 lg:mb-20">
