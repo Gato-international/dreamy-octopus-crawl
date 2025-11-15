@@ -100,7 +100,7 @@ const Logo = ({ className }: { className?: string }) => {
         <img 
             src="/Fragancao-Logo-TEXT-TRANSPARANT.png" 
             alt="Fragancao Logo" 
-            className={cn('h-10 w-auto', className)} 
+            className={cn('h-6 w-auto', className)} 
         />
     )
 }
