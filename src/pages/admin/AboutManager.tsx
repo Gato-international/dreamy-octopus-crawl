@@ -16,20 +16,11 @@ function AboutManager() {
     about_primary_cta_link: '',
     about_secondary_cta_text: '',
     about_secondary_cta_link: '',
-    about_images: '', // JSON string for images
+    about_images: '',
   });
 
-  useEffect(() => {
-    fetchContent();
-  }, []);
-
   const fetchContent = async () => {
-    const keys = [
-      'about_headline', 'about_subheadline', 'about_description',
-      'about_primary_cta_text', 'about_primary_cta_link',
-      'about_secondary_cta_text', 'about_secondary_cta_link',
-      'about_images'
-    ];
+    const keys = Object.keys(content);
     const { data, error } = await supabase.from('site_config').select('*').in('key', keys);
       
     if (error) {
@@ -39,9 +30,23 @@ function AboutManager() {
         acc[item.key] = item.value;
         return acc;
       }, {} as Record<string, string>);
-      setContent(config as any);
+      
+      setContent({
+          about_headline: config.about_headline || '',
+          about_subheadline: config.about_subheadline || '',
+          about_description: config.about_description || '',
+          about_primary_cta_text: config.about_primary_cta_text || '',
+          about_primary_cta_link: config.about_primary_cta_link || '',
+          about_secondary_cta_text: config.about_secondary_cta_text || '',
+          about_secondary_cta_link: config.about_secondary_cta_link || '',
+          about_images: config.about_images || '',
+      });
     }
   };
+
+  useEffect(() => {
+    fetchContent();
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -88,34 +93,34 @@ function AboutManager() {
         <CardContent className="space-y-4">
           <div className="grid gap-2">
             <Label htmlFor="about_headline">Headline</Label>
-            <Input id="about_headline" name="about_headline" value={content.about_headline || ''} onChange={handleInputChange} />
+            <Input id="about_headline" name="about_headline" value={content.about_headline} onChange={handleInputChange} />
           </div>
           <div className="grid gap-2">
             <Label htmlFor="about_subheadline">Subheadline</Label>
-            <Input id="about_subheadline" name="about_subheadline" value={content.about_subheadline || ''} onChange={handleInputChange} />
+            <Input id="about_subheadline" name="about_subheadline" value={content.about_subheadline} onChange={handleInputChange} />
           </div>
           <div className="grid gap-2">
             <Label htmlFor="about_description">Description</Label>
-            <Textarea id="about_description" name="about_description" value={content.about_description || ''} onChange={handleInputChange} rows={5} />
+            <Textarea id="about_description" name="about_description" value={content.about_description} onChange={handleInputChange} rows={5} />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
               <Label htmlFor="about_primary_cta_text">Primary Button Text</Label>
-              <Input id="about_primary_cta_text" name="about_primary_cta_text" value={content.about_primary_cta_text || ''} onChange={handleInputChange} />
+              <Input id="about_primary_cta_text" name="about_primary_cta_text" value={content.about_primary_cta_text} onChange={handleInputChange} />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="about_primary_cta_link">Primary Button Link</Label>
-              <Input id="about_primary_cta_link" name="about_primary_cta_link" value={content.about_primary_cta_link || ''} onChange={handleInputChange} />
+              <Input id="about_primary_cta_link" name="about_primary_cta_link" value={content.about_primary_cta_link} onChange={handleInputChange} />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="grid gap-2">
               <Label htmlFor="about_secondary_cta_text">Secondary Button Text</Label>
-              <Input id="about_secondary_cta_text" name="about_secondary_cta_text" value={content.about_secondary_cta_text || ''} onChange={handleInputChange} />
+              <Input id="about_secondary_cta_text" name="about_secondary_cta_text" value={content.about_secondary_cta_text} onChange={handleInputChange} />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="about_secondary_cta_link">Secondary Button Link</Label>
-              <Input id="about_secondary_cta_link" name="about_secondary_cta_link" value={content.about_secondary_cta_link || ''} onChange={handleInputChange} />
+              <Input id="about_secondary_cta_link" name="about_secondary_cta_link" value={content.about_secondary_cta_link} onChange={handleInputChange} />
             </div>
           </div>
           <div className="grid gap-2">
@@ -123,7 +128,7 @@ function AboutManager() {
             <Textarea 
               id="about_images" 
               name="about_images" 
-              value={content.about_images || ''} 
+              value={content.about_images} 
               onChange={handleInputChange} 
               rows={8} 
               placeholder='[{"src": "/url-from-media-library.png", "alt": "description"}, ...]'
