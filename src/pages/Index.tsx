@@ -1,3 +1,5 @@
+import { Hero as HeroSection2 } from "@/components/ui/hero-with-group-of-images-text-and-two-buttons";
+
 const Index = () => {
   const videoSrc = 'https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYuZ5R8ahEEZ4aQK56LizRdfBSqeDMsmUIrJN1';
   const posterSrc = 'https://images.pexels.com/videos/5752729/space-earth-universe-cosmos-5752729.jpeg';
@@ -31,6 +33,9 @@ const Index = () => {
             />
           </div>
         </div>
+      </section>
+      <section>
+        <HeroSection2 />
       </section>
     </>
   );
