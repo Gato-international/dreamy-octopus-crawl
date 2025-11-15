@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { showSuccess, showError } from '@/utils/toast';
 
-function AboutManager() {
+const AboutManager = () => {
   const [content, setContent] = useState({
     about_headline: '',
     about_subheadline: '',
@@ -33,14 +33,14 @@ function AboutManager() {
       
       setContent({
           about_headline: config.about_headline || '',
-          about_subheadline: config.about_subheadline || '',
-          about_description: config.about_description || '',
-          about_primary_cta_text: config.about_primary_cta_text || '',
-          about_primary_cta_link: config.about_primary_cta_link || '',
-          about_secondary_cta_text: config.about_secondary_cta_text || '',
-          about_secondary_cta_link: config.about_secondary_cta_link || '',
-          about_images: config.about_images || '',
-      });
+          subheadline: config.about_subheadline || '',
+          description: config.about_description || '',
+          primary_cta_text: config.about_primary_cta_text || '',
+          primary_cta_link: config.about_primary_cta_link || '',
+          secondary_cta_text: config.about_secondary_cta_text || '',
+          secondary_cta_link: config.about_secondary_cta_link || '',
+          images: config.about_images || '',
+      } as any);
     }
   };
 
@@ -142,6 +142,6 @@ function AboutManager() {
       </Card>
     </div>
   );
-}
+};
 
 export default AboutManager;
