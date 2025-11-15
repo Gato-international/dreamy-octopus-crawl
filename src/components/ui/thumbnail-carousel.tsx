@@ -1,11 +1,31 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, animate } from 'framer-motion';
+import Hotspot from './Hotspot';
 
-const items = [
+interface HotspotData {
+  x: number;
+  y: number;
+  title: string;
+  description: string;
+}
+
+interface CarouselItem {
+  id: number;
+  url: string;
+  title: string;
+  hotspots?: HotspotData[];
+}
+
+const items: CarouselItem[] = [
   {
     id: 0,
     url: '/fragrance-machine-gallery.png',
     title: 'Fragrance Vending Machine',
+    hotspots: [
+      { x: 48, y: 45, title: 'Touch Screen Display', description: 'A high-resolution 27-inch touch screen for easy fragrance selection and an interactive experience.' },
+      { x: 25, y: 78, title: 'Fragrance Nozzle', description: 'Dispenses a fine, precise mist of your chosen luxury fragrance.' },
+      { x: 75, y: 78, title: 'Payment Terminal', description: 'Accepts all major credit cards and contactless payments for a seamless transaction.' }
+    ]
   },
   {
     id: 1,
@@ -197,14 +217,23 @@ export default function ThumbnailCarousel() {
             }}
             style={{ x }}
           >
-            {items.map((item) => (
-              <div key={item.id} className='shrink-0 w-full h-[400px]'>
+            {items.map((item, i) => (
+              <div key={item.id} className='relative shrink-0 w-full h-[400px]'>
                 <img
                   src={item.url}
                   alt={item.title}
                   className='w-full h-full object-cover rounded-lg select-none pointer-events-none'
                   draggable={false}
                 />
+                {i === index && item.hotspots?.map((hotspot, hotspotIndex) => (
+                  <Hotspot
+                    key={hotspotIndex}
+                    x={hotspot.x}
+                    y={hotspot.y}
+                    title={hotspot.title}
+                    description={hotspot.description}
+                  />
+                ))}
               </div>
             ))}
           </motion.div>
