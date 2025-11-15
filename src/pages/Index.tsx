@@ -2,6 +2,7 @@ import { Hero as HeroSection2 } from "@/components/ui/hero-with-group-of-images-
 import { LinkPreview } from "@/components/ui/link-preview";
 import ThumbnailCarousel from "@/components/ui/thumbnail-carousel";
 import { FeaturesSectionWithHoverEffects } from "@/components/ui/feature-section-with-hover-effects";
+import Testimonials from "@/components/Testimonials";
 
 const Index = () => {
   const videoSrc = 'https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYuZ5R8ahEEZ4aQK56LizRdfBSqeDMsmUIrJN1';
@@ -96,6 +97,7 @@ const Index = () => {
           <FeaturesSectionWithHoverEffects />
         </div>
       </section>
+      <Testimonials />
     </>
   );
 };
