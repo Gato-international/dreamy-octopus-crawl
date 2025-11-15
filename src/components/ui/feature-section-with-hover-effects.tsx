@@ -6,7 +6,7 @@ import {
   IconCurrencyDollar,
   IconDiamond,
   IconEye,
-  IconGears,
+  IconAdjustments,
   IconMapPin,
   IconShieldCheck,
   IconStar,
@@ -38,7 +38,7 @@ export function FeaturesSectionWithHoverEffects() {
     {
       title: "Efficient & Autonomous",
       description: "The machine operates completely independently, leading to maximum profitability.",
-      icon: <IconGears />,
+      icon: <IconAdjustments />,
     },
     {
       title: "Unique Customer Experience",
