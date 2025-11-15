@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -14,8 +14,7 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { showSuccess, showError } from '@/utils/toast';
-import { Upload, Copy, Trash2, Image as ImageIcon } from 'lucide-react';
-import { Progress } from '@/components/ui/progress';
+import { Upload, Copy, Trash2, Image as ImageIcon, Loader2 } from 'lucide-react';
 
 type StorageFile = {
   name: string;
@@ -26,7 +25,6 @@ const MediaManager = () => {
   const [files, setFiles] = useState<StorageFile[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -61,35 +59,22 @@ const MediaManager = () => {
     if (!file) return;
 
     setUploading(true);
-    setUploadProgress(0);
 
     const fileName = `${Date.now()}-${file.name}`;
     const { error } = await supabase.storage.from('media').upload(fileName, file, {
       cacheControl: '3600',
       upsert: false,
     });
-    
-    // Note: Supabase JS client v2 doesn't support progress tracking on upload directly.
-    // This is a simplified representation. For real progress, you'd need XHR.
-    // We'll simulate it for a better UX.
-    let progress = 0;
-    const interval = setInterval(() => {
-      progress += 10;
-      setUploadProgress(progress);
-      if (progress >= 100) {
-        clearInterval(interval);
-      }
-    }, 100);
-
 
     if (error) {
-      showError(`Upload failed: ${error.message}`);
+      console.error("Supabase upload error:", error);
+      showError(`Upload failed: ${error.message || 'An unknown error occurred.'}`);
     } else {
       showSuccess('File uploaded successfully!');
       await fetchFiles();
     }
+    
     setUploading(false);
-    setUploadProgress(0);
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
@@ -115,7 +100,11 @@ const MediaManager = () => {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Media Library</h1>
         <Button onClick={handleUploadClick} disabled={uploading}>
-          <Upload className="mr-2 h-4 w-4" />
+          {uploading ? (
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          ) : (
+            <Upload className="mr-2 h-4 w-4" />
+          )}
           {uploading ? 'Uploading...' : 'Upload File'}
         </Button>
         <input
@@ -126,8 +115,6 @@ const MediaManager = () => {
           accept="image/*,video/*"
         />
       </div>
-
-      {uploading && <Progress value={uploadProgress} className="w-full mb-6" />}
 
       {isLoading ? (
         <p>Loading media...</p>
