@@ -1,15 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Outlet } from "react-router-dom";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
-import { LayoutDashboard, UserCog, Settings, LogOut } from "lucide-react";
+import { 
+  LayoutDashboard, 
+  UserCog, 
+  Settings, 
+  LogOut,
+  MessageSquareQuote,
+  Star,
+  GalleryHorizontal,
+  Contact,
+  Presentation,
+  Info,
+  DollarSign
+} from "lucide-react";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
 
 const Logo = () => {
   return (
     <Link
-      to="#"
+      to="/admin/dashboard"
       className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20"
     >
       <div className="h-5 w-6 bg-primary dark:bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
@@ -27,7 +38,7 @@ const Logo = () => {
 const LogoIcon = () => {
   return (
     <Link
-      to="#"
+      to="/admin/dashboard"
       className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20"
     >
       <div className="h-5 w-6 bg-primary dark:bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
@@ -35,32 +46,7 @@ const LogoIcon = () => {
   );
 };
 
-const DashboardContent = () => {
-  return (
-    <div className="flex flex-1">
-      <div className="p-2 md:p-10 rounded-tl-2xl border border-border bg-background flex flex-col gap-2 flex-1 w-full h-full">
-        <div className="flex gap-2">
-          {[...new Array(4)].map((_, i) => (
-            <div
-              key={"first-array" + i}
-              className="h-20 w-full rounded-lg bg-muted animate-pulse"
-            ></div>
-          ))}
-        </div>
-        <div className="flex gap-2 flex-1">
-          {[...new Array(2)].map((_, i) => (
-            <div
-              key={"second-array" + i}
-              className="h-full w-full rounded-lg bg-muted animate-pulse"
-            ></div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const Dashboard = () => {
+const DashboardLayout = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
@@ -82,26 +68,58 @@ const Dashboard = () => {
   const links = [
     {
       label: "Dashboard",
-      href: "#",
-      icon: (
-        <LayoutDashboard className="text-muted-foreground h-5 w-5 flex-shrink-0" />
-      ),
+      href: "/admin/dashboard",
+      icon: <LayoutDashboard className="text-muted-foreground h-5 w-5 flex-shrink-0" />,
     },
     {
+      label: "Hero Section",
+      href: "/admin/hero",
+      icon: <Presentation className="text-muted-foreground h-5 w-5 flex-shrink-0" />,
+    },
+    {
+      label: "About Section",
+      href: "/admin/about",
+      icon: <Info className="text-muted-foreground h-5 w-5 flex-shrink-0" />,
+    },
+    {
+      label: "Gallery",
+      href: "/admin/gallery",
+      icon: <GalleryHorizontal className="text-muted-foreground h-5 w-5 flex-shrink-0" />,
+    },
+    {
+      label: "Features",
+      href: "/admin/features",
+      icon: <Star className="text-muted-foreground h-5 w-5 flex-shrink-0" />,
+    },
+    {
+      label: "Testimonials",
+      href: "/admin/testimonials",
+      icon: <MessageSquareQuote className="text-muted-foreground h-5 w-5 flex-shrink-0" />,
+    },
+    {
+      label: "Pricing",
+      href: "/admin/pricing",
+      icon: <DollarSign className="text-muted-foreground h-5 w-5 flex-shrink-0" />,
+    },
+    {
+      label: "Contact Info",
+      href: "/admin/contact",
+      icon: <Contact className="text-muted-foreground h-5 w-5 flex-shrink-0" />,
+    },
+  ];
+
+  const bottomLinks = [
+    {
       label: "Profile",
-      href: "#",
-      icon: (
-        <UserCog className="text-muted-foreground h-5 w-5 flex-shrink-0" />
-      ),
+      href: "/admin/profile",
+      icon: <UserCog className="text-muted-foreground h-5 w-5 flex-shrink-0" />,
     },
     {
       label: "Settings",
-      href: "#",
-      icon: (
-        <Settings className="text-muted-foreground h-5 w-5 flex-shrink-0" />
-      ),
+      href: "/admin/settings",
+      icon: <Settings className="text-muted-foreground h-5 w-5 flex-shrink-0" />,
     },
-  ];
+  ]
 
   return (
     <div className="flex flex-col md:flex-row bg-background w-full flex-1 h-screen overflow-hidden">
@@ -116,9 +134,14 @@ const Dashboard = () => {
             </div>
           </div>
           <div>
+            <div className="flex flex-col gap-2">
+              {bottomLinks.map((link, idx) => (
+                <SidebarLink key={idx} link={link} />
+              ))}
+            </div>
             <div
               onClick={handleLogout}
-              className="flex items-center justify-start gap-2 group/sidebar py-2 cursor-pointer"
+              className="flex items-center justify-start gap-2 group/sidebar py-2 cursor-pointer mt-2"
             >
               <LogOut className="text-muted-foreground h-5 w-5 flex-shrink-0" />
               <motion.span
@@ -134,9 +157,13 @@ const Dashboard = () => {
           </div>
         </SidebarBody>
       </Sidebar>
-      <DashboardContent />
+      <div className="flex flex-1">
+        <div className="p-2 md:p-10 rounded-tl-2xl border border-border bg-background flex flex-col gap-2 flex-1 w-full h-full overflow-y-auto">
+          <Outlet />
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Dashboard;
+export default DashboardLayout;
