@@ -7,6 +7,7 @@ import MainLayout from "./components/layout/MainLayout";
 import Index from "./pages/Index";
 import Contact from "./pages/Contact";
 import Pricing from "./pages/Pricing";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/pricing" element={<Pricing />} />
+            <Route path="/fragadmin99201" element={<Admin />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </MainLayout>
