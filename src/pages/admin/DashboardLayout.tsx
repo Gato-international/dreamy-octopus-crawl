@@ -12,7 +12,8 @@ import {
   Contact,
   Presentation,
   Info,
-  DollarSign
+  DollarSign,
+  Image
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
@@ -70,6 +71,11 @@ const DashboardLayout = () => {
       label: "Dashboard",
       href: "/admin/dashboard",
       icon: <LayoutDashboard className="text-muted-foreground h-5 w-5 flex-shrink-0" />,
+    },
+    {
+      label: "Media Library",
+      href: "/admin/media",
+      icon: <Image className="text-muted-foreground h-5 w-5 flex-shrink-0" />,
     },
     {
       label: "Hero Section",

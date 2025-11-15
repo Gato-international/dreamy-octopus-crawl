@@ -19,6 +19,7 @@ import PricingManager from "./pages/admin/PricingManager";
 import ContactManager from "./pages/admin/ContactManager";
 import ProfileManager from "./pages/admin/ProfileManager";
 import SettingsManager from "./pages/admin/SettingsManager";
+import MediaManager from "./pages/admin/MediaManager";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/fragadmin99201" element={<Login />} />
           <Route path="/admin" element={<DashboardLayout />}>
             <Route path="dashboard" element={<DashboardHome />} />
+            <Route path="media" element={<MediaManager />} />
             <Route path="hero" element={<HeroManager />} />
             <Route path="about" element={<AboutManager />} />
             <Route path="gallery" element={<GalleryManager />} />
