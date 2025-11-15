@@ -32,9 +32,15 @@ function Hero() {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-8">
-            <img src="https://source.unsplash.com/random/500x500?technology" alt="Technology" className="rounded-md aspect-square object-cover w-full h-full" />
-            <img src="https://source.unsplash.com/random/500x1016?business" alt="Business" className="rounded-md row-span-2 object-cover w-full h-full" />
-            <img src="https://source.unsplash.com/random/500x500?innovation" alt="Innovation" className="rounded-md aspect-square object-cover w-full h-full" />
+            <div className="bg-muted rounded-md aspect-square flex items-center justify-center">
+              <span className="text-muted-foreground text-sm">500 x 500</span>
+            </div>
+            <div className="bg-muted rounded-md row-span-2 flex items-center justify-center">
+              <span className="text-muted-foreground text-sm">500 x 1016</span>
+            </div>
+            <div className="bg-muted rounded-md aspect-square flex items-center justify-center">
+              <span className="text-muted-foreground text-sm">500 x 500</span>
+            </div>
           </div>
         </div>
       </div>
