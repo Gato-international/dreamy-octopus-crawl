@@ -6,11 +6,8 @@ import { Menu, X } from 'lucide-react'
 import { useScroll, motion } from 'framer-motion'
 
 const menuItems = [
-    { name: 'Services', to: '/services' },
-    { name: 'Portfolio', to: '/portfolio' },
+    { name: 'Home', to: '/' },
     { name: 'Pricing', to: '/pricing' },
-    { name: 'About', to: '/about' },
-    { name: 'Blog', to: '/blog' },
     { name: 'Contact', to: '/contact' },
 ]
 
@@ -84,17 +81,9 @@ const Header = () => {
                             <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                                 <Button
                                     asChild
-                                    variant="outline"
                                     size="sm">
-                                    <Link to="#">
-                                        <span>Login</span>
-                                    </Link>
-                                </Button>
-                                <Button
-                                    asChild
-                                    size="sm">
-                                    <Link to="#">
-                                        <span>Sign Up</span>
+                                    <Link to="/pricing">
+                                        <span>Become Partner</span>
                                     </Link>
                                 </Button>
                             </div>
