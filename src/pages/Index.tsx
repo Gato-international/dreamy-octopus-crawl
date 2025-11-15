@@ -89,9 +89,6 @@ const Index = () => {
       </section>
       <section className="py-20 lg:py-40">
         <div className="container mx-auto">
-          <div className="text-center max-w-4xl mx-auto mb-12">
-            <h2 className="text-4xl font-bold text-white">Our Gallery</h2>
-          </div>
           <ThumbnailCarousel />
         </div>
       </section>
