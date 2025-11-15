@@ -18,15 +18,15 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <MainLayout>
-          <Routes>
+        <Routes>
+          <Route element={<MainLayout />}>
             <Route path="/" element={<Index />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/pricing" element={<Pricing />} />
-            <Route path="/fragadmin99201" element={<Admin />} />
             <Route path="*" element={<NotFound />} />
-          </Routes>
-        </MainLayout>
+          </Route>
+          <Route path="/fragadmin99201" element={<Admin />} />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
