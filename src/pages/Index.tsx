@@ -36,7 +36,7 @@ const Index = () => {
           </div>
         </div>
       </section>
-      <section className="py-20 lg:py-40">
+      <section className="py-12 lg:py-24">
         <div className="container mx-auto">
           <div className="text-center max-w-4xl mx-auto">
             <h2 className="text-4xl font-bold mb-8 text-white">What is Fragancoa?</h2>
@@ -87,7 +87,7 @@ const Index = () => {
       <section>
         <HeroSection2 />
       </section>
-      <section className="py-20 lg:py-40">
+      <section className="py-12 lg:py-24">
         <div className="container mx-auto">
           <ThumbnailCarousel />
         </div>
