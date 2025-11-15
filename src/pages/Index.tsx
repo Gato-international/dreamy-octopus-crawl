@@ -15,16 +15,16 @@ const Index = () => {
   const animationStart = 0.2;
   const animationEnd = 0.8;
 
-  // Adjusted the animation path to match the curve from your screenshot.
+  // By adding more keyframes, we can create a much smoother and more defined animation path.
   const x = useTransform(
     scrollYProgress,
-    [animationStart, (animationStart + animationEnd) / 2, animationEnd],
-    ["0%", "-10%", "-75%"]
+    [animationStart, 0.4, 0.6, animationEnd],
+    ["0%", "-5%", "-40%", "-75%"]
   );
   const y = useTransform(
     scrollYProgress,
-    [animationStart, (animationStart + animationEnd) / 2, animationEnd],
-    ["0vh", "60vh", "115vh"]
+    [animationStart, 0.4, 0.6, animationEnd],
+    ["0vh", "50vh", "100vh", "115vh"]
   );
   
   // The animating image fades out as the "sticky" one in the Feature component fades in.
