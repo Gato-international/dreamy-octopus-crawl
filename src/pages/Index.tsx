@@ -35,9 +35,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-      <section>
-        <HeroSection2 />
-      </section>
       <section className="py-20 lg:py-40">
         <div className="container mx-auto">
           <div className="text-center max-w-4xl mx-auto">
@@ -85,6 +82,9 @@ const Index = () => {
             </p>
           </div>
         </div>
+      </section>
+      <section>
+        <HeroSection2 />
       </section>
     </>
   );
