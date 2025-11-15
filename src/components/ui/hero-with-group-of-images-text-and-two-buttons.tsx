@@ -29,14 +29,14 @@ function Hero() {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-8">
-            <div className="bg-muted rounded-md aspect-square flex items-center justify-center">
-              <span className="text-muted-foreground text-sm">500 x 500</span>
+            <div className="rounded-md aspect-square">
+              <img src="/select-finger.png" alt="Select fragrance" className="w-full h-full object-cover rounded-md" />
             </div>
             <div className="bg-muted rounded-md row-span-2 flex items-center justify-center">
               <span className="text-muted-foreground text-sm">500 x 1016</span>
             </div>
-            <div className="bg-muted rounded-md aspect-square flex items-center justify-center">
-              <span className="text-muted-foreground text-sm">500 x 500</span>
+            <div className="rounded-md aspect-square">
+              <img src="/spray-bottle.png" alt="Spray fragrance" className="w-full h-full object-cover rounded-md" />
             </div>
           </div>
         </div>
