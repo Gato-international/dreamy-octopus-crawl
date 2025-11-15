@@ -16,49 +16,44 @@ import React from "react";
 export function FeaturesSectionWithHoverEffects() {
   const features = [
     {
-      title: "Built for developers",
-      description:
-        "Built for engineers, developers, dreamers, thinkers and doers.",
-      icon: <IconTerminal2 />,
-    },
-    {
-      title: "Ease of use",
-      description:
-        "It's as easy as using an Apple, and as expensive as buying one.",
-      icon: <IconEaseInOut />,
-    },
-    {
-      title: "Pricing like no other",
-      description:
-        "Our prices are best in the market. No cap, no lock, no credit card required.",
+      title: "Hogere Omzet, Lagere Kosten",
+      description: "Genereer extra inkomsten per vierkante meter zonder de noodzaak voor extra personeel.",
       icon: <IconCurrencyDollar />,
     },
     {
-      title: "100% Uptime guarantee",
-      description: "We just cannot be taken down by anyone.",
-      icon: <IconCloud />,
+      title: "24/7 Self-Service",
+      description: "Volledig autonoom en altijd beschikbaar binnen uw openingstijden voor maximaal gemak.",
+      icon: <IconEaseInOut />,
     },
     {
-      title: "Multi-tenant Architecture",
-      description: "You can simply share passwords instead of buying new seats",
+      title: "Luxe Eyecatcher",
+      description: "Een modern en elegant design dat de uitstraling van uw locatie direct verhoogt.",
+      icon: <IconHeart />,
+    },
+    {
+      title: "Strategische Plaatsing",
+      description: "Perfect voor high-traffic zones zoals entrees, toiletten, en looproutes.",
       icon: <IconRouteAltLeft />,
     },
     {
-      title: "24/7 Customer Support",
-      description:
-        "We are available a 100% of the time. Atleast our AI Agents are.",
-      icon: <IconHelp />,
-    },
-    {
-      title: "Money back guarantee",
-      description:
-        "If you donot like EveryAI, we will convince you to like us.",
+      title: "Efficiënt & Autonoom",
+      description: "De machine werkt volledig zelfstandig, wat leidt tot maximale winstgevendheid.",
       icon: <IconAdjustmentsBolt />,
     },
     {
-      title: "And everything else",
-      description: "I just ran out of copy ideas. Accept my sincere apologies",
-      icon: <IconHeart />,
+      title: "Unieke Klantbeleving",
+      description: "Bied uw bezoekers een onvergetelijk en interactief moment van verfijning.",
+      icon: <IconTerminal2 />,
+    },
+    {
+      title: "Maximale Zichtbaarheid",
+      description: "Ideaal voor food courts of uitgaansgebieden om een breed publiek aan te trekken.",
+      icon: <IconCloud />,
+    },
+    {
+      title: "Zorgeloos Beheer",
+      description: "Wij verzorgen de plaatsing, het onderhoud en de voorraad. U hoeft niets te doen.",
+      icon: <IconHelp />,
     },
   ];
   return (
