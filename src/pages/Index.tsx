@@ -41,7 +41,8 @@ const Index = () => {
       <section className="py-20 lg:py-40">
         <div className="container mx-auto">
           <div className="text-center max-w-4xl mx-auto">
-            <p className="dark:text-white text-black text-2xl leading-snug tracking-wide">
+            <h2 className="text-4xl font-bold mb-8 text-white">What is Fragancoa?</h2>
+            <p className="text-white text-2xl leading-snug tracking-wide">
               De Luxe Vending machine biedt een exclusieve{" "}
               <LinkPreview
                 url="https://en.wikipedia.org/wiki/Olfaction"
