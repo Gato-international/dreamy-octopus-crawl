@@ -29,13 +29,13 @@ function Hero() {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-8">
-            <div className="rounded-md aspect-square flex items-center justify-center p-12">
+            <div className="bg-muted rounded-md aspect-square flex items-center justify-center p-12">
               <img src="/select-finger.png" alt="Select fragrance" className="w-full h-full object-contain" />
             </div>
             <div className="rounded-md row-span-2">
               <img src="/fragrance-spray.png" alt="Person spraying fragrance" className="w-full h-full object-cover rounded-md" />
             </div>
-            <div className="rounded-md aspect-square flex items-center justify-center p-12">
+            <div className="bg-muted rounded-md aspect-square flex items-center justify-center p-12">
               <img src="/spray-bottle.png" alt="Spray fragrance" className="w-full h-full object-contain" />
             </div>
           </div>
