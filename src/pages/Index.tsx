@@ -3,17 +3,47 @@ import { LinkPreview } from "@/components/ui/link-preview";
 import ThumbnailCarousel from "@/components/ui/thumbnail-carousel";
 import { FeaturesSectionWithHoverEffects } from "@/components/ui/feature-section-with-hover-effects";
 import Testimonials from "@/components/Testimonials";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
-  const videoSrc = 'https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYuZ5R8ahEEZ4aQK56LizRdfBSqeDMsmUIrJN1';
-  const posterSrc = 'https://images.pexels.com/videos/5752729/space-earth-universe-cosmos-5752729.jpeg';
+  const [heroContent, setHeroContent] = useState({
+    videoSrc: '',
+    posterSrc: '',
+    headline: '',
+    imageSrc: '',
+  });
+
+  useEffect(() => {
+    const fetchHeroContent = async () => {
+      const { data, error } = await supabase.from("site_config").select("*")
+        .in('key', ['hero_video_src', 'hero_poster_src', 'hero_headline', 'hero_image_src']);
+      
+      if (error) {
+        console.error("Error fetching hero content:", error);
+      } else {
+        const config = data.reduce((acc, item) => {
+          acc[item.key] = item.value;
+          return acc;
+        }, {} as Record<string, string>);
+
+        setHeroContent({
+          videoSrc: config.hero_video_src || '',
+          posterSrc: config.hero_poster_src || '',
+          headline: config.hero_headline || '',
+          imageSrc: config.hero_image_src || '',
+        });
+      }
+    };
+    fetchHeroContent();
+  }, []);
 
   return (
     <>
       <section className="relative h-screen w-full flex items-center overflow-hidden">
         <video
-          src={videoSrc}
-          poster={posterSrc}
+          src={heroContent.videoSrc}
+          poster={heroContent.posterSrc}
           autoPlay
           loop
           muted
@@ -26,12 +56,12 @@ const Index = () => {
         <div className="relative z-20 container mx-auto px-4 grid md:grid-cols-5 gap-8 items-center">
           <div className="md:col-span-2 text-left">
             <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
-              Fragancao – Where Luxury Meets Innovation
+              {heroContent.headline}
             </h1>
           </div>
           <div className="md:col-span-3">
             <img 
-              src="/fragrance-machine.png" 
+              src={heroContent.imageSrc} 
               alt="Fragrance Vending Machine" 
               className="w-full h-auto object-contain"
             />
