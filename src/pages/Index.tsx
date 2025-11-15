@@ -1,6 +1,7 @@
 import { Hero as HeroSection2 } from "@/components/ui/hero-with-group-of-images-text-and-two-buttons";
 import { LinkPreview } from "@/components/ui/link-preview";
 import ThumbnailCarousel from "@/components/ui/thumbnail-carousel";
+import { FeaturesSectionWithHoverEffects } from "@/components/ui/feature-section-with-hover-effects";
 
 const Index = () => {
   const videoSrc = 'https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYuZ5R8ahEEZ4aQK56LizRdfBSqeDMsmUIrJN1';
@@ -90,6 +91,12 @@ const Index = () => {
       <section className="py-12 lg:py-24">
         <div className="container mx-auto">
           <ThumbnailCarousel />
+        </div>
+      </section>
+      <section className="py-12 lg:py-24">
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12 text-white">Our Features</h2>
+          <FeaturesSectionWithHoverEffects />
         </div>
       </section>
     </>
