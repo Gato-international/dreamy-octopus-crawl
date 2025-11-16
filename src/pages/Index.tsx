@@ -1,6 +1,7 @@
 import ThumbnailCarousel from "@/components/ui/thumbnail-carousel";
 import { FeaturesSectionWithHoverEffects } from "@/components/ui/feature-section-with-hover-effects";
 import { Fingerprint, CreditCard, Sparkles, Check } from "lucide-react";
+import { AnimatedHero } from "@/components/ui/animated-hero";
 
 const Index = () => {
   const videoSrc = 'https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYuZ5R8ahEEZ4aQK56LizRdfBSqeDMsmUIrJN1';
@@ -35,6 +36,10 @@ const Index = () => {
             />
           </div>
         </div>
+      </section>
+
+      <section>
+        <AnimatedHero />
       </section>
 
       <section className="py-20 sm:py-32">
