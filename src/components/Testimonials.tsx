@@ -1,39 +1,19 @@
 import { TestimonialsColumn } from "@/components/ui/testimonials-columns-1";
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 
-type Testimonial = {
-  id: string;
-  name: string;
-  role: string;
-  text: string;
-  image_url: string;
-};
+const staticTestimonials = [
+  { id: '1', name: 'Alice Johnson', role: 'Fashion Blogger', text: 'Absolutely love the convenience! A quick spray of luxury before any event makes all the difference. The scents are divine.', image_url: 'https://randomuser.me/api/portraits/women/1.jpg' },
+  { id: '2', name: 'David Chen', role: 'Nightclub Owner', text: 'Our patrons are impressed. The machine adds a touch of class to our establishment and has become a popular feature.', image_url: 'https://randomuser.me/api/portraits/men/2.jpg' },
+  { id: '3', name: 'Sophia Rodriguez', role: 'Event Planner', text: 'A brilliant addition to high-end events. Guests appreciate the opportunity to freshen up with such premium fragrances.', image_url: 'https://randomuser.me/api/portraits/women/3.jpg' },
+  { id: '4', name: 'Michael Smith', role: 'Gym Manager', text: 'Our members are thrilled. It\'s the perfect post-workout luxury that sets our gym apart from the rest.', image_url: 'https://randomuser.me/api/portraits/men/4.jpg' },
+  { id: '5', name: 'Emily White', role: 'Hotel Concierge', text: 'The Fragancao machine elevates our guest experience. It\'s a small detail that leaves a huge, positive impression.', image_url: 'https://randomuser.me/api/portraits/women/5.jpg' },
+  { id: '6', name: 'Chris Lee', role: 'Restaurant Host', text: 'A fantastic concept. Our diners love being able to apply a beautiful scent before being seated. It\'s a conversation starter!', image_url: 'https://randomuser.me/api/portraits/men/6.jpg' },
+];
 
 const Testimonials = () => {
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-
-  useEffect(() => {
-    const fetchTestimonials = async () => {
-      const { data, error } = await supabase
-        .from("testimonials")
-        .select("*")
-        .order("created_at", { ascending: false });
-
-      if (error) {
-        console.error("Error fetching testimonials:", error);
-      } else {
-        setTestimonials(data);
-      }
-    };
-
-    fetchTestimonials();
-  }, []);
-
-  const firstColumn = testimonials.slice(0, 3);
-  const secondColumn = testimonials.slice(3, 6);
-  const thirdColumn = testimonials.slice(6, 9);
+  const firstColumn = staticTestimonials.slice(0, 3);
+  const secondColumn = staticTestimonials.slice(3, 6);
+  const thirdColumn = staticTestimonials.slice(0, 3); // Re-using for visual balance
 
   return (
     <section className="my-20 relative">
@@ -57,13 +37,11 @@ const Testimonials = () => {
           </p>
         </motion.div>
 
-        {testimonials.length > 0 && (
-          <div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[740px] overflow-hidden">
-            <TestimonialsColumn testimonials={firstColumn.map(t => ({...t, image: t.image_url}))} duration={15} />
-            <TestimonialsColumn testimonials={secondColumn.map(t => ({...t, image: t.image_url}))} className="hidden md:block" duration={19} />
-            <TestimonialsColumn testimonials={thirdColumn.map(t => ({...t, image: t.image_url}))} className="hidden lg:block" duration={17} />
-          </div>
-        )}
+        <div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[740px] overflow-hidden">
+          <TestimonialsColumn testimonials={firstColumn.map(t => ({...t, image: t.image_url}))} duration={15} />
+          <TestimonialsColumn testimonials={secondColumn.map(t => ({...t, image: t.image_url}))} className="hidden md:block" duration={19} />
+          <TestimonialsColumn testimonials={thirdColumn.map(t => ({...t, image: t.image_url}))} className="hidden lg:block" duration={17} />
+        </div>
       </div>
     </section>
   );

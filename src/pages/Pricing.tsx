@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,36 +9,56 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 
-type PricingTier = {
-  id: string;
-  name: string;
-  description: string;
-  price: string;
-  features: string[];
-  cta: string;
-  popular: boolean;
-};
+const staticPricingTiers = [
+  {
+    id: '1',
+    name: 'Huur Model',
+    description: 'Ideaal voor locaties die flexibiliteit wensen zonder initiële investering.',
+    price: '€150 p/m',
+    features: [
+      'Geen aanschafkosten',
+      'Inclusief 5 luxe parfums',
+      'Volledige service & onderhoud',
+      '20% commissie op omzet',
+      'Maandelijks opzegbaar',
+    ],
+    cta: 'Start met Huren',
+    popular: false,
+  },
+  {
+    id: '2',
+    name: 'Koop Model',
+    description: 'De beste optie voor maximale winst en volledig eigendom.',
+    price: '€2500',
+    features: [
+      'Volledig eigendom van de machine',
+      'Inclusief 5 luxe parfums',
+      'Hogere winstmarge per spray',
+      '1 jaar garantie & support',
+      'Geen maandelijkse kosten',
+    ],
+    cta: 'Koop Nu',
+    popular: true,
+  },
+  {
+    id: '3',
+    name: 'Lease Model',
+    description: 'Een gebalanceerde aanpak met een pad naar eigendom.',
+    price: '€100 p/m',
+    features: [
+      'Lage maandelijkse kosten',
+      'Optie tot koop na 24 maanden',
+      'Inclusief service & onderhoud',
+      '15% commissie op omzet',
+      'Flexibele leasevoorwaarden',
+    ],
+    cta: 'Start met Leasen',
+    popular: false,
+  },
+];
 
 const Pricing = () => {
-  const [pricingTiers, setPricingTiers] = useState<PricingTier[]>([]);
-
-  useEffect(() => {
-    const fetchPricingTiers = async () => {
-      const { data, error } = await supabase
-        .from("pricing_tiers")
-        .select("*")
-        .order("sort_order");
-      if (error) {
-        console.error("Error fetching pricing tiers:", error);
-      } else {
-        setPricingTiers(data);
-      }
-    };
-    fetchPricingTiers();
-  }, []);
-
   return (
     <div className="container max-w-screen-lg py-12 pt-24 sm:pt-32">
       <div className="text-center mb-12 lg:mb-20">
@@ -86,7 +105,7 @@ const Pricing = () => {
       </Card>
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 items-start">
-        {pricingTiers.map((tier) => (
+        {staticPricingTiers.map((tier) => (
           <Card
             key={tier.name}
             className={`flex flex-col h-full ${tier.popular ? "border-primary shadow-lg" : ""}`}

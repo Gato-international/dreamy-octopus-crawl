@@ -3,40 +3,14 @@ import { LinkPreview } from "@/components/ui/link-preview";
 import ThumbnailCarousel from "@/components/ui/thumbnail-carousel";
 import { FeaturesSectionWithHoverEffects } from "@/components/ui/feature-section-with-hover-effects";
 import Testimonials from "@/components/Testimonials";
-import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
-  const [heroContent, setHeroContent] = useState({
-    videoSrc: '',
-    posterSrc: '',
-    headline: '',
-    imageSrc: '',
-  });
-
-  useEffect(() => {
-    const fetchHeroContent = async () => {
-      const { data, error } = await supabase.from("site_config").select("*")
-        .in('key', ['hero_video_src', 'hero_poster_src', 'hero_headline', 'hero_image_src']);
-      
-      if (error) {
-        console.error("Error fetching hero content:", error);
-      } else {
-        const config = data.reduce((acc, item) => {
-          acc[item.key] = item.value;
-          return acc;
-        }, {} as Record<string, string>);
-
-        setHeroContent({
-          videoSrc: config.hero_video_src || '',
-          posterSrc: config.hero_poster_src || '',
-          headline: config.hero_headline || '',
-          imageSrc: config.hero_image_src || '',
-        });
-      }
-    };
-    fetchHeroContent();
-  }, []);
+  const heroContent = {
+    videoSrc: 'https://videos.pexels.com/video-files/5194137/5194137-hd_1920_1080_25fps.mp4',
+    posterSrc: 'https://images.pexels.com/photos/3250623/pexels-photo-3250623.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    headline: 'Luxe Geurervaring, Altijd en Overal',
+    imageSrc: '/fragrance-machine-gallery.png',
+  };
 
   return (
     <>
