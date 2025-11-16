@@ -1,8 +1,7 @@
 import { Hero as HeroSection2 } from "@/components/ui/hero-with-group-of-images-text-and-two-buttons";
-import { LinkPreview } from "@/components/ui/link-preview";
 import ThumbnailCarousel from "@/components/ui/thumbnail-carousel";
 import { FeaturesSectionWithHoverEffects } from "@/components/ui/feature-section-with-hover-effects";
-import Testimonials from "@/components/Testimonials";
+import { Fingerprint, CreditCard, Sparkles } from "lucide-react";
 
 const Index = () => {
   const videoSrc = 'https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYuZ5R8ahEEZ4aQK56LizRdfBSqeDMsmUIrJN1';
@@ -38,51 +37,47 @@ const Index = () => {
           </div>
         </div>
       </section>
-      <section className="py-12 lg:py-24">
+      
+      <section className="py-20 sm:py-32">
         <div className="container mx-auto">
-          <div className="text-center max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-8 text-white">What is Fragancoa?</h2>
-            <p className="text-white text-2xl leading-snug tracking-wide">
-              The Deluxe Vending machine offers an exclusive{" "}
-              <LinkPreview
-                url="https://en.wikipedia.org/wiki/Olfaction"
-                className="font-bold bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-pink-500"
-              >
-                scent experience
-              </LinkPreview>{" "}
-              in an elegant, high-end{" "}
-              <LinkPreview
-                url="https://dribbble.com/"
-                className="font-bold bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-pink-500"
-              >
-                design
-              </LinkPreview>
-              . This luxury device dispenses premium{" "}
-              <LinkPreview
-                url="https://www.fragrantica.com/"
-                className="font-bold bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-pink-500"
-              >
-                perfumes
-              </LinkPreview>
-              , carefully selected to offer customers a moment of sophistication and{" "}
-              <LinkPreview
-                url="https://www.chanel.com/"
-                className="font-bold bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-pink-500"
-              >
-                luxury
-              </LinkPreview>
-              . With five exclusive fragrances, the machine provides a quick, refreshing experience for anyone looking to envelop themselves in a refined scent. The modern design also adds extra luxury to any location, while the user-friendly{" "}
-              <LinkPreview
-                url="https://www.nngroup.com/articles/user-interface-design/"
-                className="font-bold bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-pink-500"
-              >
-                interface
-              </LinkPreview>{" "}
-              ensures an effortless and enjoyable experience.
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold mb-4 text-white">An Experience in Three Simple Steps</h2>
+            <p className="text-lg text-foreground/80">
+              From selection to sensation, discover how easy it is to indulge in a moment of luxury.
             </p>
+          </div>
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+            <div className="flex flex-col items-center">
+              <div className="flex items-center justify-center h-16 w-16 rounded-full bg-secondary mb-6">
+                <Fingerprint className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-2">1. Select Your Scent</h3>
+              <p className="text-foreground/70">
+                Browse our curated collection of five premium perfumes on the vibrant touchscreen. Find the perfect fragrance to match your mood or occasion.
+              </p>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="flex items-center justify-center h-16 w-16 rounded-full bg-secondary mb-6">
+                <CreditCard className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-2">2. Tap to Pay</h3>
+              <p className="text-foreground/70">
+                A seamless, contactless payment is all it takes. Simply tap your card or phone for a quick and secure transaction.
+              </p>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="flex items-center justify-center h-16 w-16 rounded-full bg-secondary mb-6">
+                <Sparkles className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-2">3. Enjoy the Mist</h3>
+              <p className="text-foreground/70">
+                Position yourself and let our machine dispense a fine, even mist of your chosen fragrance. Step out feeling refreshed and confident.
+              </p>
+            </div>
           </div>
         </div>
       </section>
+
       <section>
         <HeroSection2 />
       </section>
@@ -97,7 +92,6 @@ const Index = () => {
           <FeaturesSectionWithHoverEffects />
         </div>
       </section>
-      <Testimonials />
     </>
   );
 };
