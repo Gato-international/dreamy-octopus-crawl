@@ -5,19 +5,32 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 interface ContactFormProps {
-  title?: string;
-  description?: string;
-  phone?: string;
-  email?: string;
-  web?: { label: string; url: string };
+  title: string;
+  description: string;
+  phone: string;
+  email: string;
+  web: { label: string; url: string };
+  labels: {
+    contactDetails: string;
+    phone: string;
+    email: string;
+    web: string;
+    firstName: string;
+    lastName: string;
+    subject: string;
+    message: string;
+    messagePlaceholder: string;
+    submit: string;
+  };
 }
 
 export const ContactForm = ({
-  title = "Neem Contact Op",
-  description = "Heeft u vragen, feedback of interesse in een samenwerking? Laat ons weten hoe we kunnen helpen!",
-  phone = "+31 6 12345678",
-  email = "info@fragancao.com",
-  web = { label: "fragancao.com", url: "#" },
+  title,
+  description,
+  phone,
+  email,
+  web,
+  labels,
 }: ContactFormProps) => {
   return (
     <section className="py-24 sm:py-32">
@@ -32,21 +45,21 @@ export const ContactForm = ({
             </div>
             <div className="mx-auto w-fit lg:mx-0">
               <h3 className="mb-6 text-center text-2xl font-semibold lg:text-left">
-                Contactgegevens
+                {labels.contactDetails}
               </h3>
               <ul className="ml-4 list-disc space-y-2">
                 <li>
-                  <span className="font-bold">Telefoon: </span>
+                  <span className="font-bold">{labels.phone}: </span>
                   {phone}
                 </li>
                 <li>
-                  <span className="font-bold">Email: </span>
+                  <span className="font-bold">{labels.email}: </span>
                   <a href={`mailto:${email}`} className="underline">
                     {email}
                   </a>
                 </li>
                 <li>
-                  <span className="font-bold">Web: </span>
+                  <span className="font-bold">{labels.web}: </span>
                   <a href={web.url} target="_blank" rel="noopener noreferrer" className="underline">
                     {web.label}
                   </a>
@@ -58,27 +71,27 @@ export const ContactForm = ({
             <form className="flex flex-col gap-6">
               <div className="flex flex-col sm:flex-row gap-4">
                 <div className="grid w-full items-center gap-1.5">
-                  <Label htmlFor="firstname">Voornaam</Label>
-                  <Input type="text" id="firstname" placeholder="Voornaam" />
+                  <Label htmlFor="firstname">{labels.firstName}</Label>
+                  <Input type="text" id="firstname" placeholder={labels.firstName} />
                 </div>
                 <div className="grid w-full items-center gap-1.5">
-                  <Label htmlFor="lastname">Achternaam</Label>
-                  <Input type="text" id="lastname" placeholder="Achternaam" />
+                  <Label htmlFor="lastname">{labels.lastName}</Label>
+                  <Input type="text" id="lastname" placeholder={labels.lastName} />
                 </div>
               </div>
               <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="email">Email</Label>
-                <Input type="email" id="email" placeholder="Email" />
+                <Label htmlFor="email">{labels.email}</Label>
+                <Input type="email" id="email" placeholder={labels.email} />
               </div>
               <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="subject">Onderwerp</Label>
-                <Input type="text" id="subject" placeholder="Onderwerp" />
+                <Label htmlFor="subject">{labels.subject}</Label>
+                <Input type="text" id="subject" placeholder={labels.subject} />
               </div>
               <div className="grid w-full gap-1.5">
-                <Label htmlFor="message">Bericht</Label>
-                <Textarea placeholder="Typ hier uw bericht." id="message" />
+                <Label htmlFor="message">{labels.message}</Label>
+                <Textarea placeholder={labels.messagePlaceholder} id="message" />
               </div>
-              <Button type="submit" className="w-full">Verstuur Bericht</Button>
+              <Button type="submit" className="w-full">{labels.submit}</Button>
             </form>
           </div>
         </div>

@@ -1,0 +1,146 @@
+{
+  "header": {
+    "home": "Home",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "becomePartner": "Become Partner"
+  },
+  "footer": {
+    "tagline": "Where Luxury Meets Innovation.",
+    "navigation": "Navigation",
+    "stayUpdated": "Stay Updated",
+    "newsletterPrompt": "Subscribe to our newsletter for the latest news.",
+    "emailPlaceholder": "Enter your email",
+    "subscribe": "Subscribe",
+    "copyright": "© {{year}} Fragancao. All rights reserved."
+  },
+  "animatedHero": {
+    "title": "A Fragrance Experience, Reimagined as",
+    "adjectives": ["elegant", "luxurious", "innovative", "captivating", "refined"],
+    "description": "Elevate your venue with a touch of modern luxury. Our automated fragrance machine offers a unique, memorable experience for your guests, creating a new revenue stream with zero upfront investment.",
+    "requestConsultation": "Request a Consultation",
+    "becomePartner": "Become a Partner"
+  },
+  "indexPage": {
+    "mainHero": {
+      "title": "Fragancao – Where Luxury Meets Innovation"
+    },
+    "engineeredForElegance": {
+      "title": "Engineered for Elegance",
+      "description": "Our vending machine is more than just a dispenser; it's a statement piece designed to blend seamlessly into any luxury environment. Every detail has been meticulously crafted to offer an unparalleled user experience.",
+      "features": {
+        "design": {
+          "title": "Sleek & Compact Design",
+          "description": "With a width of just 60cm, its minimalist aesthetic complements any interior, from hotel lobbies to exclusive clubs."
+        },
+        "touchscreen": {
+          "title": "Interactive Touchscreen",
+          "description": "A vibrant, high-definition display guides users through scent selection with beautiful visuals and intuitive navigation."
+        },
+        "atomization": {
+          "title": "Advanced Atomization",
+          "description": "Our patented technology ensures a perfect, fine mist application every time, maximizing the fragrance experience without waste."
+        },
+        "payments": {
+          "title": "Secure Contactless Payments",
+          "description": "Equipped with the latest NFC technology for fast, secure, and convenient tap-to-pay transactions."
+        }
+      }
+    },
+    "featuresSection": {
+      "title": "Our Features"
+    },
+    "seamlessExperience": {
+      "title": "A Seamless Experience for Your Guests",
+      "description": "Our machine offers a simple, intuitive journey for your customers, creating a memorable, premium amenity that generates effortless revenue for your business.",
+      "steps": {
+        "selection": {
+          "title": "1. Intuitive Selection",
+          "description": "Guests browse a curated collection of premium perfumes on the vibrant touchscreen, finding the perfect scent to elevate their experience at your venue."
+        },
+        "payment": {
+          "title": "2. Effortless Payment",
+          "description": "With modern contactless payment technology, transactions are quick, secure, and seamless. A simple tap is all it takes."
+        },
+        "luxury": {
+          "title": "3. A Touch of Luxury",
+          "description": "Our advanced atomization delivers a perfect mist, providing a sophisticated fragrance experience that leaves a lasting positive impression."
+        }
+      }
+    }
+  },
+  "pricingPage": {
+    "title": "Partnerships & Pricing",
+    "description": "Discover how our Perfume Vending Machine can add a luxury experience to your location while generating a new revenue stream.",
+    "earnWithEverySpray": {
+      "title": "Earn with every spray",
+      "description": "With the Perfume Vending Machine – Pay per Spray – we offer your visitors a luxury perfume experience for just €3 per spray. Ideal for a quick refresh after sports, after work, or for a night out."
+    },
+    "revenueExample": {
+      "title": "Example Revenue Calculation",
+      "spraysPerDay": "Avg. sprays per day",
+      "dailyRevenue": "Avg. daily revenue",
+      "monthlyRevenue": "Avg. monthly revenue",
+      "disclaimer": "*Actual results depend on location, visibility, and foot traffic."
+    },
+    "tiers": {
+      "placement": {
+        "name": "Placement",
+        "description": "Ideal for single locations like hotels, restaurants, or boutiques.",
+        "price": "Revenue Sharing",
+        "features": [
+          "1 Deluxe Vending Machine",
+          "No investment costs",
+          "Attractive revenue sharing",
+          "Monthly maintenance & refills",
+          "24/7 Online Support"
+        ],
+        "cta": "Become Partner"
+      },
+      "franchise": {
+        "name": "Franchise",
+        "description": "Perfect for businesses with multiple locations or chains.",
+        "price": "Higher Revenue Sharing",
+        "features": [
+          "Up to 10 machines",
+          "Improved revenue sharing",
+          "Priority support via phone & email",
+          "Bi-weekly maintenance & refills",
+          "Access to analytics dashboard"
+        ],
+        "cta": "Request a quote",
+        "popular": "Most Popular"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "For large-scale, custom implementations and unique brand experiences.",
+        "price": "Custom Model",
+        "features": [
+          "Unlimited machines",
+          "Custom machine design & branding",
+          "Personal account manager",
+          "On-demand maintenance",
+          "Advanced API integration"
+        ],
+        "cta": "Contact Us"
+      }
+    }
+  },
+  "contactPage": {
+    "title": "Contact Us",
+    "description": "Have questions, feedback, or interest in a collaboration? Let us know how we can help!",
+    "contactDetails": "Contact Details",
+    "phone": "Phone",
+    "email": "Email",
+    "web": "Web",
+    "form": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "messagePlaceholder": "Type your message here.",
+      "submit": "Send Message"
+    }
+  }
+}

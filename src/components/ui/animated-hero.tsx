@@ -5,12 +5,14 @@ import { motion } from "framer-motion";
 import { MoveRight, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function AnimatedHero() {
+  const { t } = useTranslation();
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
-    () => ["elegant", "luxurious", "innovative", "captivating", "refined"],
-    []
+    () => t('animatedHero.adjectives', { returnObjects: true }) as string[],
+    [t]
   );
 
   useEffect(() => {
@@ -30,7 +32,7 @@ function AnimatedHero() {
         <div className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
           <div className="flex gap-4 flex-col">
             <h1 className="text-5xl md:text-7xl max-w-3xl tracking-tighter text-center font-regular">
-              <span>A Fragrance Experience, Reimagined as</span>
+              <span>{t('animatedHero.title')}</span>
               <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
                 &nbsp;
                 {titles.map((title, index) => (
@@ -58,18 +60,18 @@ function AnimatedHero() {
             </h1>
 
             <p className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">
-              Elevate your venue with a touch of modern luxury. Our automated fragrance machine offers a unique, memorable experience for your guests, creating a new revenue stream with zero upfront investment.
+              {t('animatedHero.description')}
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3">
             <Button size="lg" className="gap-4" variant="outline" asChild>
               <Link to="/contact">
-                Request a Consultation <PhoneCall className="w-4 h-4" />
+                {t('animatedHero.requestConsultation')} <PhoneCall className="w-4 h-4" />
               </Link>
             </Button>
             <Button size="lg" className="gap-4" asChild>
               <Link to="/pricing">
-                Become a Partner <MoveRight className="w-4 h-4" />
+                {t('animatedHero.becomePartner')} <MoveRight className="w-4 h-4" />
               </Link>
             </Button>
           </div>

@@ -9,94 +9,79 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
-
-const pricingTiers = [
-  {
-    name: "Plaatsing",
-    description: "Ideaal voor enkele locaties zoals hotels, restaurants of boetieks.",
-    price: "Omzetdeling",
-    features: [
-      "1 Deluxe Vending Machine",
-      "Geen investeringskosten",
-      "Aantrekkelijke omzetdeling",
-      "Maandelijks onderhoud & bijvullen",
-      "24/7 Online Support",
-    ],
-    cta: "Word Partner",
-    popular: false,
-  },
-  {
-    name: "Franchise",
-    description: "Perfect voor bedrijven met meerdere locaties of ketens.",
-    price: "Hogere Omzetdeling",
-    features: [
-      "Tot 10 machines",
-      "Verbeterde omzetdeling",
-      "Prioriteitssupport via telefoon & e-mail",
-      "Tweewekelijks onderhoud & bijvullen",
-      "Toegang tot analytics dashboard",
-    ],
-    cta: "Vraag een offerte aan",
-    popular: true,
-  },
-  {
-    name: "Enterprise",
-    description: "Voor grootschalige, op maat gemaakte implementaties en unieke merkervaringen.",
-    price: "Model op Maat",
-    features: [
-      "Onbeperkt aantal machines",
-      "Machine design & branding op maat",
-      "Persoonlijke accountmanager",
-      "Onderhoud op aanvraag",
-      "Geavanceerde API-integratie",
-    ],
-    cta: "Neem contact op",
-    popular: false,
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const Pricing = () => {
+  const { t } = useTranslation();
+
+  const pricingTiers = [
+    {
+      name: t('pricingPage.tiers.placement.name'),
+      description: t('pricingPage.tiers.placement.description'),
+      price: t('pricingPage.tiers.placement.price'),
+      features: t('pricingPage.tiers.placement.features', { returnObjects: true }) as string[],
+      cta: t('pricingPage.tiers.placement.cta'),
+      popular: false,
+    },
+    {
+      name: t('pricingPage.tiers.franchise.name'),
+      description: t('pricingPage.tiers.franchise.description'),
+      price: t('pricingPage.tiers.franchise.price'),
+      features: t('pricingPage.tiers.franchise.features', { returnObjects: true }) as string[],
+      cta: t('pricingPage.tiers.franchise.cta'),
+      popular: true,
+    },
+    {
+      name: t('pricingPage.tiers.enterprise.name'),
+      description: t('pricingPage.tiers.enterprise.description'),
+      price: t('pricingPage.tiers.enterprise.price'),
+      features: t('pricingPage.tiers.enterprise.features', { returnObjects: true }) as string[],
+      cta: t('pricingPage.tiers.enterprise.cta'),
+      popular: false,
+    },
+  ];
+
   return (
     <div className="container max-w-screen-lg py-12 pt-24 sm:pt-32">
       <div className="text-center mb-12 lg:mb-20">
         <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-          Partnerships & Prijzen
+          {t('pricingPage.title')}
         </h1>
         <p className="mt-6 text-lg leading-8 text-foreground/80 max-w-3xl mx-auto">
-          Ontdek hoe onze Parfum Vending Machine een luxe ervaring kan toevoegen aan uw locatie en tegelijkertijd een nieuwe inkomstenbron kan genereren.
+          {t('pricingPage.description')}
         </p>
       </div>
 
       <div className="text-center mb-12 lg:mb-20">
         <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">
-           Verdien met elke spray
+           {t('pricingPage.earnWithEverySpray.title')}
         </h2>
         <p className="mt-6 text-lg leading-8 text-foreground/80 max-w-3xl mx-auto">
-          Met de Parfum Vending Machine – Pay per Spray – bieden we uw bezoekers een luxe parfumervaring voor slechts €3 per spray. Ideaal voor een snelle opfrisser na het sporten, na het werk of voor een avondje uit.
+          {t('pricingPage.earnWithEverySpray.description')}
         </p>
       </div>
 
       <Card className="mb-12 lg:mb-20 max-w-4xl mx-auto bg-card/50 backdrop-blur-sm">
         <CardHeader>
-          <CardTitle className="text-2xl text-center">Voorbeeld Omzetberekening</CardTitle>
+          <CardTitle className="text-2xl text-center">{t('pricingPage.revenueExample.title')}</CardTitle>
         </CardHeader>
         <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div>
             <p className="text-4xl font-bold">40</p>
-            <p className="text-foreground/80">Gem. sprays per dag</p>
+            <p className="text-foreground/80">{t('pricingPage.revenueExample.spraysPerDay')}</p>
           </div>
           <div>
             <p className="text-4xl font-bold">€120</p>
-            <p className="text-foreground/80">Gem. dagomzet</p>
+            <p className="text-foreground/80">{t('pricingPage.revenueExample.dailyRevenue')}</p>
           </div>
           <div>
             <p className="text-4xl font-bold">€3.600</p>
-            <p className="text-foreground/80">Gem. maandomzet</p>
+            <p className="text-foreground/80">{t('pricingPage.revenueExample.monthlyRevenue')}</p>
           </div>
         </CardContent>
         <CardFooter>
           <p className="text-sm text-foreground/60 mx-auto text-center">
-            *De daadwerkelijke resultaten zijn afhankelijk van locatie, zichtbaarheid en passantenstroom.
+            {t('pricingPage.revenueExample.disclaimer')}
           </p>
         </CardFooter>
       </Card>
@@ -110,7 +95,7 @@ const Pricing = () => {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle>{tier.name}</CardTitle>
-                {tier.popular && <Badge variant="default">Populairst</Badge>}
+                {tier.popular && <Badge variant="default">{t('pricingPage.tiers.franchise.popular')}</Badge>}
               </div>
               <CardDescription>{tier.description}</CardDescription>
             </CardHeader>

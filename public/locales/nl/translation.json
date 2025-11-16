@@ -1,0 +1,146 @@
+{
+  "header": {
+    "home": "Home",
+    "pricing": "Prijzen",
+    "contact": "Contact",
+    "becomePartner": "Word Partner"
+  },
+  "footer": {
+    "tagline": "Waar Luxe en Innovatie samenkomen.",
+    "navigation": "Navigatie",
+    "stayUpdated": "Blijf op de hoogte",
+    "newsletterPrompt": "Schrijf u in voor onze nieuwsbrief voor het laatste nieuws.",
+    "emailPlaceholder": "Voer uw e-mailadres in",
+    "subscribe": "Inschrijven",
+    "copyright": "© {{year}} Fragancao. Alle rechten voorbehouden."
+  },
+  "animatedHero": {
+    "title": "Een Geurervaring, Heruitgevonden als",
+    "adjectives": ["elegant", "luxueus", "innovatief", "boeiend", "verfijnd"],
+    "description": "Verrijk uw locatie met een vleugje moderne luxe. Onze geautomatiseerde parfumautomaat biedt een unieke, gedenkwaardige ervaring voor uw gasten en creëert een nieuwe inkomstenbron zonder voorafgaande investering.",
+    "requestConsultation": "Vraag een Consult aan",
+    "becomePartner": "Word een Partner"
+  },
+  "indexPage": {
+    "mainHero": {
+      "title": "Fragancao – Waar Luxe en Innovatie samenkomen"
+    },
+    "engineeredForElegance": {
+      "title": "Ontworpen voor Elegantie",
+      "description": "Onze automaat is meer dan alleen een dispenser; het is een statement-stuk dat naadloos integreert in elke luxe omgeving. Elk detail is zorgvuldig vervaardigd voor een ongeëvenaarde gebruikerservaring.",
+      "features": {
+        "design": {
+          "title": "Strak & Compact Ontwerp",
+          "description": "Met een breedte van slechts 60 cm past de minimalistische esthetiek bij elk interieur, van hotellobby's tot exclusieve clubs."
+        },
+        "touchscreen": {
+          "title": "Interactief Touchscreen",
+          "description": "Een levendig, high-definition display leidt gebruikers door de geurselectie met prachtige visuals en intuïtieve navigatie."
+        },
+        "atomization": {
+          "title": "Geavanceerde Verneveling",
+          "description": "Onze gepatenteerde technologie zorgt telkens voor een perfecte, fijne neveltoepassing, waardoor de geurervaring wordt gemaximaliseerd zonder verspilling."
+        },
+        "payments": {
+          "title": "Veilige Contactloze Betalingen",
+          "description": "Uitgerust met de nieuwste NFC-technologie voor snelle, veilige en gemakkelijke tap-to-pay transacties."
+        }
+      }
+    },
+    "featuresSection": {
+      "title": "Onze Functies"
+    },
+    "seamlessExperience": {
+      "title": "Een Naadloze Ervaring voor Uw Gasten",
+      "description": "Onze machine biedt een eenvoudige, intuïtieve reis voor uw klanten, waardoor een gedenkwaardige, premium voorziening ontstaat die moeiteloos inkomsten genereert voor uw bedrijf.",
+      "steps": {
+        "selection": {
+          "title": "1. Intuïtieve Selectie",
+          "description": "Gasten bladeren door een samengestelde collectie van premium parfums op het levendige touchscreen en vinden de perfecte geur om hun ervaring op uw locatie te verbeteren."
+        },
+        "payment": {
+          "title": "2. Moeiteloze Betaling",
+          "description": "Met moderne contactloze betalingstechnologie zijn transacties snel, veilig en naadloos. Een simpele tik is alles wat nodig is."
+        },
+        "luxury": {
+          "title": "3. Een Vleugje Luxe",
+          "description": "Onze geavanceerde verneveling levert een perfecte nevel, wat zorgt voor een verfijnde geurervaring die een blijvende positieve indruk achterlaat."
+        }
+      }
+    }
+  },
+  "pricingPage": {
+    "title": "Partnerships & Prijzen",
+    "description": "Ontdek hoe onze Parfum Vending Machine een luxe ervaring kan toevoegen aan uw locatie en tegelijkertijd een nieuwe inkomstenbron kan genereren.",
+    "earnWithEverySpray": {
+      "title": "Verdien met elke spray",
+      "description": "Met de Parfum Vending Machine – Pay per Spray – bieden we uw bezoekers een luxe parfumervaring voor slechts €3 per spray. Ideaal voor een snelle opfrisser na het sporten, na het werk of voor een avondje uit."
+    },
+    "revenueExample": {
+      "title": "Voorbeeld Omzetberekening",
+      "spraysPerDay": "Gem. sprays per dag",
+      "dailyRevenue": "Gem. dagomzet",
+      "monthlyRevenue": "Gem. maandomzet",
+      "disclaimer": "*De daadwerkelijke resultaten zijn afhankelijk van locatie, zichtbaarheid en passantenstroom."
+    },
+    "tiers": {
+      "placement": {
+        "name": "Plaatsing",
+        "description": "Ideaal voor enkele locaties zoals hotels, restaurants of boetieks.",
+        "price": "Omzetdeling",
+        "features": [
+          "1 Deluxe Vending Machine",
+          "Geen investeringskosten",
+          "Aantrekkelijke omzetdeling",
+          "Maandelijks onderhoud & bijvullen",
+          "24/7 Online Support"
+        ],
+        "cta": "Word Partner"
+      },
+      "franchise": {
+        "name": "Franchise",
+        "description": "Perfect voor bedrijven met meerdere locaties of ketens.",
+        "price": "Hogere Omzetdeling",
+        "features": [
+          "Tot 10 machines",
+          "Verbeterde omzetdeling",
+          "Prioriteitssupport via telefoon & e-mail",
+          "Tweewekelijks onderhoud & bijvullen",
+          "Toegang tot analytics dashboard"
+        ],
+        "cta": "Vraag een offerte aan",
+        "popular": "Populairst"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "Voor grootschalige, op maat gemaakte implementaties en unieke merkervaringen.",
+        "price": "Model op Maat",
+        "features": [
+          "Onbeperkt aantal machines",
+          "Machine design & branding op maat",
+          "Persoonlijke accountmanager",
+          "Onderhoud op aanvraag",
+          "Geavanceerde API-integratie"
+        ],
+        "cta": "Neem contact op"
+      }
+    }
+  },
+  "contactPage": {
+    "title": "Neem Contact Op",
+    "description": "Heeft u vragen, feedback of interesse in een samenwerking? Laat ons weten hoe we kunnen helpen!",
+    "contactDetails": "Contactgegevens",
+    "phone": "Telefoon",
+    "email": "Email",
+    "web": "Web",
+    "form": {
+      "firstName": "Voornaam",
+      "lastName": "Achternaam",
+      "email": "Email",
+      "subject": "Onderwerp",
+      "message": "Bericht",
+      "messagePlaceholder": "Typ hier uw bericht.",
+      "submit": "Verstuur Bericht"
+    }
+  }
+}

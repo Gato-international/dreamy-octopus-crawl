@@ -4,14 +4,17 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { Menu, X } from 'lucide-react'
 import { useScroll, motion } from 'framer-motion'
-
-const menuItems = [
-    { name: 'Home', to: '/' },
-    { name: 'Pricing', to: '/pricing' },
-    { name: 'Contact', to: '/contact' },
-]
+import { useTranslation } from 'react-i18next'
+import { LanguageSwitcher } from '../LanguageSwitcher'
 
 const Header = () => {
+    const { t } = useTranslation();
+    const menuItems = [
+        { name: t('header.home'), to: '/' },
+        { name: t('header.pricing'), to: '/pricing' },
+        { name: t('header.contact'), to: '/contact' },
+    ]
+
     const [menuState, setMenuState] = useState(false)
     const [scrolled, setScrolled] = useState(false)
     const { scrollYProgress } = useScroll()
@@ -63,7 +66,7 @@ const Header = () => {
                             </div>
                         </div>
 
-                        <div className={cn("mb-6 w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent", menuState ? "block bg-background" : "hidden")}>
+                        <div className={cn("mb-6 w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-2 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent", menuState ? "block bg-background" : "hidden")}>
                             <div className="lg:hidden">
                                 <ul className="space-y-6 text-base">
                                     {menuItems.map((item, index) => (
@@ -83,10 +86,11 @@ const Header = () => {
                                     asChild
                                     size="sm">
                                     <Link to="/pricing">
-                                        <span>Become Partner</span>
+                                        <span>{t('header.becomePartner')}</span>
                                     </Link>
                                 </Button>
                             </div>
+                             <LanguageSwitcher />
                         </div>
                     </motion.div>
                 </div>
