@@ -6,8 +6,8 @@ import { useTranslation } from "react-i18next";
 
 const Index = () => {
   const { t } = useTranslation();
-  const videoSrc = 'https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYuZ5R8ahEEZ4aQK56LizRdfBSqeDMsmUIrJN1';
-  const posterSrc = 'https://images.pexels.com/videos/5752729/space-earth-universe-cosmos-5752729.jpeg';
+  const videoSrc = 'https://videos.pexels.com/video/857251/download';
+  const posterSrc = 'https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg';
 
   return (
     <>
