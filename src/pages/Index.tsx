@@ -21,7 +21,7 @@ const Index = () => {
           autoPlay
           loop
           muted
-          className="absolute z-0 w-auto min-w-full min-h-full max-w-none"
+          className="absolute z-0 top-0 left-0 w-full h-full object-cover"
         >
           Your browser does not support the video tag.
         </video>
