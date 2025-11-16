@@ -14,14 +14,15 @@ const Index = () => {
 
   return (
     <>
-      <section className="relative h-screen w-full flex items-center overflow-hidden">
+      <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
         <video
           src={heroContent.videoSrc}
           poster={heroContent.posterSrc}
           autoPlay
           loop
           muted
-          className="absolute z-0 w-auto min-w-full min-h-full max-w-none"
+          playsInline
+          className="absolute z-0 top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2"
         >
           Your browser does not support the video tag.
         </video>
