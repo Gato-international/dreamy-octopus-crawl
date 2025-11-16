@@ -61,7 +61,7 @@ function AnimatedHero() {
               Elevate your venue with a touch of modern luxury. Our automated fragrance machine offers a unique, memorable experience for your guests, creating a new revenue stream with zero upfront investment.
             </p>
           </div>
-          <div className="flex flex-row gap-3">
+          <div className="flex flex-col sm:flex-row gap-3">
             <Button size="lg" className="gap-4" variant="outline" asChild>
               <Link to="/contact">
                 Request a Consultation <PhoneCall className="w-4 h-4" />

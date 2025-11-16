@@ -37,7 +37,7 @@ const Footer = () => {
           <p className="text-foreground/60 mb-4">
             Subscribe to our newsletter for the latest news.
           </p>
-          <form className="flex space-x-2">
+          <form className="flex flex-col sm:flex-row gap-2">
             <Input type="email" placeholder="Enter your email" />
             <Button type="submit">Subscribe</Button>
           </form>

@@ -46,7 +46,7 @@ const Index = () => {
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1">
-              <h2 className="text-4xl font-bold mb-6 text-white">Engineered for Elegance</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-white">Engineered for Elegance</h2>
               <p className="text-lg text-foreground/80 mb-8">
                 Our vending machine is more than just a dispenser; it's a statement piece designed to blend seamlessly into any luxury environment. Every detail has been meticulously crafted to offer an unparalleled user experience.
               </p>
@@ -99,7 +99,7 @@ const Index = () => {
       </section>
       <section className="py-12 lg:py-24">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 text-white">Our Features</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 text-white">Our Features</h2>
           <FeaturesSectionWithHoverEffects />
         </div>
       </section>
@@ -107,7 +107,7 @@ const Index = () => {
       <section className="py-20 sm:py-32">
         <div className="container mx-auto">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold mb-4 text-white">A Seamless Experience for Your Guests</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-white">A Seamless Experience for Your Guests</h2>
             <p className="text-lg text-foreground/80">
               Our machine offers a simple, intuitive journey for your customers, creating a memorable, premium amenity that generates effortless revenue for your business.
             </p>
