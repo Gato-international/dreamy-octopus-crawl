@@ -6,15 +6,13 @@ import { useTranslation } from "react-i18next";
 
 const Index = () => {
   const { t } = useTranslation();
-  const videoSrc = 'https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYuZ5R8ahEEZ4aQK56LizRdfBSqeDMsmUIrJN1';
-  const posterSrc = 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2';
+  const videoSrc = '/Untitled design (1).mp4';
 
   return (
     <>
       <section className="relative h-screen w-full flex items-center overflow-hidden">
         <video
           src={videoSrc}
-          poster={posterSrc}
           autoPlay
           loop
           muted
