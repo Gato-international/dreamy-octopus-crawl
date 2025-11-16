@@ -134,7 +134,7 @@ const AboutManager = () => {
               placeholder='[{"src": "/url-from-media-library.png", "alt": "description"}, ...]'
             />
             <p className="text-sm text-muted-foreground">
-              Enter a valid JSON array of image objects. Example: [{"src": "/path/to/image.png", "alt": "Alt text"}]
+              Enter a valid JSON array of image objects. Example: {'[{"src": "/path/to/image.png", "alt": "Alt text"}]'}
             </p>
           </div>
           <Button onClick={handleSave}>Save Changes</Button>
