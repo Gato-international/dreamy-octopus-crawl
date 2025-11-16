@@ -1,178 +1,48 @@
-"use client";
+import { MoveRight, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Badge } from "@/components/ui/badge";
 
-type Image = {
-  src: string;
-  alt: string;
-};
-
-type Content = {
-  headline: string;
-  subheadline: string;
-  description: string;
-  primaryCta: { text: string; link: string };
-  secondaryCta: { text: string; link: string };
-  images: Image[];
-};
-
-const defaultImages = [
-  {
-    src: "/spray-bottle.png",
-    alt: "Spray Bottle",
-  },
-  {
-    src: "/select-finger.png",
-    alt: "Select Finger",
-  },
-  {
-    src: "/fragrance-spray.png",
-    alt: "Fragrance Spray",
-  },
-];
-
-export function Hero() {
-  const [content, setContent] = useState<Content | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchContent = async () => {
-      setLoading(true);
-      const keys = [
-        'about_headline', 'about_subheadline', 'about_description',
-        'about_primary_cta_text', 'about_primary_cta_link',
-        'about_secondary_cta_text', 'about_secondary_cta_link',
-        'about_images'
-      ];
-      const { data, error } = await supabase.from('site_config').select('*').in('key', keys);
-      
-      if (error) {
-        console.error("Error fetching about content:", error);
-        setContent(null);
-      } else {
-        const config = data.reduce((acc, item) => {
-          acc[item.key] = item.value;
-          return acc;
-        }, {} as Record<string, string>);
-
-        let images = defaultImages;
-        if (config.about_images) {
-          try {
-            const parsedImages = JSON.parse(config.about_images);
-            if (Array.isArray(parsedImages) && parsedImages.length > 0) {
-              images = parsedImages;
-            }
-          } catch (e) {
-            console.error("Failed to parse about_images JSON:", e);
-          }
-        }
-
-        setContent({
-          headline: config.about_headline || "Three steps to your new scent",
-          subheadline: config.about_subheadline || "How it works",
-          description: config.about_description || "Our vending machine offers a seamless and luxurious experience. In just a few simple steps, you can enjoy a refreshing spray of your favorite high-end perfume.",
-          primaryCta: {
-            text: config.about_primary_cta_text || "Our Pricing",
-            link: config.about_primary_cta_link || "/pricing",
-          },
-          secondaryCta: {
-            text: config.about_secondary_cta_text || "Contact Us",
-            link: config.about_secondary_cta_link || "/contact",
-          },
-          images: images,
-        });
-      }
-      setLoading(false);
-    };
-
-    fetchContent();
-  }, []);
-
-  if (loading) {
-    return (
-      <section className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
-          <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-            <div className="flex flex-col justify-center space-y-4">
-              <div className="space-y-2">
-                <Skeleton className="h-6 w-1/4" />
-                <Skeleton className="h-12 w-full" />
-                <Skeleton className="h-24 w-full" />
-              </div>
-              <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Skeleton className="h-10 w-32" />
-                <Skeleton className="h-10 w-32" />
-              </div>
-            </div>
-            <div className="grid grid-cols-2 grid-rows-2 gap-4">
-              <Skeleton className="w-full h-full aspect-square rounded-xl" />
-              <Skeleton className="w-full h-full aspect-square rounded-xl" />
-              <Skeleton className="w-full h-full aspect-square rounded-xl col-span-2" />
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  if (!content) {
-    return null;
-  }
-
+function Hero() {
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32">
-      <div className="container px-4 md:px-6">
-        <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-          <div className="flex flex-col justify-center space-y-4">
-            <div className="space-y-2">
-              <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">
-                {content.subheadline}
-              </div>
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                <TextGenerateEffect words={content.headline} />
+    <div className="w-full py-20 lg:py-40">
+      <div className="container mx-auto">
+        <div className="grid grid-cols-1 gap-8 items-center md:grid-cols-2">
+          <div className="flex gap-4 flex-col">
+            <div>
+              <Badge variant="outline">We&apos;re live!</Badge>
+            </div>
+            <div className="flex gap-4 flex-col">
+              <h1 className="text-5xl md:text-7xl max-w-lg tracking-tighter text-left font-regular">
+                Where Every Spray Becomes an Experience
               </h1>
-              <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                {content.description}
+              <p className="text-xl leading-relaxed tracking-tight text-muted-foreground max-w-md text-left">
+                Choose. Tap. Spray. Our Parfum Vending Machines offer visitors instant access to premium fragrances with seamless contactless payment. Whether it's a quick refresh after the gym, before a night out, or during a shopping break – luxury is just three seconds away.
               </p>
             </div>
-            <div className="flex flex-col gap-2 min-[400px]:flex-row">
-              <Button asChild size="lg">
-                <Link to={content.primaryCta.link}>{content.primaryCta.text}</Link>
+            <div className="flex flex-row gap-4">
+              <Button size="lg" className="gap-4" variant="outline">
+                Jump on a call <PhoneCall className="w-4 h-4" />
               </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link to={content.secondaryCta.link}>{content.secondaryCta.text}</Link>
+              <Button size="lg" className="gap-4">
+                Sign up here <MoveRight className="w-4 h-4" />
               </Button>
             </div>
           </div>
-          <div className="grid grid-cols-2 grid-rows-2 gap-4">
-            <img
-              alt={content.images[0]?.alt || "Image"}
-              className="aspect-square w-full overflow-hidden rounded-xl object-cover"
-              height="310"
-              src={content.images[0]?.src || "/placeholder.svg"}
-              width="310"
-            />
-            <img
-              alt={content.images[1]?.alt || "Image"}
-              className="aspect-square w-full overflow-hidden rounded-xl object-cover"
-              height="310"
-              src={content.images[1]?.src || "/placeholder.svg"}
-              width="310"
-            />
-            <img
-              alt={content.images[2]?.alt || "Image"}
-              className="col-span-2 aspect-video w-full overflow-hidden rounded-xl object-cover"
-              height="310"
-              src={content.images[2]?.src || "/placeholder.svg"}
-              width="620"
-            />
+          <div className="grid grid-cols-2 gap-8">
+            <div className="bg-muted rounded-md aspect-square flex items-center justify-center p-12">
+              <img src="/select-finger.png" alt="Select fragrance" className="w-full h-full object-contain" />
+            </div>
+            <div className="rounded-md row-span-2">
+              <img src="/fragrance-spray.png" alt="Person spraying fragrance" className="w-full h-full object-cover rounded-md" />
+            </div>
+            <div className="bg-muted rounded-md aspect-square flex items-center justify-center p-12">
+              <img src="/spray-bottle.png" alt="Spray fragrance" className="w-full h-full object-contain" />
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
+
+export { Hero };

@@ -10,50 +10,47 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
 
-const staticPricingTiers = [
+const pricingTiers = [
   {
-    id: '1',
-    name: 'Huur Model',
-    description: 'Ideaal voor locaties die flexibiliteit wensen zonder initiële investering.',
-    price: '€150 p/m',
+    name: "Plaatsing",
+    description: "Ideaal voor enkele locaties zoals hotels, restaurants of boetieks.",
+    price: "Omzetdeling",
     features: [
-      'Geen aanschafkosten',
-      'Inclusief 5 luxe parfums',
-      'Volledige service & onderhoud',
-      '20% commissie op omzet',
-      'Maandelijks opzegbaar',
+      "1 Deluxe Vending Machine",
+      "Geen investeringskosten",
+      "Aantrekkelijke omzetdeling",
+      "Maandelijks onderhoud & bijvullen",
+      "24/7 Online Support",
     ],
-    cta: 'Start met Huren',
+    cta: "Word Partner",
     popular: false,
   },
   {
-    id: '2',
-    name: 'Koop Model',
-    description: 'De beste optie voor maximale winst en volledig eigendom.',
-    price: '€2500',
+    name: "Franchise",
+    description: "Perfect voor bedrijven met meerdere locaties of ketens.",
+    price: "Hogere Omzetdeling",
     features: [
-      'Volledig eigendom van de machine',
-      'Inclusief 5 luxe parfums',
-      'Hogere winstmarge per spray',
-      '1 jaar garantie & support',
-      'Geen maandelijkse kosten',
+      "Tot 10 machines",
+      "Verbeterde omzetdeling",
+      "Prioriteitssupport via telefoon & e-mail",
+      "Tweewekelijks onderhoud & bijvullen",
+      "Toegang tot analytics dashboard",
     ],
-    cta: 'Koop Nu',
+    cta: "Vraag een offerte aan",
     popular: true,
   },
   {
-    id: '3',
-    name: 'Lease Model',
-    description: 'Een gebalanceerde aanpak met een pad naar eigendom.',
-    price: '€100 p/m',
+    name: "Enterprise",
+    description: "Voor grootschalige, op maat gemaakte implementaties en unieke merkervaringen.",
+    price: "Model op Maat",
     features: [
-      'Lage maandelijkse kosten',
-      'Optie tot koop na 24 maanden',
-      'Inclusief service & onderhoud',
-      '15% commissie op omzet',
-      'Flexibele leasevoorwaarden',
+      "Onbeperkt aantal machines",
+      "Machine design & branding op maat",
+      "Persoonlijke accountmanager",
+      "Onderhoud op aanvraag",
+      "Geavanceerde API-integratie",
     ],
-    cta: 'Start met Leasen',
+    cta: "Neem contact op",
     popular: false,
   },
 ];
@@ -105,7 +102,7 @@ const Pricing = () => {
       </Card>
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 items-start">
-        {staticPricingTiers.map((tier) => (
+        {pricingTiers.map((tier) => (
           <Card
             key={tier.name}
             className={`flex flex-col h-full ${tier.popular ? "border-primary shadow-lg" : ""}`}

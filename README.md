@@ -1,1 +1,1 @@
-# Welcome to your application
+# Welcome to your Dyad app

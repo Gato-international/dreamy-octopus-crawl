@@ -5,24 +5,19 @@ import { FeaturesSectionWithHoverEffects } from "@/components/ui/feature-section
 import Testimonials from "@/components/Testimonials";
 
 const Index = () => {
-  const heroContent = {
-    videoSrc: 'https://videos.pexels.com/video-files/5194137/5194137-hd_1920_1080_25fps.mp4',
-    posterSrc: 'https://images.pexels.com/photos/3250623/pexels-photo-3250623.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    headline: 'Luxe Geurervaring, Altijd en Overal',
-    imageSrc: '/fragrance-machine-gallery.png',
-  };
+  const videoSrc = 'https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYuZ5R8ahEEZ4aQK56LizRdfBSqeDMsmUIrJN1';
+  const posterSrc = 'https://images.pexels.com/videos/5752729/space-earth-universe-cosmos-5752729.jpeg';
 
   return (
     <>
-      <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen w-full flex items-center overflow-hidden">
         <video
-          src={heroContent.videoSrc}
-          poster={heroContent.posterSrc}
+          src={videoSrc}
+          poster={posterSrc}
           autoPlay
           loop
           muted
-          playsInline
-          className="absolute z-0 top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2"
+          className="absolute z-0 w-auto min-w-full min-h-full max-w-none"
         >
           Your browser does not support the video tag.
         </video>
@@ -31,12 +26,12 @@ const Index = () => {
         <div className="relative z-20 container mx-auto px-4 grid md:grid-cols-5 gap-8 items-center">
           <div className="md:col-span-2 text-left">
             <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">
-              {heroContent.headline}
+              Fragancao – Where Luxury Meets Innovation
             </h1>
           </div>
           <div className="md:col-span-3">
             <img 
-              src={heroContent.imageSrc} 
+              src="/fragrance-machine.png" 
               alt="Fragrance Vending Machine" 
               className="w-full h-auto object-contain"
             />
