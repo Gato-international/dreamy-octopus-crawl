@@ -85,7 +85,7 @@ const Header = () => {
                                 <Button
                                     asChild
                                     size="sm">
-                                    <Link to="/pricing">
+                                    <Link to="/contact">
                                         <span>{t('header.becomePartner')}</span>
                                     </Link>
                                 </Button>

@@ -10,6 +10,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const Pricing = () => {
   const { t } = useTranslation();
@@ -111,8 +112,8 @@ const Pricing = () => {
               </ul>
             </CardContent>
             <CardFooter>
-              <Button className="w-full" variant={tier.popular ? "default" : "outline"}>
-                {tier.cta}
+              <Button className="w-full" variant={tier.popular ? "default" : "outline"} asChild>
+                <Link to="/contact">{tier.cta}</Link>
               </Button>
             </CardFooter>
           </Card>

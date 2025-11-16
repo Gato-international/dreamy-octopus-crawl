@@ -1,8 +1,14 @@
 import React from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { supabase } from "@/integrations/supabase/client";
+import { showLoading, showSuccess, showError, dismissToast } from "@/utils/toast";
 
 interface ContactFormProps {
   title: string;
@@ -24,6 +30,14 @@ interface ContactFormProps {
   };
 }
 
+const formSchema = z.object({
+  firstName: z.string().min(2, { message: "First name must be at least 2 characters." }),
+  lastName: z.string().min(2, { message: "Last name must be at least 2 characters." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  subject: z.string().min(5, { message: "Subject must be at least 5 characters." }),
+  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+});
+
 export const ContactForm = ({
   title,
   description,
@@ -32,6 +46,38 @@ export const ContactForm = ({
   web,
   labels,
 }: ContactFormProps) => {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+  });
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const toastId = showLoading("Sending your message...");
+    try {
+      const { error } = await supabase.functions.invoke('send-email', {
+        body: values,
+      });
+
+      dismissToast(toastId);
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      showSuccess("Message sent successfully! We'll get back to you soon.");
+      form.reset();
+    } catch (error) {
+      dismissToast(toastId);
+      showError(`Failed to send message: ${error.message}`);
+    }
+  }
+
   return (
     <section className="py-24 sm:py-32">
       <div className="container">
@@ -68,31 +114,80 @@ export const ContactForm = ({
             </div>
           </div>
           <div className="mx-auto w-full max-w-screen-md flex-col gap-6 rounded-lg border p-10">
-            <form className="flex flex-col gap-6">
-              <div className="flex flex-col sm:flex-row gap-4">
-                <div className="grid w-full items-center gap-1.5">
-                  <Label htmlFor="firstname">{labels.firstName}</Label>
-                  <Input type="text" id="firstname" placeholder={labels.firstName} />
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <FormField
+                    control={form.control}
+                    name="firstName"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>{labels.firstName}</FormLabel>
+                        <FormControl>
+                          <Input placeholder={labels.firstName} {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="lastName"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>{labels.lastName}</FormLabel>
+                        <FormControl>
+                          <Input placeholder={labels.lastName} {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </div>
-                <div className="grid w-full items-center gap-1.5">
-                  <Label htmlFor="lastname">{labels.lastName}</Label>
-                  <Input type="text" id="lastname" placeholder={labels.lastName} />
-                </div>
-              </div>
-              <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="email">{labels.email}</Label>
-                <Input type="email" id="email" placeholder={labels.email} />
-              </div>
-              <div className="grid w-full items-center gap-1.5">
-                <Label htmlFor="subject">{labels.subject}</Label>
-                <Input type="text" id="subject" placeholder={labels.subject} />
-              </div>
-              <div className="grid w-full gap-1.5">
-                <Label htmlFor="message">{labels.message}</Label>
-                <Textarea placeholder={labels.messagePlaceholder} id="message" />
-              </div>
-              <Button type="submit" className="w-full">{labels.submit}</Button>
-            </form>
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{labels.email}</FormLabel>
+                      <FormControl>
+                        <Input type="email" placeholder={labels.email} {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="subject"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{labels.subject}</FormLabel>
+                      <FormControl>
+                        <Input placeholder={labels.subject} {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{labels.message}</FormLabel>
+                      <FormControl>
+                        <Textarea placeholder={labels.messagePlaceholder} {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
+                  {form.formState.isSubmitting ? "Sending..." : labels.submit}
+                </Button>
+              </form>
+            </Form>
           </div>
         </div>
       </div>
