@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet-async";
 
 const Index = () => {
   const { t } = useTranslation();
-  const videoSrc = '/Untitled design (1).mp4';
+  const videoSrc = 'https://oqhvemhomwksenicoktf.supabase.co/storage/v1/object/public/assets/Untitled design (1).mp4';
 
   return (
     <>
