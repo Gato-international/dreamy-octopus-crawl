@@ -3,6 +3,7 @@ import { FeaturesSectionWithHoverEffects } from "@/components/ui/feature-section
 import { Fingerprint, CreditCard, Sparkles, Check } from "lucide-react";
 import { AnimatedHero } from "@/components/ui/animated-hero";
 import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet-async";
 
 const Index = () => {
   const { t } = useTranslation();
@@ -10,6 +11,10 @@ const Index = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Fragancao – Luxury Automated Fragrance Vending Machines</title>
+        <meta name="description" content="Elevate your venue with Fragancao's innovative perfume vending machines. Offer a unique, luxury experience and create a new revenue stream with zero upfront investment." />
+      </Helmet>
       <section className="relative h-screen w-full flex items-center overflow-hidden">
         <video
           src={videoSrc}

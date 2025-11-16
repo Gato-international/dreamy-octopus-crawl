@@ -1,5 +1,6 @@
 import { ContactForm } from "@/components/ContactForm";
 import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet-async";
 
 const Contact = () => {
   const { t } = useTranslation();
@@ -25,7 +26,13 @@ const Contact = () => {
   };
 
   return (
-    <ContactForm {...contactProps} />
+    <>
+      <Helmet>
+        <title>Contact Us – Fragancao</title>
+        <meta name="description" content="Get in touch with the Fragancao team. We're here to answer your questions about partnerships, our machines, or any other inquiries." />
+      </Helmet>
+      <ContactForm {...contactProps} />
+    </>
   );
 };
 
