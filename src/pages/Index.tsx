@@ -1,7 +1,6 @@
-import { Hero as HeroSection2 } from "@/components/ui/hero-with-group-of-images-text-and-two-buttons";
 import ThumbnailCarousel from "@/components/ui/thumbnail-carousel";
 import { FeaturesSectionWithHoverEffects } from "@/components/ui/feature-section-with-hover-effects";
-import { Fingerprint, CreditCard, Sparkles } from "lucide-react";
+import { Fingerprint, CreditCard, Sparkles, Check } from "lucide-react";
 
 const Index = () => {
   const videoSrc = 'https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYuZ5R8ahEEZ4aQK56LizRdfBSqeDMsmUIrJN1';
@@ -78,9 +77,56 @@ const Index = () => {
         </div>
       </section>
 
-      <section>
-        <HeroSection2 />
+      <section className="py-20 sm:py-32">
+        <div className="container mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="order-2 md:order-1">
+              <h2 className="text-4xl font-bold mb-6 text-white">Engineered for Elegance</h2>
+              <p className="text-lg text-foreground/80 mb-8">
+                Our vending machine is more than just a dispenser; it's a statement piece designed to blend seamlessly into any luxury environment. Every detail has been meticulously crafted to offer an unparalleled user experience.
+              </p>
+              <ul className="space-y-4">
+                <li className="flex items-start">
+                  <Check className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold">Sleek & Compact Design</h4>
+                    <p className="text-foreground/70">With a width of just 60cm, its minimalist aesthetic complements any interior, from hotel lobbies to exclusive clubs.</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold">Interactive Touchscreen</h4>
+                    <p className="text-foreground/70">A vibrant, high-definition display guides users through scent selection with beautiful visuals and intuitive navigation.</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold">Advanced Atomization</h4>
+                    <p className="text-foreground/70">Our patented technology ensures a perfect, fine mist application every time, maximizing the fragrance experience without waste.</p>
+                  </div>
+                </li>
+                 <li className="flex items-start">
+                  <Check className="h-6 w-6 text-primary mr-3 mt-1 flex-shrink-0" />
+                  <div>
+                    <h4 className="font-semibold">Secure Contactless Payments</h4>
+                    <p className="text-foreground/70">Equipped with the latest NFC technology for fast, secure, and convenient tap-to-pay transactions.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div className="order-1 md:order-2">
+              <img 
+                src="/fragrance-machine-gallery.png" 
+                alt="Fragrance Vending Machine Close-up" 
+                className="rounded-lg w-full h-auto object-contain"
+              />
+            </div>
+          </div>
+        </div>
       </section>
+
       <section className="py-12 lg:py-24">
         <div className="container mx-auto">
           <ThumbnailCarousel />
