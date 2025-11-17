@@ -11,17 +11,33 @@ const initialMetricLines = {
   width: { p1: { x: 20.907961742698213, y: 84.64360740604772 }, p2: { x: 65.9968973128255, y: 91.30628508911481 }, text: "730mm" },
 };
 
+const initialSpecLines = {
+  line1: { p1: { x: 32, y: 25 }, p2: { x: 38, y: 30 } },
+  line2: { p1: { x: 32, y: 50 }, p2: { x: 38, y: 50 } },
+  line3: { p1: { x: 32, y: 75 }, p2: { x: 40, y: 75 } },
+  line4: { p1: { x: 68, y: 33 }, p2: { x: 60, y: 28 } },
+  line5: { p1: { x: 68, y: 66 }, p2: { x: 60, y: 40 } },
+};
+
 type Point = { x: number; y: number };
-type Line = { p1: Point; p2: Point; text: string };
-type MetricLines = { [key: string]: Line };
+type MetricLine = { p1: Point; p2: Point; text: string };
+type SpecLine = { p1: Point; p2: Point };
+type MetricLines = { [key: string]: MetricLine };
+type SpecLines = { [key: string]: SpecLine };
 
 export const SpecsSection = () => {
   const { t } = useTranslation();
   const [viewMode, setViewMode] = useState("specs");
+  
   const [metricLines, setMetricLines] = useState<MetricLines>(initialMetricLines);
   const [draggingPoint, setDraggingPoint] = useState<{ lineKey: string; pointKey: 'p1' | 'p2' } | null>(null);
   const imageContainerRef = useRef<HTMLDivElement>(null);
 
+  const [specLines, setSpecLines] = useState<SpecLines>(initialSpecLines);
+  const [draggingSpecPoint, setDraggingSpecPoint] = useState<{ lineKey: string; pointKey: 'p1' | 'p2' } | null>(null);
+  const specContainerRef = useRef<HTMLDivElement>(null);
+
+  // Handlers for Metric Lines
   const handleMouseDown = (e: React.MouseEvent, lineKey: string, pointKey: 'p1' | 'p2') => {
     e.preventDefault();
     setDraggingPoint({ lineKey, pointKey });
@@ -29,43 +45,60 @@ export const SpecsSection = () => {
 
   const handleMouseMove = (e: MouseEvent) => {
     if (!draggingPoint || !imageContainerRef.current) return;
-
     const rect = imageContainerRef.current.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 100;
     const y = ((e.clientY - rect.top) / rect.height) * 100;
-
-    setMetricLines(prevLines => {
-      const newLines = { ...prevLines };
-      newLines[draggingPoint.lineKey] = {
-        ...newLines[draggingPoint.lineKey],
-        [draggingPoint.pointKey]: { x, y },
-      };
-      return newLines;
-    });
+    setMetricLines(prev => ({ ...prev, [draggingPoint.lineKey]: { ...prev[draggingPoint.lineKey], [draggingPoint.pointKey]: { x, y } } }));
   };
 
-  const handleMouseUp = () => {
-    setDraggingPoint(null);
-  };
+  const handleMouseUp = () => setDraggingPoint(null);
 
   useEffect(() => {
     if (draggingPoint) {
       window.addEventListener("mousemove", handleMouseMove);
       window.addEventListener("mouseup", handleMouseUp);
-    } else {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
     }
-
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
     };
   }, [draggingPoint]);
 
+  // Handlers for Spec Lines
+  const handleSpecMouseDown = (e: React.MouseEvent, lineKey: string, pointKey: 'p1' | 'p2') => {
+    e.preventDefault();
+    setDraggingSpecPoint({ lineKey, pointKey });
+  };
+
+  const handleSpecMouseMove = (e: MouseEvent) => {
+    if (!draggingSpecPoint || !specContainerRef.current) return;
+    const rect = specContainerRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setSpecLines(prev => ({ ...prev, [draggingSpecPoint.lineKey]: { ...prev[draggingSpecPoint.lineKey], [draggingSpecPoint.pointKey]: { x, y } } }));
+  };
+
+  const handleSpecMouseUp = () => setDraggingSpecPoint(null);
+
+  useEffect(() => {
+    if (draggingSpecPoint) {
+      window.addEventListener("mousemove", handleSpecMouseMove);
+      window.addEventListener("mouseup", handleSpecMouseUp);
+    }
+    return () => {
+      window.removeEventListener("mousemove", handleSpecMouseMove);
+      window.removeEventListener("mouseup", handleSpecMouseUp);
+    };
+  }, [draggingSpecPoint]);
+
   const logCoordinates = () => {
-    console.log("const finalMetricLines = ", JSON.stringify(metricLines, null, 2));
-    showSuccess("Coordinates logged to the developer console!");
+    if (viewMode === 'metrics') {
+      console.log("const finalMetricLines = ", JSON.stringify(metricLines, null, 2));
+      showSuccess("Metric coordinates logged to the developer console!");
+    } else {
+      console.log("const finalSpecLines = ", JSON.stringify(specLines, null, 2));
+      showSuccess("Spec coordinates logged to the developer console!");
+    }
   };
 
   const features = [
@@ -104,50 +137,54 @@ export const SpecsSection = () => {
 
         {/* Desktop View */}
         <div className="hidden md:block">
-          {viewMode === 'specs' && (
-            <div className="relative max-w-6xl mx-auto">
-              <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-8">
-                <div className="space-y-12">
-                  {leftFeatures.map((feature, index) => (
-                    <div key={index} className="text-right">
-                      <h3 className="font-bold text-lg">{feature.title}</h3>
-                      <p className="text-foreground/70 text-sm">{feature.description}</p>
-                    </div>
-                  ))}
+          <div className="flex flex-col items-center gap-4">
+            {viewMode === 'specs' && (
+              <div className="relative max-w-7xl mx-auto w-full" ref={specContainerRef}>
+                <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-8">
+                  <div className="space-y-12">
+                    {leftFeatures.map((feature, index) => (
+                      <div key={index} className="text-right">
+                        <h3 className="font-bold text-lg">{feature.title}</h3>
+                        <p className="text-foreground/70 text-sm">{feature.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="px-8">
+                    <img src="/fragrance-machine-specs.png" alt="Fragrance Vending Machine Features" className="w-full max-w-sm h-auto rounded-lg mx-auto" />
+                  </div>
+                  <div className="space-y-12">
+                    {rightFeatures.map((feature, index) => (
+                      <div key={index} className="text-left">
+                        <h3 className="font-bold text-lg">{feature.title}</h3>
+                        <p className="text-foreground/70 text-sm">{feature.description}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="px-8">
-                  <img src="/fragrance-machine-specs.png" alt="Fragrance Vending Machine Features" className="w-full max-w-sm h-auto rounded-lg mx-auto" />
-                </div>
-                <div className="space-y-12">
-                  {rightFeatures.map((feature, index) => (
-                    <div key={index} className="text-left">
-                      <h3 className="font-bold text-lg">{feature.title}</h3>
-                      <p className="text-foreground/70 text-sm">{feature.description}</p>
-                    </div>
+                <div className="absolute top-0 left-0 w-full h-full">
+                  <svg className="w-full h-full pointer-events-none" aria-hidden="true">
+                    {Object.values(specLines).map((line, index) => (
+                      <line key={index} x1={`${line.p1.x}%`} y1={`${line.p1.y}%`} x2={`${line.p2.x}%`} y2={`${line.p2.y}%`} stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/30" />
+                    ))}
+                  </svg>
+                  {Object.entries(specLines).map(([key, line]) => (
+                    <React.Fragment key={key}>
+                      <div onMouseDown={(e) => handleSpecMouseDown(e, key, 'p1')} style={{ left: `${line.p1.x}%`, top: `${line.p1.y}%` }} className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-full cursor-grab active:cursor-grabbing" />
+                      <div onMouseDown={(e) => handleSpecMouseDown(e, key, 'p2')} style={{ left: `${line.p2.x}%`, top: `${line.p2.y}%` }} className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-full cursor-grab active:cursor-grabbing" />
+                    </React.Fragment>
                   ))}
                 </div>
               </div>
-              <svg className="absolute top-0 left-0 w-full h-full pointer-events-none" aria-hidden="true">
-                <line x1="32%" y1="25%" x2="38%" y2="30%" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/30" />
-                <line x1="32%" y1="50%" x2="38%" y2="50%" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/30" />
-                <line x1="32%" y1="75%" x2="40%" y2="75%" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/30" />
-                <line x1="68%" y1="33%" x2="60%" y2="28%" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/30" />
-                <line x1="68%" y1="66%" x2="60%" y2="40%" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/30" />
-              </svg>
-            </div>
-          )}
+            )}
 
-          {viewMode === 'metrics' && (
-            <div className="flex flex-col items-center gap-4">
+            {viewMode === 'metrics' && (
               <div className="relative max-w-7xl mx-auto w-full" ref={imageContainerRef}>
                 <img src="/fragrance-machine-specs.png" alt="Fragrance Vending Machine Metrics" className="w-full h-auto rounded-lg" />
                 <div className="absolute inset-0">
                   <svg width="100%" height="100%" className="absolute top-0 left-0 pointer-events-none overflow-visible">
                     {Object.values(metricLines).map((line, index) => {
-                      const dx = line.p2.x - line.p1.x;
-                      const dy = line.p2.y - line.p1.y;
-                      const angle = Math.atan2(dy, dx);
-                      const perpAngle = angle + Math.PI / 2;
+                      const dx = line.p2.x - line.p1.x; const dy = line.p2.y - line.p1.y;
+                      const angle = Math.atan2(dy, dx); const perpAngle = angle + Math.PI / 2;
                       const capLength = 1;
                       const p1Cap1 = { x: line.p1.x + capLength * Math.cos(perpAngle), y: line.p1.y + capLength * Math.sin(perpAngle) };
                       const p1Cap2 = { x: line.p1.x - capLength * Math.cos(perpAngle), y: line.p1.y - capLength * Math.sin(perpAngle) };
@@ -163,11 +200,9 @@ export const SpecsSection = () => {
                     })}
                   </svg>
                   {Object.entries(metricLines).map(([key, line]) => {
-                    const dx = line.p2.x - line.p1.x;
-                    const dy = line.p2.y - line.p1.y;
+                    const dx = line.p2.x - line.p1.x; const dy = line.p2.y - line.p1.y;
                     const isVertical = Math.abs(dy) > Math.abs(dx);
-                    const midX = (line.p1.x + line.p2.x) / 2;
-                    const midY = (line.p1.y + line.p2.y) / 2;
+                    const midX = (line.p1.x + line.p2.x) / 2; const midY = (line.p1.y + line.p2.y) / 2;
                     const textStyle: React.CSSProperties = {
                       position: 'absolute', top: `${midY}%`, left: `${midX}%`,
                       transform: `translate(-50%, -50%) ${isVertical ? 'rotate(90deg)' : ''} translate(0, -15px)`,
@@ -183,9 +218,9 @@ export const SpecsSection = () => {
                   })}
                 </div>
               </div>
-              <Button onClick={logCoordinates} variant="outline" size="sm">Log Coordinates</Button>
-            </div>
-          )}
+            )}
+            <Button onClick={logCoordinates} variant="outline" size="sm">Log Coordinates</Button>
+          </div>
         </div>
 
         {/* Mobile View */}
