@@ -7,7 +7,7 @@ const colors = {
   500: "#6b5545",
 };
  
-export function AnimatedBackground() {
+export const AnimatedBackground = () => {
   const gradientRef = useRef<HTMLDivElement>(null);
  
   useEffect(() => {
@@ -36,7 +36,7 @@ export function AnimatedBackground() {
       ripple.style.borderRadius = "50%";
       ripple.style.transform = "translate(-50%, -50%)";
       ripple.style.pointerEvents = "none";
-      ripple.style.animation = "ripple-effect 1s ease-out forwards";
+      ripple.style.animation = "pulse-glow 1s ease-out forwards";
       document.body.appendChild(ripple);
       setTimeout(() => ripple.remove(), 1000);
     }
@@ -65,7 +65,7 @@ export function AnimatedBackground() {
  
   return (
     <div
-      className="fixed inset-0 -z-10 bg-gradient-to-br from-[#1a1d18] via-black to-[#2a2e26] text-[#e6e1d7] overflow-hidden w-full h-full"
+      className="fixed inset-0 -z-10 bg-gradient-to-br from-[#1a1d18] via-black to-[#2a2e26] text-[#e6e1d7] overflow-hidden"
     >
       <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -141,9 +141,9 @@ export function AnimatedBackground() {
         ref={gradientRef}
         className="fixed pointer-events-none w-96 h-96 rounded-full blur-3xl transition-all duration-500 ease-out opacity-0"
         style={{
-          background: `radial-gradient(circle, ${colors[500]}0D 0%, transparent 100%)`,
+          background: `radial-gradient(circle, rgba(107, 85, 69, 0.05) 0%, transparent 100%)`,
         }}
       ></div>
     </div>
   );
-}
+};
