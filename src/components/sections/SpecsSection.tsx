@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Touchscreen, CreditCard, Droplets, Wind, ServerCog, Scaling } from "lucide-react";
+import { Tablet, CreditCard, Droplets, Wind, ServerCog, Scaling } from "lucide-react";
 import React from "react";
 
 const SpecCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
@@ -21,7 +21,7 @@ export const SpecsSection = () => {
   const { t } = useTranslation();
 
   const specs = [
-    { icon: <Touchscreen className="h-8 w-8 text-primary" />, title: t('homePage.specs.touchscreen'), description: t('homePage.specs.touchscreenDesc') },
+    { icon: <Tablet className="h-8 w-8 text-primary" />, title: t('homePage.specs.touchscreen'), description: t('homePage.specs.touchscreenDesc') },
     { icon: <CreditCard className="h-8 w-8 text-primary" />, title: t('homePage.specs.payment'), description: t('homePage.specs.paymentDesc') },
     { icon: <Droplets className="h-8 w-8 text-primary" />, title: t('homePage.specs.slots'), description: t('homePage.specs.slotsDesc') },
     { icon: <Wind className="h-8 w-8 text-primary" />, title: t('homePage.specs.outlets'), description: t('homePage.specs.outletsDesc') },
