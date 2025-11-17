@@ -51,7 +51,7 @@ const Pricing = () => {
       </Helmet>
       <div className="container max-w-screen-lg py-12 pt-24 sm:pt-32">
         <div className="text-center mb-12 lg:mb-20">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl font-heading">
             {t('pricingPage.title')}
           </h1>
           <p className="mt-6 text-lg leading-8 text-foreground/80 max-w-3xl mx-auto">
@@ -60,7 +60,7 @@ const Pricing = () => {
         </div>
 
         <div className="text-center mb-12 lg:mb-20">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-5xl font-heading">
             {t('pricingPage.earnWithEverySpray.title')}
           </h2>
           <p className="mt-6 text-lg leading-8 text-foreground/80 max-w-3xl mx-auto">

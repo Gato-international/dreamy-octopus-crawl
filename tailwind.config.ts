@@ -21,6 +21,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Inter", ...fontFamily.sans],
+        heading: ["BluuNext", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",

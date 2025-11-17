@@ -8,7 +8,7 @@ export const WhatIsItSection = () => {
       <div className="container mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl sm:text-5xl font-bold mb-6">
+            <h2 className="text-3xl sm:text-5xl font-bold mb-6 font-heading">
               {t('homePage.whatIsIt.title')}
             </h2>
             <div className="space-y-4 text-lg text-foreground/80">

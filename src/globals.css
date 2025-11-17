@@ -1,3 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+@font-face {
+  font-family: 'BluuNext';
+  src: url('/fonts/BluuNext-Titling.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BluuNext';
+  src: url('/fonts/BluuNext-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BluuNext';
+  src: url('/fonts/BluuNext-Bolditalic.otf') format('opentype');
+  font-weight: bold;
+  font-style: italic;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -47,7 +47,7 @@ export const HowItWorksSection = () => {
     <section className="relative py-20 sm:py-32 bg-secondary/20 glow-border-top">
       <div className="container mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-5xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-5xl font-bold mb-4 font-heading">
             {t('homePage.howItWorks.title')}
           </h2>
         </div>

@@ -33,7 +33,7 @@ export const BenefitsSection = () => {
     <section className="py-20 sm:py-32">
       <div className="container mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-5xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-5xl font-bold mb-4 font-heading">
             {t('homePage.benefits.title')}
           </h2>
         </div>
