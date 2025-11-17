@@ -7,7 +7,13 @@ const Contact = () => {
 
   const contactProps = {
     title: t('contactPage.title'),
-    description: t('contactPage.description'),
+    description: (
+      <>
+        {t('contactPage.description_part1')}
+        <br />
+        {t('contactPage.description_part2')}
+      </>
+    ),
     phone: "+31 6 34864953",
     email: "info@fragancao.com",
     web: { label: "fragancao.nl", url: "https://fragancao.nl" },

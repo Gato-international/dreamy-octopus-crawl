@@ -148,7 +148,8 @@
   },
   "contactPage": {
     "title": "Contact Us",
-    "description": "For questions, feedback, or interest in a collaboration? Let us know how we can help!",
+    "description_part1": "For questions, feedback, or interest in a collaboration?",
+    "description_part2": "Let us know how we can help!",
     "contactDetails": "Contact Details",
     "phone": "Phone",
     "email": "Email",

@@ -11,7 +11,7 @@ import { showLoading, showSuccess, showError, dismissToast } from "@/utils/toast
 
 interface ContactFormProps {
   title: string;
-  description: string;
+  description: React.ReactNode;
   phone: string;
   email: string;
   web: { label: string; url: string };
