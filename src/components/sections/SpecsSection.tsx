@@ -1,10 +1,98 @@
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+
+const LOCAL_STORAGE_KEY = 'fragancao-metrics-positions';
+
+// A helper component for the draggable points
+const DraggableHandle = ({ position, onMouseDown, cursor }: {
+  position: { x: number; y: number };
+  onMouseDown: (e: React.MouseEvent) => void;
+  cursor: string;
+}) => (
+  <div
+    style={{ top: `${position.y}%`, left: `${position.x}%`, cursor }}
+    className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-primary/70 rounded-full pointer-events-auto ring-2 ring-background"
+    onMouseDown={onMouseDown}
+  />
+);
 
 export const SpecsSection = () => {
   const { t } = useTranslation();
   const [viewMode, setViewMode] = useState("specs");
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const defaultLines = {
+    height: { x: 104, y1: 0, y2: 100, text: "410mm" },
+    width: { y: 104, x1: 0, x2: 78, text: "730mm" },
+    depth: { y: 104, x1: 78, x2: 100, text: "222mm" },
+  };
+
+  const [lines, setLines] = useState(() => {
+    try {
+      const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+      return saved ? JSON.parse(saved) : defaultLines;
+    } catch (error) {
+      console.error("Failed to parse metrics from localStorage", error);
+      return defaultLines;
+    }
+  });
+
+  const [dragging, setDragging] = useState<{ line: 'height' | 'width' | 'depth'; point: string } | null>(null);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(lines));
+    } catch (error) {
+      console.error("Failed to save metrics to localStorage", error);
+    }
+  }, [lines]);
+
+  const handleMouseDown = (e: React.MouseEvent, line: 'height' | 'width' | 'depth', point: string) => {
+    e.preventDefault();
+    setDragging({ line, point });
+  };
+
+  const handleMouseUp = useCallback(() => {
+    setDragging(null);
+  }, []);
+
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    if (!dragging || !containerRef.current) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = Math.max(0, Math.min(110, ((e.clientX - rect.left) / rect.width) * 100));
+    const y = Math.max(0, Math.min(110, ((e.clientY - rect.top) / rect.height) * 100));
+
+    setLines(prevLines => {
+      const newLines = JSON.parse(JSON.stringify(prevLines)); // Deep copy
+      const currentLine = newLines[dragging.line];
+
+      if (dragging.line === 'height') {
+        if (dragging.point === 'x') currentLine.x = x;
+        if (dragging.point === 'y1') currentLine.y1 = y;
+        if (dragging.point === 'y2') currentLine.y2 = y;
+      } else { // width or depth
+        if (dragging.point === 'y') currentLine.y = y;
+        if (dragging.point === 'x1') currentLine.x1 = x;
+        if (dragging.point === 'x2') currentLine.x2 = x;
+      }
+      
+      return newLines;
+    });
+  }, [dragging]);
+
+  useEffect(() => {
+    if (dragging) {
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
+    }
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [dragging, handleMouseMove, handleMouseUp]);
+
 
   const features = [
     // Left side
@@ -95,36 +183,39 @@ export const SpecsSection = () => {
               className="w-full h-auto rounded-lg"
             />
             
-            <div className="absolute inset-8 md:inset-16 hidden md:block">
+            <div ref={containerRef} className="absolute inset-8 md:inset-16 hidden md:block">
               
               {viewMode === 'metrics' && (
-                <div className="absolute -inset-4 text-sm text-foreground/80 pointer-events-none">
-                  {/* Height Dimension */}
-                  <div className="absolute top-0 bottom-0 right-[-1.5rem] flex items-center">
-                    <div className="w-px h-full bg-current relative">
-                      <div className="absolute top-0 -left-1 w-3 h-px bg-current"></div>
-                      <div className="absolute bottom-0 -left-1 w-3 h-px bg-current"></div>
-                    </div>
-                    <p className="ml-2" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>410mm</p>
+                <div className="absolute top-0 left-0 w-full h-full text-sm text-foreground/80">
+                  {/* Height Line */}
+                  <div style={{ left: `${lines.height.x}%`, top: `${lines.height.y1}%`, height: `${lines.height.y2 - lines.height.y1}%` }} className="absolute w-px bg-current pointer-events-none">
+                    <div className="absolute top-0 -left-1 w-3 h-px bg-current"></div>
+                    <div className="absolute bottom-0 -left-1 w-3 h-px bg-current"></div>
                   </div>
+                  <p style={{ left: `${lines.height.x + 2}%`, top: `${(lines.height.y1 + lines.height.y2) / 2}%`, transform: 'translateY(-50%) rotate(90deg)' }} className="absolute origin-center whitespace-nowrap pointer-events-none">{lines.height.text}</p>
+                  <DraggableHandle position={{ x: lines.height.x, y: lines.height.y1 }} onMouseDown={(e) => handleMouseDown(e, 'height', 'y1')} cursor="ns-resize" />
+                  <DraggableHandle position={{ x: lines.height.x, y: lines.height.y2 }} onMouseDown={(e) => handleMouseDown(e, 'height', 'y2')} cursor="ns-resize" />
+                  <DraggableHandle position={{ x: lines.height.x, y: (lines.height.y1 + lines.height.y2) / 2 }} onMouseDown={(e) => handleMouseDown(e, 'height', 'x')} cursor="ew-resize" />
 
-                  {/* Width Dimension */}
-                  <div className="absolute bottom-[-1.5rem] left-0 right-[22%] flex flex-col items-center">
-                    <div className="h-px w-full bg-current relative">
-                      <div className="absolute left-0 -top-1 h-3 w-px bg-current"></div>
-                      <div className="absolute right-0 -top-1 h-3 w-px bg-current"></div>
-                    </div>
-                    <p className="mt-2">730mm</p>
+                  {/* Width Line */}
+                  <div style={{ top: `${lines.width.y}%`, left: `${lines.width.x1}%`, width: `${lines.width.x2 - lines.width.x1}%` }} className="absolute h-px bg-current pointer-events-none">
+                    <div className="absolute left-0 -top-1 h-3 w-px bg-current"></div>
+                    <div className="absolute right-0 -top-1 h-3 w-px bg-current"></div>
                   </div>
+                  <p style={{ top: `${lines.width.y + 2}%`, left: `${(lines.width.x1 + lines.width.x2) / 2}%`, transform: 'translateX(-50%)' }} className="absolute pointer-events-none">{lines.width.text}</p>
+                  <DraggableHandle position={{ x: lines.width.x1, y: lines.width.y }} onMouseDown={(e) => handleMouseDown(e, 'width', 'x1')} cursor="ew-resize" />
+                  <DraggableHandle position={{ x: lines.width.x2, y: lines.width.y }} onMouseDown={(e) => handleMouseDown(e, 'width', 'x2')} cursor="ew-resize" />
+                  <DraggableHandle position={{ x: (lines.width.x1 + lines.width.x2) / 2, y: lines.width.y }} onMouseDown={(e) => handleMouseDown(e, 'width', 'y')} cursor="ns-resize" />
 
-                  {/* Depth Dimension */}
-                  <div className="absolute bottom-[-1.5rem] right-0 w-[22%] flex flex-col items-center">
-                    <div className="h-px w-full bg-current relative">
-                      <div className="absolute left-0 -top-1 h-3 w-px bg-current"></div>
-                      <div className="absolute right-0 -top-1 h-3 w-px bg-current"></div>
-                    </div>
-                    <p className="mt-2">222mm</p>
+                  {/* Depth Line */}
+                  <div style={{ top: `${lines.depth.y}%`, left: `${lines.depth.x1}%`, width: `${lines.depth.x2 - lines.depth.x1}%` }} className="absolute h-px bg-current pointer-events-none">
+                    <div className="absolute left-0 -top-1 h-3 w-px bg-current"></div>
+                    <div className="absolute right-0 -top-1 h-3 w-px bg-current"></div>
                   </div>
+                  <p style={{ top: `${lines.depth.y + 2}%`, left: `${(lines.depth.x1 + lines.depth.x2) / 2}%`, transform: 'translateX(-50%)' }} className="absolute pointer-events-none">{lines.depth.text}</p>
+                  <DraggableHandle position={{ x: lines.depth.x1, y: lines.depth.y }} onMouseDown={(e) => handleMouseDown(e, 'depth', 'x1')} cursor="ew-resize" />
+                  <DraggableHandle position={{ x: lines.depth.x2, y: lines.depth.y }} onMouseDown={(e) => handleMouseDown(e, 'depth', 'x2')} cursor="ew-resize" />
+                  <DraggableHandle position={{ x: (lines.depth.x1 + lines.depth.x2) / 2, y: lines.depth.y }} onMouseDown={(e) => handleMouseDown(e, 'depth', 'y')} cursor="ns-resize" />
                 </div>
               )}
 
