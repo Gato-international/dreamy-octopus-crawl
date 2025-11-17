@@ -128,44 +128,48 @@ export const SpecsSection = () => {
                 </div>
               )}
 
-              <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none" className="overflow-visible">
-                {features.map((feature, index) => (
-                  <g key={index}>
-                    <path 
-                      d={feature.path}
-                      fill="none"
-                      stroke="hsl(var(--primary))" 
-                      strokeWidth="1" 
-                      strokeDasharray="4 4"
-                      opacity="0.7"
-                    />
-                    <circle 
-                      cx={feature.endPoint.x} 
-                      cy={feature.endPoint.y} 
-                      r="8" 
-                      fill="hsl(var(--primary))"
-                      className="opacity-30"
-                    />
-                    <circle 
-                      cx={feature.endPoint.x} 
-                      cy={feature.endPoint.y} 
-                      r="4" 
-                      fill="hsl(var(--primary))"
-                    />
-                  </g>
-                ))}
-              </svg>
+              {viewMode === 'specs' && (
+                <>
+                  <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none" className="overflow-visible">
+                    {features.map((feature, index) => (
+                      <g key={index}>
+                        <path 
+                          d={feature.path}
+                          fill="none"
+                          stroke="hsl(var(--primary))" 
+                          strokeWidth="1" 
+                          strokeDasharray="4 4"
+                          opacity="0.7"
+                        />
+                        <circle 
+                          cx={feature.endPoint.x} 
+                          cy={feature.endPoint.y} 
+                          r="8" 
+                          fill="hsl(var(--primary))"
+                          className="opacity-30"
+                        />
+                        <circle 
+                          cx={feature.endPoint.x} 
+                          cy={feature.endPoint.y} 
+                          r="4" 
+                          fill="hsl(var(--primary))"
+                        />
+                      </g>
+                    ))}
+                  </svg>
 
-              {features.map((feature, index) => (
-                <div 
-                  key={index} 
-                  className={`absolute p-2 w-1/4 ${feature.textAlignment}`}
-                  style={feature.textPosition}
-                >
-                  <h3 className="font-bold text-lg">{feature.title}</h3>
-                  <p className="text-foreground/70 text-sm">{feature.description}</p>
-                </div>
-              ))}
+                  {features.map((feature, index) => (
+                    <div 
+                      key={index} 
+                      className={`absolute p-2 w-1/4 ${feature.textAlignment}`}
+                      style={feature.textPosition}
+                    >
+                      <h3 className="font-bold text-lg">{feature.title}</h3>
+                      <p className="text-foreground/70 text-sm">{feature.description}</p>
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
           </div>
         </div>
