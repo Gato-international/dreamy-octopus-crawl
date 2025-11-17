@@ -4,8 +4,7 @@ export const WhatIsItSection = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="py-20 sm:py-32 relative">
-      <div className="absolute -top-24 left-0 w-full h-48 bg-gradient-to-b from-background to-transparent -z-10" />
+    <section className="relative -mt-24 pt-44 pb-20 sm:pt-56 sm:pb-32">
       <div className="container mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
