@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { HeroWithGroupOfImagesTextAndTwoButtons } from "@/components/ui/hero-with-group-of-images-text-and-two-buttons";
+import HeroWithGroupOfImagesTextAndTwoButtons from "@/components/ui/hero-with-group-of-images-text-and-two-buttons";
 import { FeaturesSectionWithHoverEffects } from "@/components/ui/feature-section-with-hover-effects";
 import { TestimonialsColumn } from "@/components/ui/testimonials-columns-1";
 import { Button } from "@/components/ui/button";
