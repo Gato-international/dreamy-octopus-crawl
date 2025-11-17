@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Instagram, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -23,8 +23,8 @@ const Footer = () => {
             {t('footer.tagline')}
           </p>
           <div className="flex space-x-4">
-            <a href="#" aria-label="Twitter"><Twitter className="h-5 w-5 text-foreground/60 hover:text-foreground" /></a>
-            <a href="#" aria-label="GitHub"><Github className="h-5 w-5 text-foreground/60 hover:text-foreground" /></a>
+            <a href="#" aria-label="Facebook"><Facebook className="h-5 w-5 text-foreground/60 hover:text-foreground" /></a>
+            <a href="#" aria-label="Instagram"><Instagram className="h-5 w-5 text-foreground/60 hover:text-foreground" /></a>
             <a href="#" aria-label="LinkedIn"><Linkedin className="h-5 w-5 text-foreground/60 hover:text-foreground" /></a>
           </div>
         </div>
