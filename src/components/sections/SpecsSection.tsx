@@ -1,10 +1,7 @@
 import { useTranslation } from "react-i18next";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { Button } from "@/components/ui/button";
-import { showSuccess } from "@/utils/toast";
 
-// The initial, user-defined positions for the metric lines.
 const initialMetricLines = {
   depth: { p1: { x: 68.56384166459017, y: 91.07653758280215 }, p2: { x: 79.16643790013991, y: 88.77906251967556 }, text: "222mm" },
   height: { p1: { x: 82.40301990888666, y: 9.056677829183347 }, p2: { x: 82.40301990888666, y: 83.03537486185913 }, text: "410mm" },
@@ -19,127 +16,9 @@ const initialSpecLines = {
   line5: { p1: { x: 74.20146924013179, y: 54.9971895126172 }, p2: { x: 64.24643126650305, y: 73.33279603196988 }, textPos: { x: 83.55770793715129, y: 54.22678587735027 } },
 };
 
-type Point = { x: number; y: number };
-type MetricLine = { p1: Point; p2: Point; text: string };
-type SpecLine = { p1: Point; p2: Point; textPos: Point };
-type MetricLines = { [key: string]: MetricLine };
-type SpecLines = { [key: string]: SpecLine };
-
 export const SpecsSection = () => {
   const { t } = useTranslation();
   const [viewMode, setViewMode] = useState("specs");
-  
-  const [metricLines, setMetricLines] = useState<MetricLines>(initialMetricLines);
-  const [draggingPoint, setDraggingPoint] = useState<{ lineKey: string; pointKey: 'p1' | 'p2' } | null>(null);
-  const imageContainerRef = useRef<HTMLDivElement>(null);
-
-  const [specLines, setSpecLines] = useState<SpecLines>(initialSpecLines);
-  const [draggingSpecPoint, setDraggingSpecPoint] = useState<{ lineKey: string; pointKey: 'p1' | 'p2' } | null>(null);
-  const [draggingSpecText, setDraggingSpecText] = useState<string | null>(null);
-  const specContainerRef = useRef<HTMLDivElement>(null);
-
-  // Handlers for Metric Lines
-  const handleMouseDown = (e: React.MouseEvent, lineKey: string, pointKey: 'p1' | 'p2') => {
-    e.preventDefault();
-    setDraggingPoint({ lineKey, pointKey });
-  };
-
-  const handleMouseMove = (e: MouseEvent) => {
-    if (!draggingPoint || !imageContainerRef.current) return;
-    const rect = imageContainerRef.current.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setMetricLines(prev => ({ ...prev, [draggingPoint.lineKey]: { ...prev[draggingPoint.lineKey], [draggingPoint.pointKey]: { x, y } } }));
-  };
-
-  const handleMouseUp = () => setDraggingPoint(null);
-
-  useEffect(() => {
-    if (draggingPoint) {
-      window.addEventListener("mousemove", handleMouseMove);
-      window.addEventListener("mouseup", handleMouseUp);
-    }
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseup", handleMouseUp);
-    };
-  }, [draggingPoint]);
-
-  // Handlers for Spec Lines
-  const handleSpecMouseDown = (e: React.MouseEvent, lineKey: string, pointKey: 'p1' | 'p2') => {
-    e.preventDefault();
-    setDraggingSpecPoint({ lineKey, pointKey });
-  };
-
-  const handleSpecMouseMove = (e: MouseEvent) => {
-    if (!draggingSpecPoint || !specContainerRef.current) return;
-    const rect = specContainerRef.current.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setSpecLines(prev => ({ ...prev, [draggingSpecPoint.lineKey]: { ...prev[draggingSpecPoint.lineKey], [draggingSpecPoint.pointKey]: { x, y } } }));
-  };
-
-  const handleSpecMouseUp = () => setDraggingSpecPoint(null);
-
-  useEffect(() => {
-    if (draggingSpecPoint) {
-      window.addEventListener("mousemove", handleSpecMouseMove);
-      window.addEventListener("mouseup", handleSpecMouseUp);
-    }
-    return () => {
-      window.removeEventListener("mousemove", handleSpecMouseMove);
-      window.removeEventListener("mouseup", handleSpecMouseUp);
-    };
-  }, [draggingSpecPoint]);
-
-  // Handlers for Spec Text
-  const handleSpecTextMouseDown = (e: React.MouseEvent, lineKey: string) => {
-    e.preventDefault();
-    setDraggingSpecText(lineKey);
-  };
-
-  const handleSpecTextMouseMove = (e: MouseEvent) => {
-    if (!draggingSpecText || !specContainerRef.current) return;
-    const rect = specContainerRef.current.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setSpecLines(prev => ({
-      ...prev,
-      [draggingSpecText]: {
-        ...prev[draggingSpecText],
-        textPos: { x, y },
-      },
-    }));
-  };
-
-  const handleSpecTextMouseUp = () => {
-    setDraggingSpecText(null);
-  };
-
-  useEffect(() => {
-    if (draggingSpecText) {
-      window.addEventListener("mousemove", handleSpecTextMouseMove);
-      window.addEventListener("mouseup", handleSpecTextMouseUp);
-    }
-    return () => {
-      window.removeEventListener("mousemove", handleSpecTextMouseMove);
-      window.removeEventListener("mouseup", handleSpecTextMouseUp);
-    };
-  }, [draggingSpecText]);
-
-  const logCoordinates = () => {
-    if (viewMode === 'metrics') {
-      const metricsString = JSON.stringify(metricLines, null, 2);
-      localStorage.setItem('metric-line-coordinates', metricsString);
-      console.log("const finalMetricLines = ", metricsString);
-      showSuccess("Metric coordinates saved to localStorage and logged to console!");
-    } else {
-      const specsString = JSON.stringify(specLines, null, 2);
-      localStorage.setItem('spec-line-coordinates', specsString);
-      console.log("const finalSpecLines = ", specsString);
-      showSuccess("Spec coordinates saved to localStorage and logged to console!");
-    }
-  };
 
   const features = [
     { title: t('homePage.specs.step1_title'), description: t('homePage.specs.step1_desc') },
@@ -177,26 +56,24 @@ export const SpecsSection = () => {
         <div className="hidden md:block">
           <div className="flex flex-col items-center gap-4">
             {viewMode === 'specs' && (
-              <div className="relative w-full" ref={specContainerRef}>
+              <div className="relative w-full">
                 <img src="/fragrance-machine-specs.png" alt="Fragrance Vending Machine Specs" className="w-full h-auto rounded-lg" />
                 <div className="absolute inset-0">
                   <svg className="w-full h-full pointer-events-none" aria-hidden="true">
-                    {Object.values(specLines).map((line, index) => (
+                    {Object.values(initialSpecLines).map((line, index) => (
                       <line key={index} x1={`${line.p1.x}%`} y1={`${line.p1.y}%`} x2={`${line.p2.x}%`} y2={`${line.p2.y}%`} stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/30" />
                     ))}
                   </svg>
-                  {Object.entries(specLines).map(([key, line], index) => (
+                  {Object.entries(initialSpecLines).map(([key, line], index) => (
                     <React.Fragment key={key}>
-                      <div onMouseDown={(e) => handleSpecMouseDown(e, key, 'p1')} style={{ left: `${line.p1.x}%`, top: `${line.p1.y}%` }} className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-full cursor-grab active:cursor-grabbing" />
-                      <div onMouseDown={(e) => handleSpecMouseDown(e, key, 'p2')} style={{ left: `${line.p2.x}%`, top: `${line.p2.y}%` }} className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-full cursor-grab active:cursor-grabbing" />
+                      <div style={{ left: `${line.p1.x}%`, top: `${line.p1.y}%` }} className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-full" />
+                      <div style={{ left: `${line.p2.x}%`, top: `${line.p2.y}%` }} className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-full" />
                       <div
-                        onMouseDown={(e) => handleSpecTextMouseDown(e, key)}
                         style={{
                           position: 'absolute',
                           left: `${line.textPos.x}%`,
                           top: `${line.textPos.y}%`,
                           transform: 'translate(-50%, -50%)',
-                          cursor: 'grab',
                           backgroundColor: 'hsl(var(--background) / 0.8)',
                           padding: '0.5rem 0.75rem',
                           borderRadius: 'var(--radius)',
@@ -204,7 +81,6 @@ export const SpecsSection = () => {
                           maxWidth: '220px',
                           textAlign: 'center',
                         }}
-                        className="active:cursor-grabbing"
                       >
                         <h4 className="font-bold text-sm mb-1">{features[index]?.title}</h4>
                         <p className="text-xs text-foreground/80 whitespace-normal">{features[index]?.description}</p>
@@ -216,11 +92,11 @@ export const SpecsSection = () => {
             )}
 
             {viewMode === 'metrics' && (
-              <div className="relative w-full" ref={imageContainerRef}>
+              <div className="relative w-full">
                 <img src="/fragrance-machine-specs.png" alt="Fragrance Vending Machine Metrics" className="w-full h-auto rounded-lg" />
                 <div className="absolute inset-0">
                   <svg width="100%" height="100%" className="absolute top-0 left-0 pointer-events-none overflow-visible">
-                    {Object.values(metricLines).map((line, index) => {
+                    {Object.values(initialMetricLines).map((line, index) => {
                       const dx = line.p2.x - line.p1.x; const dy = line.p2.y - line.p1.y;
                       const angle = Math.atan2(dy, dx); const perpAngle = angle + Math.PI / 2;
                       const capLength = 1;
@@ -237,7 +113,7 @@ export const SpecsSection = () => {
                       )
                     })}
                   </svg>
-                  {Object.entries(metricLines).map(([key, line]) => {
+                  {Object.entries(initialMetricLines).map(([key, line]) => {
                     const dx = line.p2.x - line.p1.x; const dy = line.p2.y - line.p1.y;
                     const isVertical = Math.abs(dy) > Math.abs(dx);
                     const midX = (line.p1.x + line.p2.x) / 2; const midY = (line.p1.y + line.p2.y) / 2;
@@ -248,8 +124,8 @@ export const SpecsSection = () => {
                     };
                     return (
                       <React.Fragment key={key}>
-                        <div onMouseDown={(e) => handleMouseDown(e, key, 'p1')} style={{ left: `${line.p1.x}%`, top: `${line.p1.y}%` }} className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-full cursor-grab active:cursor-grabbing" />
-                        <div onMouseDown={(e) => handleMouseDown(e, key, 'p2')} style={{ left: `${line.p2.x}%`, top: `${line.p2.y}%` }} className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-full cursor-grab active:cursor-grabbing" />
+                        <div style={{ left: `${line.p1.x}%`, top: `${line.p1.y}%` }} className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-full" />
+                        <div style={{ left: `${line.p2.x}%`, top: `${line.p2.y}%` }} className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-full" />
                         <p style={textStyle}>{line.text}</p>
                       </React.Fragment>
                     )
@@ -257,7 +133,6 @@ export const SpecsSection = () => {
                 </div>
               </div>
             )}
-            <Button onClick={logCoordinates} variant="outline" size="sm">Log Coordinates</Button>
           </div>
         </div>
 
