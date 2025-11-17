@@ -45,19 +45,17 @@
       }
     },
     "specs": {
-      "title": "Designed to be remembered",
-      "touchscreen": "Digitaal touchscreen",
-      "touchscreenDesc": "Gebruiksvriendelijke interface",
-      "payment": "Contactloos betaalsysteem",
-      "paymentDesc": "Pin & mobiel betalen",
-      "slots": "5 parfum slots",
-      "slotsDesc": "Zorgvuldig geselecteerde geuren",
-      "outlets": "Spray outlets",
-      "outletsDesc": "Hygiënische, contactloze spray",
-      "backend": "Smart backend systeem",
-      "backendDesc": "Real-time voorraad & verkoop tracking",
-      "dimensions": "Afmetingen",
-      "dimensionsDesc": "H: 180cm, B: 60cm, D: 40cm"
+      "title": "Ontworpen om herinnerd te worden",
+      "step1_title": "Kies Je Parfum",
+      "step1_desc": "Selecteer je gewenste parfum en het aantal sprays op het touchscreen.",
+      "step2_title": "Ga naar de Kassa",
+      "step2_desc": "Controleer je selectie in de winkelwagen en ga verder met betalen.",
+      "step3_title": "Voer de Betaling Uit",
+      "step3_desc": "Betaal veilig met je kaart of andere contactloze betaalmethoden.",
+      "step4_title": "Positioneer voor de Spray",
+      "step4_desc": "Plaats je nek of pols bij het aangegeven parfumspuitmondje.",
+      "step5_title": "Ontvang Je Geur",
+      "step5_desc": "De machine geeft automatisch de door jou gekozen geur af."
     },
     "benefits": {
       "title": "Revolutionize your retail space",

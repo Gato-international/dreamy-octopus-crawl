@@ -4,41 +4,51 @@ export const SpecsSection = () => {
   const { t } = useTranslation();
 
   const features = [
+    // Left side
     {
-      title: t('homePage.specs.touchscreen'),
-      description: t('homePage.specs.touchscreenDesc'),
-      textPosition: { top: '25%', left: '0%' },
-      linePoints: { x1: '12%', y1: '30%', x2: '22%', y2: '35%' },
+      title: t('homePage.specs.step1_title'),
+      description: t('homePage.specs.step1_desc'),
+      textPosition: { top: '10%', left: '0%' },
+      linePoints: { x1: '12%', y1: '15%', x2: '25%', y2: '20%' }, // Points to top of screen
       textAlignment: 'text-left'
     },
     {
-      title: t('homePage.specs.payment'),
-      description: t('homePage.specs.paymentDesc'),
-      textPosition: { top: '65%', left: '0%' },
-      linePoints: { x1: '12%', y1: '70%', x2: '22%', y2: '75%' },
+      title: t('homePage.specs.step2_title'),
+      description: t('homePage.specs.step2_desc'),
+      textPosition: { top: '40%', left: '0%' },
+      linePoints: { x1: '12%', y1: '45%', x2: '25%', y2: '35%' }, // Points to bottom of screen
       textAlignment: 'text-left'
     },
     {
-      title: t('homePage.specs.slots'),
-      description: t('homePage.specs.slotsDesc'),
-      textPosition: { top: '25%', right: '0%' },
-      linePoints: { x1: '88%', y1: '30%', x2: '65%', y2: '35%' },
+      title: t('homePage.specs.step3_title'),
+      description: t('homePage.specs.step3_desc'),
+      textPosition: { top: '70%', left: '0%' },
+      linePoints: { x1: '12%', y1: '75%', x2: '25%', y2: '55%' }, // Points to payment terminal
+      textAlignment: 'text-left'
+    },
+    // Right side
+    {
+      title: t('homePage.specs.step4_title'),
+      description: t('homePage.specs.step4_desc'),
+      textPosition: { top: '30%', right: '0%' },
+      linePoints: { x1: '88%', y1: '35%', x2: '68%', y2: '82%' }, // Points to outlets
       textAlignment: 'text-right'
     },
     {
-      title: t('homePage.specs.outlets'),
-      description: t('homePage.specs.outletsDesc'),
-      textPosition: { top: '75%', right: '0%' },
-      linePoints: { x1: '88%', y1: '80%', x2: '68%', y2: '82%' },
+      title: t('homePage.specs.step5_title'),
+      description: t('homePage.specs.step5_desc'),
+      textPosition: { top: '70%', right: '0%' },
+      linePoints: { x1: '88%', y1: '75%', x2: '65%', y2: '88%' }, // Points to outlets area, but lower
       textAlignment: 'text-right'
     },
   ];
 
   const mobileFeatures = [
-    { title: t('homePage.specs.touchscreen'), description: t('homePage.specs.touchscreenDesc') },
-    { title: t('homePage.specs.payment'), description: t('homePage.specs.paymentDesc') },
-    { title: t('homePage.specs.slots'), description: t('homePage.specs.slotsDesc') },
-    { title: t('homePage.specs.outlets'), description: t('homePage.specs.outletsDesc') },
+    { title: t('homePage.specs.step1_title'), description: t('homePage.specs.step1_desc') },
+    { title: t('homePage.specs.step2_title'), description: t('homePage.specs.step2_desc') },
+    { title: t('homePage.specs.step3_title'), description: t('homePage.specs.step3_desc') },
+    { title: t('homePage.specs.step4_title'), description: t('homePage.specs.step4_desc') },
+    { title: t('homePage.specs.step5_title'), description: t('homePage.specs.step5_desc') },
   ];
 
   return (

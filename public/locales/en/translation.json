@@ -46,18 +46,16 @@
     },
     "specs": {
       "title": "Designed to be remembered",
-      "touchscreen": "Digital touchscreen",
-      "touchscreenDesc": "User-friendly interface",
-      "payment": "Contactless payment system",
-      "paymentDesc": "Card & mobile payments",
-      "slots": "5 perfume slots",
-      "slotsDesc": "Carefully selected fragrances",
-      "outlets": "Spray outlets",
-      "outletsDesc": "Hygienic, contactless spray",
-      "backend": "Smart backend system",
-      "backendDesc": "Real-time stock & sales tracking",
-      "dimensions": "Dimensions",
-      "dimensionsDesc": "H: 180cm, W: 60cm, D: 40cm"
+      "step1_title": "Choose Your Perfume",
+      "step1_desc": "Select your desired perfume and quantity of sprays on the touchscreen.",
+      "step2_title": "Proceed to Checkout",
+      "step2_desc": "Review your selection in the cart and proceed to payment.",
+      "step3_title": "Make The Payment",
+      "step3_desc": "Pay securely using your card or other contactless payment methods.",
+      "step4_title": "Position for Spray",
+      "step4_desc": "Place your neck or wrist near the indicated perfume nozzle.",
+      "step5_title": "Receive Your Fragrance",
+      "step5_desc": "The machine will automatically dispense your chosen scent."
     },
     "benefits": {
       "title": "Revolutionize your retail space",
