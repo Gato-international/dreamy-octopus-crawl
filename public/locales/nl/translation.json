@@ -16,7 +16,8 @@
   },
   "homePage": {
     "hero": {
-      "slogan": "Fragancao – Waar luxe en innovatie samenkomen."
+      "slogan": "Fragancao – Waar luxe en innovatie samenkomen.",
+      "tagline": "Innoveren in de wereld van geurbeleving"
     },
     "whatIsIt": {
       "title": "Eén spray, eindeloze beleving.",
@@ -84,7 +85,7 @@
   "animatedHero": {
     "title": "Een Geurervaring, Heruitgevonden als",
     "adjectives": ["elegant", "luxueus", "innovatief", "boeiend", "verfijnd"],
-    "description": "Verrijk uw locatie met een vleugje moderne luxe. Onze geautomatiseerde parfumautomaat biedt een unieke, gedenkwaardige ervaring voor uw gasten en creëert een nieuwe inkomstenbron zonder voorafgaande investering.",
+    "description": "Verrijk uw locatie met een vleugje moderne luxe. Onze geautomatiseerde parfumautomaat biedt een unieke, gedenwaardige ervaring voor uw gasten en creëert een nieuwe inkomstenbron zonder voorafgaande investering.",
     "requestConsultation": "Vraag een Consult aan",
     "becomePartner": "Word een Partner"
   },

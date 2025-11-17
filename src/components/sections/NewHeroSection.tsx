@@ -22,6 +22,9 @@ export const NewHeroSection = () => {
         <h2 className="text-5xl md:text-7xl font-bold text-foreground font-heading">
           {t('homePage.hero.slogan')}
         </h2>
+        <p className="mt-4 text-xl md:text-2xl text-foreground/80 font-heading">
+          {t('homePage.hero.tagline')}
+        </p>
       </div>
     </section>
   );
