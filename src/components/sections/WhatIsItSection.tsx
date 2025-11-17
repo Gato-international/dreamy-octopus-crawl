@@ -1,7 +1,9 @@
 import { useTranslation } from "react-i18next";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const WhatIsItSection = () => {
   const { t } = useTranslation();
+  const isMobile = useIsMobile();
 
   return (
     <section className="relative -mt-48 pt-64 sm:pt-80 pb-20 sm:pb-32">
@@ -12,10 +14,16 @@ export const WhatIsItSection = () => {
               {t('homePage.whatIsIt.title')}
             </h2>
             <div className="space-y-4 text-lg text-foreground/80">
-              <p>{t('homePage.whatIsIt.paragraph1')}</p>
-              <p>{t('homePage.whatIsIt.paragraph2')}</p>
-              <p>{t('homePage.whatIsIt.paragraph3')}</p>
-              <p>{t('homePage.whatIsIt.paragraph4')}</p>
+              {isMobile ? (
+                <p>{t('homePage.whatIsIt.mobile_paragraph')}</p>
+              ) : (
+                <>
+                  <p>{t('homePage.whatIsIt.paragraph1')}</p>
+                  <p>{t('homePage.whatIsIt.paragraph2')}</p>
+                  <p>{t('homePage.whatIsIt.paragraph3')}</p>
+                  <p>{t('homePage.whatIsIt.paragraph4')}</p>
+                </>
+              )}
             </div>
           </div>
           <div className="md:col-span-3">
