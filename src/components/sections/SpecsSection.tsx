@@ -42,8 +42,8 @@ export const SpecsSection = () => {
       title: t('homePage.specs.step5_title'),
       description: t('homePage.specs.step5_desc'),
       textPosition: { top: '65%', right: '0%' },
-      path: "M 880,700 Q 800,800 650,880",
-      endPoint: { x: 650, y: 880 },
+      path: "M 880,700 Q 800,850 650,950",
+      endPoint: { x: 650, y: 950 },
       textAlignment: 'text-right'
     },
   ];
