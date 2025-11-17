@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 
 export const NewHeroSection = () => {
   const { t } = useTranslation();
-  const videoSrc = 'https://videos.pexels.com/video-files/2876287/2876287-hd_1366_720_30fps.mp4';
+  const videoSrc = "https://oqhvemhomwksenicoktf.supabase.co/storage/v1/object/public/assets/background1.mp4";
 
   return (
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
