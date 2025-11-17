@@ -84,38 +84,41 @@ export const ContactForm = ({
   return (
     <section className="py-24 sm:py-32">
       <div className="container">
-        <div className="mx-auto flex max-w-screen-xl flex-col justify-between gap-10 lg:flex-row lg:gap-20">
-          <div className="mx-auto flex max-w-sm flex-col justify-between gap-10">
-            <div className="text-center lg:text-left">
+        <div className="max-w-screen-xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 mb-16">
+            <div className="text-center lg:text-left flex flex-col justify-center">
               <h1 className="mb-2 text-5xl font-semibold lg:mb-1 lg:text-6xl font-heading">
                 {title}
               </h1>
               <p className="text-muted-foreground">{description}</p>
             </div>
-            <div className="mx-auto w-fit lg:mx-0">
-              <h3 className="mb-6 text-center text-2xl font-semibold lg:text-left">
-                {labels.contactDetails}
-              </h3>
-              <ul className="ml-4 list-disc space-y-2">
-                <li>
-                  <span className="font-bold">{labels.phone}: </span>
-                  {phone}
-                </li>
-                <li>
-                  <span className="font-bold">{labels.email}: </span>
-                  <a href={`mailto:${email}`} className="underline">
-                    {email}
-                  </a>
-                </li>
-                <li>
-                  <span className="font-bold">{labels.web}: </span>
-                  <a href={web.url} target="_blank" rel="noopener noreferrer" className="underline">
-                    {web.label}
-                  </a>
-                </li>
-              </ul>
+            <div className="flex items-center justify-center lg:justify-start">
+              <div className="w-fit">
+                <h3 className="mb-6 text-center text-2xl font-semibold">
+                  {labels.contactDetails}
+                </h3>
+                <ul className="ml-4 list-disc space-y-2">
+                  <li>
+                    <span className="font-bold">{labels.phone}: </span>
+                    {phone}
+                  </li>
+                  <li>
+                    <span className="font-bold">{labels.email}: </span>
+                    <a href={`mailto:${email}`} className="underline">
+                      {email}
+                    </a>
+                  </li>
+                  <li>
+                    <span className="font-bold">{labels.web}: </span>
+                    <a href={web.url} target="_blank" rel="noopener noreferrer" className="underline">
+                      {web.label}
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
+
           <div className="mx-auto w-full max-w-screen-md flex-col gap-6 rounded-lg border p-10">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6">
