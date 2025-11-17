@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { AnimatedHero } from "@/components/ui/animated-hero";
-import { FeatureSectionWithHoverEffects } from "@/components/ui/feature-section-with-hover-effects";
-import { TestimonialsColumns1 } from "@/components/ui/testimonials-columns-1";
+import { FeaturesSectionWithHoverEffects } from "@/components/ui/feature-section-with-hover-effects";
+import { TestimonialsColumn } from "@/components/ui/testimonials-columns-1";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { TrendingUp, Star, Bot } from "lucide-react";
@@ -51,11 +51,11 @@ const LegacyIndex = () => {
       <AnimatedHero />
 
       <div className="py-20">
-        <FeatureSectionWithHoverEffects features={features} />
+        <FeaturesSectionWithHoverEffects features={features} />
       </div>
 
       <div className="py-20 bg-secondary/20">
-        <TestimonialsColumns1 testimonials={testimonials} title="What Our Partners Say" description="Our partners have seen great results." />
+        <TestimonialsColumn testimonials={testimonials} title="What Our Partners Say" description="Our partners have seen great results." />
       </div>
 
       <section className="py-20 sm:py-32">
