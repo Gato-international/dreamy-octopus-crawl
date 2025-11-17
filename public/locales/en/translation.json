@@ -82,7 +82,8 @@
     }
   },
   "animatedHero": {
-    "title": "A Fragrance Experience, Reimagined as",
+    "title1": "A Fragrance Experience,",
+    "title2": "Reimagined as",
     "adjectives": ["elegant", "luxurious", "innovative", "captivating", "refined"],
     "description": "Elevate your venue with a touch of modern luxury. Our automated fragrance machine offers a unique, memorable experience for your guests, creating a new revenue stream with zero upfront investment.",
     "requestConsultation": "Request a Consultation",

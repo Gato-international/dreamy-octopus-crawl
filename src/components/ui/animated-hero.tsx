@@ -28,14 +28,14 @@ function Hero() {
       <div className="container mx-auto">
         <div className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
           <div className="flex gap-4 flex-col">
-            <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular">
-              <span className="text-foreground">{t('animatedHero.title')}</span>
-              <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
-                &nbsp;
+            <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-heading">
+              <span className="block">{t('animatedHero.title1')}</span>
+              <span className="block">{t('animatedHero.title2')}</span>
+              <span className="relative block h-16 md:h-24">
                 {titles.map((title, index) => (
                   <motion.span
                     key={index}
-                    className="absolute font-semibold"
+                    className="absolute w-full left-0"
                     initial={{ opacity: 0, y: "-100" }}
                     transition={{ type: "spring", stiffness: 50 }}
                     animate={
