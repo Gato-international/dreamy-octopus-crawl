@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Contact from "./pages/Contact";
 import Pricing from "./pages/Pricing";
 import NotFound from "./pages/NotFound";
+import CommentsExport from "./pages/CommentsExport";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/pricing" element={<Pricing />} />
+            <Route path="/comments-export" element={<CommentsExport />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </MainLayout>
