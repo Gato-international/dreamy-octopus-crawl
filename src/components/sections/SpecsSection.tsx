@@ -109,8 +109,6 @@ export const SpecsSection = () => {
     { title: t('homePage.specs.step5_title'), description: t('homePage.specs.step5_desc') },
   ];
   
-  const leftFeatures = features.slice(0, 3);
-  const rightFeatures = features.slice(3);
   const mobileFeatures = features;
 
   return (
@@ -140,28 +138,8 @@ export const SpecsSection = () => {
           <div className="flex flex-col items-center gap-4">
             {viewMode === 'specs' && (
               <div className="relative w-full" ref={specContainerRef}>
-                <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-8">
-                  <div className="space-y-12">
-                    {leftFeatures.map((feature, index) => (
-                      <div key={index} className="text-right">
-                        <h3 className="font-bold text-lg">{feature.title}</h3>
-                        <p className="text-foreground/70 text-sm">{feature.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="px-8">
-                    <img src="/fragrance-machine-specs.png" alt="Fragrance Vending Machine Features" className="w-full max-w-xl h-auto rounded-lg mx-auto" />
-                  </div>
-                  <div className="space-y-12">
-                    {rightFeatures.map((feature, index) => (
-                      <div key={index} className="text-left">
-                        <h3 className="font-bold text-lg">{feature.title}</h3>
-                        <p className="text-foreground/70 text-sm">{feature.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="absolute top-0 left-0 w-full h-full">
+                <img src="/fragrance-machine-specs.png" alt="Fragrance Vending Machine Specs" className="w-full h-auto rounded-lg" />
+                <div className="absolute inset-0">
                   <svg className="w-full h-full pointer-events-none" aria-hidden="true">
                     {Object.values(specLines).map((line, index) => (
                       <line key={index} x1={`${line.p1.x}%`} y1={`${line.p1.y}%`} x2={`${line.p2.x}%`} y2={`${line.p2.y}%`} stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/30" />
