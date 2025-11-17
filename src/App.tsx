@@ -18,15 +18,13 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <MainLayout>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/comments-export" element={<CommentsExport />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </MainLayout>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/contact" element={<MainLayout><Contact /></MainLayout>} />
+          <Route path="/pricing" element={<MainLayout><Pricing /></MainLayout>} />
+          <Route path="/comments-export" element={<MainLayout><CommentsExport /></MainLayout>} />
+          <Route path="*" element={<MainLayout><NotFound /></MainLayout>} />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
