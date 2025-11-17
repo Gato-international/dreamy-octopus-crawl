@@ -27,7 +27,7 @@ export const NewHeroSection = () => {
         </p>
       </div>
 
-      <div className="absolute bottom-0 left-0 w-full h-[40vh] bg-gradient-to-t from-background from-50% to-transparent z-10"></div>
+      <div className="absolute bottom-0 left-0 w-full h-[60vh] bg-gradient-to-t from-background from-40% to-transparent z-10"></div>
     </section>
   );
 };
