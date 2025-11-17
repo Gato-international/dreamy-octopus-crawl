@@ -1,53 +1,84 @@
 import { useTranslation } from "react-i18next";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Button } from "@/components/ui/button";
+import { showSuccess } from "@/utils/toast";
 
-// The final, user-defined positions for the metric lines.
-const finalMetricLines = {
+// The initial, user-defined positions for the metric lines.
+const initialMetricLines = {
   depth: { p1: { x: 68.56384166459017, y: 91.07653758280215 }, p2: { x: 79.16643790013991, y: 88.77906251967556 }, text: "222mm" },
   height: { p1: { x: 82.40301990888666, y: 9.056677829183347 }, p2: { x: 82.40301990888666, y: 83.03537486185913 }, text: "410mm" },
   width: { p1: { x: 20.907961742698213, y: 84.64360740604772 }, p2: { x: 65.9968973128255, y: 91.30628508911481 }, text: "730mm" },
 };
 
+type Point = { x: number; y: number };
+type Line = { p1: Point; p2: Point; text: string };
+type MetricLines = { [key: string]: Line };
+
 export const SpecsSection = () => {
   const { t } = useTranslation();
   const [viewMode, setViewMode] = useState("specs");
+  const [metricLines, setMetricLines] = useState<MetricLines>(initialMetricLines);
+  const [draggingPoint, setDraggingPoint] = useState<{ lineKey: string; pointKey: 'p1' | 'p2' } | null>(null);
+  const imageContainerRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseDown = (e: React.MouseEvent, lineKey: string, pointKey: 'p1' | 'p2') => {
+    e.preventDefault();
+    setDraggingPoint({ lineKey, pointKey });
+  };
+
+  const handleMouseMove = (e: MouseEvent) => {
+    if (!draggingPoint || !imageContainerRef.current) return;
+
+    const rect = imageContainerRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+    setMetricLines(prevLines => {
+      const newLines = { ...prevLines };
+      newLines[draggingPoint.lineKey] = {
+        ...newLines[draggingPoint.lineKey],
+        [draggingPoint.pointKey]: { x, y },
+      };
+      return newLines;
+    });
+  };
+
+  const handleMouseUp = () => {
+    setDraggingPoint(null);
+  };
+
+  useEffect(() => {
+    if (draggingPoint) {
+      window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mouseup", handleMouseUp);
+    } else {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    }
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [draggingPoint]);
+
+  const logCoordinates = () => {
+    console.log("const finalMetricLines = ", JSON.stringify(metricLines, null, 2));
+    showSuccess("Coordinates logged to the developer console!");
+  };
 
   const features = [
-    // Left side
-    {
-      title: t('homePage.specs.step1_title'),
-      description: t('homePage.specs.step1_desc'),
-    },
-    {
-      title: t('homePage.specs.step2_title'),
-      description: t('homePage.specs.step2_desc'),
-    },
-    {
-      title: t('homePage.specs.step3_title'),
-      description: t('homePage.specs.step3_desc'),
-    },
-    // Right side
-    {
-      title: t('homePage.specs.step4_title'),
-      description: t('homePage.specs.step4_desc'),
-    },
-    {
-      title: t('homePage.specs.step5_title'),
-      description: t('homePage.specs.step5_desc'),
-    },
-  ];
-  
-  const leftFeatures = features.slice(0, 3);
-  const rightFeatures = features.slice(3);
-
-  const mobileFeatures = [
     { title: t('homePage.specs.step1_title'), description: t('homePage.specs.step1_desc') },
     { title: t('homePage.specs.step2_title'), description: t('homePage.specs.step2_desc') },
     { title: t('homePage.specs.step3_title'), description: t('homePage.specs.step3_desc') },
     { title: t('homePage.specs.step4_title'), description: t('homePage.specs.step4_desc') },
     { title: t('homePage.specs.step5_title'), description: t('homePage.specs.step5_desc') },
   ];
+  
+  const leftFeatures = features.slice(0, 3);
+  const rightFeatures = features.slice(3);
+  const mobileFeatures = features;
 
   return (
     <section className="py-20 sm:py-32">
@@ -63,17 +94,11 @@ export const SpecsSection = () => {
             type="single" 
             defaultValue="specs" 
             value={viewMode}
-            onValueChange={(value) => {
-              if (value) setViewMode(value);
-            }}
+            onValueChange={(value) => { if (value) setViewMode(value); }}
             aria-label="View mode"
           >
-            <ToggleGroupItem value="specs" aria-label="Toggle specs">
-              Specs
-            </ToggleGroupItem>
-            <ToggleGroupItem value="metrics" aria-label="Toggle metrics">
-              Metrics
-            </ToggleGroupItem>
+            <ToggleGroupItem value="specs" aria-label="Toggle specs">Specs</ToggleGroupItem>
+            <ToggleGroupItem value="metrics" aria-label="Toggle metrics">Metrics</ToggleGroupItem>
           </ToggleGroup>
         </div>
 
@@ -82,7 +107,6 @@ export const SpecsSection = () => {
           {viewMode === 'specs' && (
             <div className="relative max-w-6xl mx-auto">
               <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-8">
-                {/* Left Column */}
                 <div className="space-y-12">
                   {leftFeatures.map((feature, index) => (
                     <div key={index} className="text-right">
@@ -91,17 +115,9 @@ export const SpecsSection = () => {
                     </div>
                   ))}
                 </div>
-
-                {/* Center Column (Image) */}
                 <div className="px-8">
-                  <img
-                    src="/fragrance-machine-specs.png"
-                    alt="Fragrance Vending Machine Features"
-                    className="w-full max-w-sm h-auto rounded-lg mx-auto"
-                  />
+                  <img src="/fragrance-machine-specs.png" alt="Fragrance Vending Machine Features" className="w-full max-w-sm h-auto rounded-lg mx-auto" />
                 </div>
-
-                {/* Right Column */}
                 <div className="space-y-12">
                   {rightFeatures.map((feature, index) => (
                     <div key={index} className="text-left">
@@ -112,12 +128,9 @@ export const SpecsSection = () => {
                 </div>
               </div>
               <svg className="absolute top-0 left-0 w-full h-full pointer-events-none" aria-hidden="true">
-                {/* Lines from left features */}
                 <line x1="32%" y1="25%" x2="38%" y2="30%" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/30" />
                 <line x1="32%" y1="50%" x2="38%" y2="50%" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/30" />
                 <line x1="32%" y1="75%" x2="40%" y2="75%" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/30" />
-                
-                {/* Lines from right features */}
                 <line x1="68%" y1="33%" x2="60%" y2="28%" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/30" />
                 <line x1="68%" y1="66%" x2="60%" y2="40%" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/30" />
               </svg>
@@ -125,78 +138,65 @@ export const SpecsSection = () => {
           )}
 
           {viewMode === 'metrics' && (
-            <div className="relative max-w-5xl mx-auto">
-              <div className="relative p-8 md:p-16">
-                <img
-                  src="/fragrance-machine-specs.png"
-                  alt="Fragrance Vending Machine Features"
-                  className="w-full h-auto rounded-lg"
-                />
-                
-                <div className="absolute inset-8 md:inset-16">
-                  <div className="absolute top-0 left-0 w-full h-full text-sm text-foreground/80">
-                    <svg width="100%" height="100%" className="absolute top-0 left-0 pointer-events-none overflow-visible">
-                      {Object.values(finalMetricLines).map((line, index) => {
-                        const dx = line.p2.x - line.p1.x;
-                        const dy = line.p2.y - line.p1.y;
-                        const angle = Math.atan2(dy, dx);
-                        const perpAngle = angle + Math.PI / 2;
-                        const capLength = 1; // in percent of width/height
-
-                        const p1Cap1 = { x: line.p1.x + capLength * Math.cos(perpAngle), y: line.p1.y + capLength * Math.sin(perpAngle) };
-                        const p1Cap2 = { x: line.p1.x - capLength * Math.cos(perpAngle), y: line.p1.y - capLength * Math.sin(perpAngle) };
-                        const p2Cap1 = { x: line.p2.x + capLength * Math.cos(perpAngle), y: line.p2.y + capLength * Math.sin(perpAngle) };
-                        const p2Cap2 = { x: line.p2.x - capLength * Math.cos(perpAngle), y: line.p2.y - capLength * Math.sin(perpAngle) };
-
-                        return (
-                          <g key={index}>
-                            <line x1={`${line.p1.x}%`} y1={`${line.p1.y}%`} x2={`${line.p2.x}%`} y2={`${line.p2.y}%`} stroke="currentColor" strokeWidth="1" />
-                            <line x1={`${p1Cap1.x}%`} y1={`${p1Cap1.y}%`} x2={`${p1Cap2.x}%`} y2={`${p1Cap2.y}%`} stroke="currentColor" strokeWidth="1" />
-                            <line x1={`${p2Cap1.x}%`} y1={`${p2Cap1.y}%`} x2={`${p2Cap2.x}%`} y2={`${p2Cap2.y}%`} stroke="currentColor" strokeWidth="1" />
-                          </g>
-                        )
-                      })}
-                    </svg>
-
-                    {Object.values(finalMetricLines).map((line, index) => {
+            <div className="flex flex-col items-center gap-4">
+              <div className="relative max-w-7xl mx-auto w-full" ref={imageContainerRef}>
+                <img src="/fragrance-machine-specs.png" alt="Fragrance Vending Machine Metrics" className="w-full h-auto rounded-lg" />
+                <div className="absolute inset-0">
+                  <svg width="100%" height="100%" className="absolute top-0 left-0 pointer-events-none overflow-visible">
+                    {Object.values(metricLines).map((line, index) => {
                       const dx = line.p2.x - line.p1.x;
                       const dy = line.p2.y - line.p1.y;
-                      const isVertical = Math.abs(dy) > Math.abs(dx);
-                      const midX = (line.p1.x + line.p2.x) / 2;
-                      const midY = (line.p1.y + line.p2.y) / 2;
-                      
-                      const textStyle: React.CSSProperties = {
-                        position: 'absolute',
-                        top: `${midY}%`,
-                        left: `${midX}%`,
-                        transform: `translate(-50%, -50%) ${isVertical ? 'rotate(90deg)' : ''} translate(0, -15px)`,
-                        backgroundColor: 'hsl(var(--background) / 0.5)',
-                        padding: '2px 4px',
-                        borderRadius: '3px',
-                        whiteSpace: 'nowrap',
-                      };
-
+                      const angle = Math.atan2(dy, dx);
+                      const perpAngle = angle + Math.PI / 2;
+                      const capLength = 1;
+                      const p1Cap1 = { x: line.p1.x + capLength * Math.cos(perpAngle), y: line.p1.y + capLength * Math.sin(perpAngle) };
+                      const p1Cap2 = { x: line.p1.x - capLength * Math.cos(perpAngle), y: line.p1.y - capLength * Math.sin(perpAngle) };
+                      const p2Cap1 = { x: line.p2.x + capLength * Math.cos(perpAngle), y: line.p2.y + capLength * Math.sin(perpAngle) };
+                      const p2Cap2 = { x: line.p2.x - capLength * Math.cos(perpAngle), y: line.p2.y - capLength * Math.sin(perpAngle) };
                       return (
-                        <p key={index} style={textStyle}>{line.text}</p>
+                        <g key={index}>
+                          <line x1={`${line.p1.x}%`} y1={`${line.p1.y}%`} x2={`${line.p2.x}%`} y2={`${line.p2.y}%`} stroke="currentColor" strokeWidth="1" />
+                          <line x1={`${p1Cap1.x}%`} y1={`${p1Cap1.y}%`} x2={`${p1Cap2.x}%`} y2={`${p1Cap2.y}%`} stroke="currentColor" strokeWidth="1" />
+                          <line x1={`${p2Cap1.x}%`} y1={`${p2Cap1.y}%`} x2={`${p2Cap2.x}%`} y2={`${p2Cap2.y}%`} stroke="currentColor" strokeWidth="1" />
+                        </g>
                       )
                     })}
-                  </div>
+                  </svg>
+                  {Object.entries(metricLines).map(([key, line]) => {
+                    const dx = line.p2.x - line.p1.x;
+                    const dy = line.p2.y - line.p1.y;
+                    const isVertical = Math.abs(dy) > Math.abs(dx);
+                    const midX = (line.p1.x + line.p2.x) / 2;
+                    const midY = (line.p1.y + line.p2.y) / 2;
+                    const textStyle: React.CSSProperties = {
+                      position: 'absolute', top: `${midY}%`, left: `${midX}%`,
+                      transform: `translate(-50%, -50%) ${isVertical ? 'rotate(90deg)' : ''} translate(0, -15px)`,
+                      backgroundColor: 'hsl(var(--background) / 0.5)', padding: '2px 4px', borderRadius: '3px', whiteSpace: 'nowrap',
+                    };
+                    return (
+                      <React.Fragment key={key}>
+                        <div onMouseDown={(e) => handleMouseDown(e, key, 'p1')} style={{ left: `${line.p1.x}%`, top: `${line.p1.y}%` }} className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-full cursor-grab active:cursor-grabbing" />
+                        <div onMouseDown={(e) => handleMouseDown(e, key, 'p2')} style={{ left: `${line.p2.x}%`, top: `${line.p2.y}%` }} className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-full cursor-grab active:cursor-grabbing" />
+                        <p style={textStyle}>{line.text}</p>
+                      </React.Fragment>
+                    )
+                  })}
                 </div>
               </div>
+              <Button onClick={logCoordinates} variant="outline" size="sm">Log Coordinates</Button>
             </div>
           )}
         </div>
 
         {/* Mobile View */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:hidden mt-12">
-            {mobileFeatures.map((feature, index) => (
-                <div key={index} className="p-4 border rounded-lg bg-card/50">
-                    <h3 className="font-bold text-lg text-center">{feature.title}</h3>
-                    <p className="text-foreground/70 text-sm text-center mt-2">{feature.description}</p>
-                </div>
-            ))}
+          {mobileFeatures.map((feature, index) => (
+            <div key={index} className="p-4 border rounded-lg bg-card/50">
+              <h3 className="font-bold text-lg text-center">{feature.title}</h3>
+              <p className="text-foreground/70 text-sm text-center mt-2">{feature.description}</p>
+            </div>
+          ))}
         </div>
-
       </div>
     </section>
   );
