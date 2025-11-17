@@ -91,26 +91,28 @@
     animation-play-state: paused;
   }
 
-  .fade-border-bottom::after {
+  .glow-border-bottom::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
-    height: 150px;
-    background: linear-gradient(to top, hsl(var(--background)), transparent);
-    pointer-events: none;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, hsl(var(--border)) 20%, hsl(var(--border)) 80%, transparent);
+    filter: drop-shadow(0 0 5px hsl(var(--border)));
   }
 
-  .fade-border-top::before {
+  .glow-border-top::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
-    height: 150px;
-    background: linear-gradient(to bottom, hsl(var(--background)), transparent);
-    pointer-events: none;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, hsl(var(--border)) 20%, hsl(var(--border)) 80%, transparent);
+    filter: drop-shadow(0 0 5px hsl(var(--border)));
   }
 }
 

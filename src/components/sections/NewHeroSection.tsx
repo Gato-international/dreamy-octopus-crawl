@@ -5,7 +5,7 @@ export const NewHeroSection = () => {
   const videoSrc = 'https://oqhvemhomwksenicoktf.supabase.co/storage/v1/object/public/assets/Untitled design (1).mp4';
 
   return (
-    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden fade-border-bottom">
+    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden glow-border-bottom">
       <video
         src={videoSrc}
         autoPlay
