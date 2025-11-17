@@ -1,5 +1,10 @@
 import { Helmet } from "react-helmet-async";
-import { HeroSection } from "@/components/ui/hero-section";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { WhatIsItSection } from "@/components/sections/WhatIsItSection";
+import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
+import { SpecsSection } from "@/components/sections/SpecsSection";
+import { BenefitsSection } from "@/components/sections/BenefitsSection";
+import { CtaSection } from "@/components/sections/CtaSection";
 
 const Index = () => {
   return (
@@ -9,6 +14,11 @@ const Index = () => {
         <meta name="description" content="Elevate your venue with Fragancao's innovative perfume vending machines. Offer a unique, luxury experience and create a new revenue stream with zero upfront investment." />
       </Helmet>
       <HeroSection />
+      <WhatIsItSection />
+      <HowItWorksSection />
+      <SpecsSection />
+      <BenefitsSection />
+      <CtaSection />
     </>
   );
 };
