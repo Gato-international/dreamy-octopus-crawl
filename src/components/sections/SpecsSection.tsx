@@ -139,7 +139,7 @@ export const SpecsSection = () => {
         <div className="hidden md:block">
           <div className="flex flex-col items-center gap-4">
             {viewMode === 'specs' && (
-              <div className="relative max-w-7xl mx-auto w-full" ref={specContainerRef}>
+              <div className="relative w-full" ref={specContainerRef}>
                 <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-8">
                   <div className="space-y-12">
                     {leftFeatures.map((feature, index) => (
@@ -150,7 +150,7 @@ export const SpecsSection = () => {
                     ))}
                   </div>
                   <div className="px-8">
-                    <img src="/fragrance-machine-specs.png" alt="Fragrance Vending Machine Features" className="w-full max-w-sm h-auto rounded-lg mx-auto" />
+                    <img src="/fragrance-machine-specs.png" alt="Fragrance Vending Machine Features" className="w-full max-w-xl h-auto rounded-lg mx-auto" />
                   </div>
                   <div className="space-y-12">
                     {rightFeatures.map((feature, index) => (
@@ -178,7 +178,7 @@ export const SpecsSection = () => {
             )}
 
             {viewMode === 'metrics' && (
-              <div className="relative max-w-7xl mx-auto w-full" ref={imageContainerRef}>
+              <div className="relative w-full" ref={imageContainerRef}>
                 <img src="/fragrance-machine-specs.png" alt="Fragrance Vending Machine Metrics" className="w-full h-auto rounded-lg" />
                 <div className="absolute inset-0">
                   <svg width="100%" height="100%" className="absolute top-0 left-0 pointer-events-none overflow-visible">
