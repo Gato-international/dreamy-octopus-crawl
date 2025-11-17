@@ -6,7 +6,6 @@ import { Menu, X } from 'lucide-react'
 import { useScroll, motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { LanguageSwitcher } from '../LanguageSwitcher'
-import { VersionSwitcher } from '../VersionSwitcher'
 
 const Header = () => {
     const { t } = useTranslation();
@@ -93,7 +92,6 @@ const Header = () => {
                             </div>
                              <div className="flex items-center justify-center gap-4 pt-4 lg:pt-0">
                                 <LanguageSwitcher />
-                                <VersionSwitcher />
                              </div>
                         </div>
                     </motion.div>
