@@ -1,30 +1,32 @@
 import { useTranslation } from "react-i18next";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { TrendingUp, BadgePercent, MapPin, Smartphone } from "lucide-react";
 import React from "react";
-
-const BenefitCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
-  <Card className="bg-card/50 backdrop-blur-sm text-center hover:border-primary/50 transition-colors duration-300 h-full">
-    <CardHeader className="items-center">
-      <div className="flex items-center justify-center h-16 w-16 rounded-full bg-secondary mb-4">
-        {icon}
-      </div>
-      <CardTitle>{title}</CardTitle>
-    </CardHeader>
-    <CardContent>
-      <p className="text-foreground/70">{description}</p>
-    </CardContent>
-  </Card>
-);
 
 export const BenefitsSection = () => {
   const { t } = useTranslation();
 
   const benefits = [
-    { icon: <TrendingUp className="h-8 w-8 text-primary" />, title: t('homePage.benefits.benefit1.title'), description: t('homePage.benefits.benefit1.description') },
-    { icon: <BadgePercent className="h-8 w-8 text-primary" />, title: t('homePage.benefits.benefit2.title'), description: t('homePage.benefits.benefit2.description') },
-    { icon: <MapPin className="h-8 w-8 text-primary" />, title: t('homePage.benefits.benefit3.title'), description: t('homePage.benefits.benefit3.description') },
-    { icon: <Smartphone className="h-8 w-8 text-primary" />, title: t('homePage.benefits.benefit4.title'), description: t('homePage.benefits.benefit4.description') },
+    { 
+      icon: <TrendingUp className="h-12 w-12 text-primary" />, 
+      title: t('homePage.benefits.benefit1.title'), 
+      description: t('homePage.benefits.benefit1.description') 
+    },
+    { 
+      icon: <BadgePercent className="h-12 w-12 text-primary" />, 
+      title: t('homePage.benefits.benefit2.title'), 
+      description: t('homePage.benefits.benefit2.description') 
+    },
+    { 
+      icon: <MapPin className="h-12 w-12 text-primary" />, 
+      title: t('homePage.benefits.benefit3.title'), 
+      description: t('homePage.benefits.benefit3.description') 
+    },
+    { 
+      icon: <Smartphone className="h-12 w-12 text-primary" />, 
+      title: t('homePage.benefits.benefit4.title'), 
+      description: t('homePage.benefits.benefit4.description') 
+    },
   ];
 
   return (
@@ -35,11 +37,16 @@ export const BenefitsSection = () => {
             {t('homePage.benefits.title')}
           </h2>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {benefits.map((benefit, index) => (
-            <BenefitCard key={index} {...benefit} />
+        <BentoGrid>
+          {benefits.map((item, i) => (
+            <BentoGridItem
+              key={i}
+              title={item.title}
+              description={item.description}
+              icon={item.icon}
+            />
           ))}
-        </div>
+        </BentoGrid>
       </div>
     </section>
   );
