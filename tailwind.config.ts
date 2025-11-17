@@ -20,7 +20,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["Inter", ...fontFamily.sans],
+        sans: ["BluuNext", ...fontFamily.sans],
         heading: ["BluuNext", "serif"],
       },
       colors: {
