@@ -8,10 +8,10 @@
   "footer": {
     "tagline": "Where Luxury Meets Innovation.",
     "navigation": "Navigation",
-    "stayUpdated": "Stay Updated",
-    "newsletterPrompt": "Subscribe to our newsletter for the latest news.",
-    "emailPlaceholder": "Enter your email",
-    "subscribe": "Subscribe",
+    "stayUpdated": "Request a Call Back",
+    "newsletterPrompt": "Leave your number and we'll call you back to discuss partnership opportunities.",
+    "phonePlaceholder": "Enter your phone number",
+    "requestCall": "Request Call",
     "copyright": "© {{year}} Fragancao. All rights reserved."
   },
   "homePage": {

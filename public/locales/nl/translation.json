@@ -8,10 +8,10 @@
   "footer": {
     "tagline": "Waar Luxe en Innovatie samenkomen.",
     "navigation": "Navigatie",
-    "stayUpdated": "Blijf op de hoogte",
-    "newsletterPrompt": "Schrijf u in voor onze nieuwsbrief voor het laatste nieuws.",
-    "emailPlaceholder": "Voer uw e-mailadres in",
-    "subscribe": "Inschrijven",
+    "stayUpdated": "Vraag een terugbelverzoek aan",
+    "newsletterPrompt": "Laat uw nummer achter en we bellen u terug om partnerschapsmogelijkheden te bespreken.",
+    "phonePlaceholder": "Voer uw telefoonnummer in",
+    "requestCall": "Belverzoek indienen",
     "copyright": "© {{year}} Fragancao. Alle rechten voorbehouden."
   },
   "homePage": {

@@ -3,10 +3,48 @@ import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import { supabase } from "@/integrations/supabase/client";
+import { showLoading, showSuccess, showError, dismissToast } from "@/utils/toast";
 
 const Footer = () => {
   const { t } = useTranslation();
   const year = new Date().getFullYear();
+
+  const formSchema = z.object({
+    phoneNumber: z.string().min(10, { message: "Please enter a valid phone number." }),
+  });
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      phoneNumber: "",
+    },
+  });
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const toastId = showLoading("Submitting your request...");
+    try {
+      const { error } = await supabase
+        .from('callback_requests')
+        .insert([{ phone_number: values.phoneNumber }]);
+
+      dismissToast(toastId);
+
+      if (error) {
+        throw new Error(error.message);
+      }
+
+      showSuccess("Request received! We'll call you back soon.");
+      form.reset();
+    } catch (error) {
+      dismissToast(toastId);
+      showError(`Submission failed: ${error instanceof Error ? error.message : "Unknown error"}`);
+    }
+  }
 
   return (
     <footer className="border-t border-border/40">
@@ -41,10 +79,25 @@ const Footer = () => {
           <p className="text-foreground/60 mb-4">
             {t('footer.newsletterPrompt')}
           </p>
-          <form className="flex flex-col sm:flex-row gap-2">
-            <Input type="email" placeholder={t('footer.emailPlaceholder')} />
-            <Button type="submit">{t('footer.subscribe')}</Button>
-          </form>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col sm:flex-row gap-2">
+              <FormField
+                control={form.control}
+                name="phoneNumber"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormControl>
+                      <Input type="tel" placeholder={t('footer.phonePlaceholder')} {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" disabled={form.formState.isSubmitting}>
+                {form.formState.isSubmitting ? "Sending..." : t('footer.requestCall')}
+              </Button>
+            </form>
+          </Form>
         </div>
       </div>
       <div className="border-t border-border/40 py-6">
