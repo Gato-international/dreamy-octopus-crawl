@@ -5,7 +5,7 @@ export const NewHeroSection = () => {
   const videoSrc = "https://oqhvemhomwksenicoktf.supabase.co/storage/v1/object/public/assets/background1.mp4";
 
   return (
-    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-neutral-900">
       <video
         src={videoSrc}
         autoPlay
@@ -13,6 +13,7 @@ export const NewHeroSection = () => {
         muted
         playsInline
         className="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover"
+        type="video/mp4"
       >
         Your browser does not support the video tag.
       </video>
