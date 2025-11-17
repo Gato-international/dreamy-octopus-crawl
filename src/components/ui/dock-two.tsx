@@ -1,91 +1,86 @@
-import * as React from "react"
-import { motion } from "framer-motion"
-import { cn } from "@/lib/utils"
-import { LucideIcon } from "lucide-react"
+"use client";
+
+import * as React from "react";
+import { motion, useMotionValue, useSpring, useTransform, Variants } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+
+interface DockItemProps {
+  icon: React.ElementType;
+  label: string;
+  onClick?: () => void;
+  mouseX: any;
+}
+
+const DockItem: React.FC<DockItemProps> = ({ icon: Icon, label, onClick, mouseX }) => {
+  const ref = React.useRef<HTMLDivElement>(null);
+  const distance = useTransform(mouseX, (val) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+    return val - bounds.x - bounds.width / 2;
+  });
+
+  const widthSync = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
+  const width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
+
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <motion.div
+            ref={ref}
+            style={{ width }}
+            className="aspect-square w-10 rounded-full bg-secondary/50 backdrop-blur-md flex items-center justify-center cursor-pointer"
+            onClick={onClick}
+          >
+            <Icon className="h-6 w-6 text-secondary-foreground" />
+          </motion.div>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>{label}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+};
 
 interface DockProps {
-  className?: string
   items: {
-    icon: LucideIcon
-    label: string
-    onClick?: () => void
-  }[]
+    icon: React.ElementType;
+    label: string;
+    onClick?: () => void;
+  }[];
 }
 
-interface DockIconButtonProps {
-  icon: LucideIcon
-  label: string
-  onClick?: () => void
-  className?: string
-}
-
-const floatingAnimation = {
-  initial: { y: 0 },
+const floatingAnimation: Variants = {
+  initial: {
+    y: 10,
+  },
   animate: {
-    y: [-2, 2, -2],
+    y: [0, -5, 0],
     transition: {
-      duration: 4,
+      duration: 2,
       repeat: Infinity,
-      ease: "easeInOut"
-    }
-  }
-}
+      ease: "linear",
+    },
+  },
+};
 
-const DockIconButton = React.forwardRef<HTMLButtonElement, DockIconButtonProps>(
-  ({ icon: Icon, label, onClick, className }, ref) => {
-    return (
-      <motion.button
-        ref={ref}
-        whileHover={{ scale: 1.1, y: -2 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={onClick}
-        className={cn(
-          "relative group p-3 rounded-lg",
-          "hover:bg-secondary transition-colors",
-          className
-        )}
-      >
-        <Icon className="w-5 h-5 text-foreground" />
-        <span className={cn(
-          "absolute -top-8 left-1/2 -translate-x-1/2",
-          "px-2 py-1 rounded text-xs",
-          "bg-popover text-popover-foreground",
-          "opacity-0 group-hover:opacity-100",
-          "transition-opacity whitespace-nowrap pointer-events-none"
-        )}>
-          {label}
-        </span>
-      </motion.button>
-    )
-  }
-)
-DockIconButton.displayName = "DockIconButton"
+export const Dock: React.FC<DockProps> = ({ items }) => {
+  const mouseX = useMotionValue(Infinity);
 
-const Dock = React.forwardRef<HTMLDivElement, DockProps>(
-  ({ items, className }, ref) => {
-    return (
-      <div ref={ref} className={cn("w-full h-24 flex items-center justify-center p-2", className)}>
-        <div className="w-full max-w-4xl h-full rounded-2xl flex items-center justify-center relative">
-          <motion.div
-            initial="initial"
-            animate="animate"
-            variants={floatingAnimation}
-            className={cn(
-              "flex items-center gap-1 p-2 rounded-2xl",
-              "backdrop-blur-lg border shadow-lg",
-              "bg-background/90 border-border",
-              "hover:shadow-xl transition-shadow duration-300"
-            )}
-          >
-            {items.map((item) => (
-              <DockIconButton key={item.label} {...item} />
-            ))}
-          </motion.div>
-        </div>
-      </div>
-    )
-  }
-)
-Dock.displayName = "Dock"
-
-export { Dock }
+  return (
+    <motion.div
+      onMouseMove={(e) => mouseX.set(e.pageX)}
+      onMouseLeave={() => mouseX.set(Infinity)}
+      animate="animate"
+      variants={floatingAnimation}
+      className={cn(
+        "mx-auto flex h-16 items-end gap-4 rounded-2xl bg-transparent px-4 pb-3"
+      )}
+    >
+      {items.map((item, index) => (
+        <DockItem key={index} mouseX={mouseX} {...item} />
+      ))}
+    </motion.div>
+  );
+};
