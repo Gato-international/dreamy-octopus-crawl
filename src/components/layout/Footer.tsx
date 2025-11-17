@@ -9,7 +9,6 @@ import * as z from "zod";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { supabase } from "@/integrations/supabase/client";
 import { showLoading, showSuccess, showError, dismissToast } from "@/utils/toast";
-import { SecurityBadge } from "../SecurityBadge";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -105,7 +104,6 @@ const Footer = () => {
         <p className="text-center text-sm text-foreground/60">
           {t('footer.copyright', { year })}
         </p>
-        <SecurityBadge />
       </div>
     </footer>
   );

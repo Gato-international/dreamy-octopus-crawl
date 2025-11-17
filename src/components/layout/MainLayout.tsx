@@ -20,7 +20,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <div className={cn(
       "relative min-h-screen",
-      isHomePage && 'bg-background'
+      isHomePage ? 'bg-background' : 'bg-transparent'
     )}>
       {!isHomePage && <AnimatedBackground />}
       

@@ -65,7 +65,7 @@ export const AnimatedBackground = () => {
  
   return (
     <div
-      className="absolute inset-0 bg-gradient-to-br from-[#1a1d18] via-black to-[#2a2e26] text-[#e6e1d7] overflow-hidden"
+      className="fixed inset-0 -z-10 bg-gradient-to-br from-[#1a1d18] via-black to-[#2a2e26] text-[#e6e1d7] overflow-hidden"
     >
       <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
         <defs>
