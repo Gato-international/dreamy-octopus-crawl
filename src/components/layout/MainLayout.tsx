@@ -19,7 +19,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
   return (
     <div className={cn(
-      "flex flex-col min-h-screen",
+      "relative flex flex-col min-h-screen",
       isMobile ? 'pb-16' : '',
       isHomePage && 'bg-background'
     )}>
