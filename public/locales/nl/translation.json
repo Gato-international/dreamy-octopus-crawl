@@ -58,30 +58,22 @@
       "step5_desc": "De machine geeft automatisch de door jou gekozen geur af."
     },
     "benefits": {
-      "title": "Revolutionize your retail space",
+      "title": "Voordelen voor Partners",
       "benefit1": {
-        "title": "Extra Inkomstenbron",
-        "description": "Genereer passief inkomen zonder extra inspanning of personeel"
+        "title": "Verhoog het Aantal Bezoekers",
+        "description": "Innovatieve technologie trekt nieuwsgierige shoppers aan."
       },
       "benefit2": {
-        "title": "Verbeterde Klantbeleving",
-        "description": "Bied je gasten een unieke, memorabele ervaring"
+        "title": "Lage Kosten, Hoog Rendement",
+        "description": "Minimale installatie. Geen winkelpersoneel. Snelle ROI."
       },
       "benefit3": {
-        "title": "Volledig Geautomatiseerd",
-        "description": "Geen onderhoud, geen gedoe - alles verloopt automatisch"
+        "title": "Flexibele Plaatsing",
+        "description": "Ideaal voor winkelcentra, luchthavens, hotels, sportscholen en drukbezochte gebieden."
       },
       "benefit4": {
-        "title": "Data & Inzichten",
-        "description": "Real-time dashboard met verkoopcijfers en populaire geuren"
-      },
-      "benefit5": {
-        "title": "Perfect voor Premium Locaties",
-        "description": "Ideaal voor clubs, hotels, sportscholen, restaurants, airports"
-      },
-      "benefit6": {
-        "title": "Betrouwbaar & Hygiënisch",
-        "description": "Contactloos en veilig in gebruik"
+        "title": "Monitoring op Afstand",
+        "description": "Volg voorraad, prestaties en gebruik in realtime vanaf elk apparaat."
       }
     },
     "cta": {

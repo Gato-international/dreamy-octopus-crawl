@@ -58,30 +58,22 @@
       "step5_desc": "The machine will automatically dispense your chosen scent."
     },
     "benefits": {
-      "title": "Revolutionize your retail space",
+      "title": "Partners Benefits",
       "benefit1": {
-        "title": "Extra Revenue Stream",
-        "description": "Generate passive income without extra effort or staff"
+        "title": "Boost Foot Traffic",
+        "description": "Innovative tech draws in curious shoppers."
       },
       "benefit2": {
-        "title": "Enhanced Customer Experience",
-        "description": "Offer your guests a unique, memorable experience"
+        "title": "Low Overhead, High Return",
+        "description": "Minimal setup. No retail employees. Quick ROI."
       },
       "benefit3": {
-        "title": "Fully Automated",
-        "description": "No maintenance, no hassle - everything runs automatically"
+        "title": "Flexible Placement",
+        "description": "Ideal for malls, airports, hotels, gyms, and high-traffic areas."
       },
       "benefit4": {
-        "title": "Data & Insights",
-        "description": "Real-time dashboard with sales figures and popular scents"
-      },
-      "benefit5": {
-        "title": "Perfect for Premium Locations",
-        "description": "Ideal for clubs, hotels, gyms, restaurants, airports"
-      },
-      "benefit6": {
-        "title": "Reliable & Hygienic",
-        "description": "Contactless and safe to use"
+        "title": "Remote Monitoring",
+        "description": "Track inventory, performance, and usage in real time from any device."
       }
     },
     "cta": {

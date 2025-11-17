@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { TrendingUp, Star, Bot, BarChart3, Building2, ShieldCheck } from "lucide-react";
+import { TrendingUp, BadgePercent, MapPin, Smartphone } from "lucide-react";
 import React from "react";
 
 const BenefitCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
@@ -22,11 +22,9 @@ export const BenefitsSection = () => {
 
   const benefits = [
     { icon: <TrendingUp className="h-8 w-8 text-primary" />, title: t('homePage.benefits.benefit1.title'), description: t('homePage.benefits.benefit1.description') },
-    { icon: <Star className="h-8 w-8 text-primary" />, title: t('homePage.benefits.benefit2.title'), description: t('homePage.benefits.benefit2.description') },
-    { icon: <Bot className="h-8 w-8 text-primary" />, title: t('homePage.benefits.benefit3.title'), description: t('homePage.benefits.benefit3.description') },
-    { icon: <BarChart3 className="h-8 w-8 text-primary" />, title: t('homePage.benefits.benefit4.title'), description: t('homePage.benefits.benefit4.description') },
-    { icon: <Building2 className="h-8 w-8 text-primary" />, title: t('homePage.benefits.benefit5.title'), description: t('homePage.benefits.benefit5.description') },
-    { icon: <ShieldCheck className="h-8 w-8 text-primary" />, title: t('homePage.benefits.benefit6.title'), description: t('homePage.benefits.benefit6.description') },
+    { icon: <BadgePercent className="h-8 w-8 text-primary" />, title: t('homePage.benefits.benefit2.title'), description: t('homePage.benefits.benefit2.description') },
+    { icon: <MapPin className="h-8 w-8 text-primary" />, title: t('homePage.benefits.benefit3.title'), description: t('homePage.benefits.benefit3.description') },
+    { icon: <Smartphone className="h-8 w-8 text-primary" />, title: t('homePage.benefits.benefit4.title'), description: t('homePage.benefits.benefit4.description') },
   ];
 
   return (
@@ -37,7 +35,7 @@ export const BenefitsSection = () => {
             {t('homePage.benefits.title')}
           </h2>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {benefits.map((benefit, index) => (
             <BenefitCard key={index} {...benefit} />
           ))}
