@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import CurvedDivider from "@/components/ui/CurvedDivider";
 
 export const NewHeroSection = () => {
   const { t } = useTranslation();
@@ -23,6 +24,7 @@ export const NewHeroSection = () => {
           {t('homePage.hero.slogan')}
         </h2>
       </div>
+      <CurvedDivider />
     </section>
   );
 };
