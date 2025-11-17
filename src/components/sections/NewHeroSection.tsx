@@ -14,7 +14,6 @@ export const NewHeroSection = () => {
         muted
         playsInline
         className="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover"
-        type="video/mp4"
       >
         Your browser does not support the video tag.
       </video>
