@@ -168,10 +168,5 @@
       "messagePlaceholder": "Type your message here.",
       "submit": "Send Message"
     }
-  },
-  "cookieBanner": {
-    "message": "We use cookies to enhance your browsing experience and analyze our traffic. By clicking 'Accept All', you consent to our use of cookies.",
-    "accept": "Accept All",
-    "decline": "Decline"
   }
 }
