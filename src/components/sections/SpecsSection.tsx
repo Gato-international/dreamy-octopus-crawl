@@ -66,51 +66,87 @@ export const SpecsSection = () => {
         </div>
         
         <div className="relative max-w-5xl mx-auto">
-          <img
-            src="/fragrance-machine-specs.png"
-            alt="Fragrance Vending Machine Features"
-            className="w-full h-auto rounded-lg"
-          />
-          
-          <div className="absolute inset-0 hidden md:block">
-            <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none" className="overflow-visible">
-              {features.map((feature, index) => (
-                <g key={index}>
-                  <path 
-                    d={feature.path}
-                    fill="none"
-                    stroke="hsl(var(--primary))" 
-                    strokeWidth="1" 
-                    strokeDasharray="4 4"
-                    opacity="0.7"
-                  />
-                  <circle 
-                    cx={feature.endPoint.x} 
-                    cy={feature.endPoint.y} 
-                    r="8" 
-                    fill="hsl(var(--primary))"
-                    className="opacity-30"
-                  />
-                   <circle 
-                    cx={feature.endPoint.x} 
-                    cy={feature.endPoint.y} 
-                    r="4" 
-                    fill="hsl(var(--primary))"
-                  />
-                </g>
-              ))}
-            </svg>
+          <div className="relative p-8 md:p-16"> {/* Padding for dimensions */}
+            <img
+              src="/fragrance-machine-specs.png"
+              alt="Fragrance Vending Machine Features"
+              className="w-full h-auto rounded-lg"
+            />
+            
+            {/* Overlays for features and dimensions */}
+            <div className="absolute inset-8 md:inset-16 hidden md:block">
+              
+              {/* Dimension Metrics */}
+              <div className="absolute -inset-4 text-sm text-foreground/80 font-mono pointer-events-none">
+                {/* Height Dimension */}
+                <div className="absolute top-0 bottom-0 -right-6 flex items-center">
+                  <div className="w-px h-full bg-current relative">
+                    <div className="absolute top-0 -left-1 w-3 h-px bg-current"></div>
+                    <div className="absolute bottom-0 -left-1 w-3 h-px bg-current"></div>
+                  </div>
+                  <p className="ml-2" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>410mm</p>
+                </div>
 
-            {features.map((feature, index) => (
-              <div 
-                key={index} 
-                className={`absolute p-2 w-1/4 ${feature.textAlignment}`}
-                style={feature.textPosition}
-              >
-                <h3 className="font-bold text-lg">{feature.title}</h3>
-                <p className="text-foreground/70 text-sm">{feature.description}</p>
+                {/* Width Dimension */}
+                <div className="absolute -bottom-6 left-0 right-[25%] flex flex-col items-center">
+                  <div className="h-px w-full bg-current relative">
+                    <div className="absolute left-0 -top-1 h-3 w-px bg-current"></div>
+                    <div className="absolute right-0 -top-1 h-3 w-px bg-current"></div>
+                  </div>
+                  <p className="mt-2">730mm</p>
+                </div>
+
+                {/* Depth Dimension */}
+                <div className="absolute -bottom-14 right-0 w-[22%] flex flex-col items-center">
+                    <div className="h-px w-full bg-current relative">
+                    <div className="absolute left-0 -top-1 h-3 w-px bg-current"></div>
+                    <div className="absolute right-0 -top-1 h-3 w-px bg-current"></div>
+                  </div>
+                  <p className="mt-2">222mm</p>
+                </div>
               </div>
-            ))}
+
+              {/* Feature Lines */}
+              <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none" className="overflow-visible">
+                {features.map((feature, index) => (
+                  <g key={index}>
+                    <path 
+                      d={feature.path}
+                      fill="none"
+                      stroke="hsl(var(--primary))" 
+                      strokeWidth="1" 
+                      strokeDasharray="4 4"
+                      opacity="0.7"
+                    />
+                    <circle 
+                      cx={feature.endPoint.x} 
+                      cy={feature.endPoint.y} 
+                      r="8" 
+                      fill="hsl(var(--primary))"
+                      className="opacity-30"
+                    />
+                    <circle 
+                      cx={feature.endPoint.x} 
+                      cy={feature.endPoint.y} 
+                      r="4" 
+                      fill="hsl(var(--primary))"
+                    />
+                  </g>
+                ))}
+              </svg>
+
+              {/* Feature Text */}
+              {features.map((feature, index) => (
+                <div 
+                  key={index} 
+                  className={`absolute p-2 w-1/4 ${feature.textAlignment}`}
+                  style={feature.textPosition}
+                >
+                  <h3 className="font-bold text-lg">{feature.title}</h3>
+                  <p className="text-foreground/70 text-sm">{feature.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
