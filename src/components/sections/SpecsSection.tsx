@@ -34,7 +34,7 @@ export const SpecsSection = () => {
       title: t('homePage.specs.step4_title'),
       description: t('homePage.specs.step4_desc'),
       textPosition: { top: '20%', right: '0%' },
-      path: "M 880,250 Q 800,500 680,820",
+      path: "M 880,250 Q 920,500 680,820",
       endPoint: { x: 680, y: 820 },
       textAlignment: 'text-right'
     },
@@ -42,7 +42,7 @@ export const SpecsSection = () => {
       title: t('homePage.specs.step5_title'),
       description: t('homePage.specs.step5_desc'),
       textPosition: { top: '65%', right: '0%' },
-      path: "M 880,700 Q 800,850 650,950",
+      path: "M 880,700 Q 920,850 650,950",
       endPoint: { x: 650, y: 950 },
       textAlignment: 'text-right'
     },
