@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
-import AnimatedHero from "@/components/ui/animated-hero";
-import FeatureSectionWithHoverEffects from "@/components/ui/feature-section-with-hover-effects";
-import TestimonialsColumns1 from "@/components/ui/testimonials-columns-1";
+import { AnimatedHero } from "@/components/ui/animated-hero";
+import { FeatureSectionWithHoverEffects } from "@/components/ui/feature-section-with-hover-effects";
+import { TestimonialsColumns1 } from "@/components/ui/testimonials-columns-1";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { TrendingUp, Star, Bot } from "lucide-react";
