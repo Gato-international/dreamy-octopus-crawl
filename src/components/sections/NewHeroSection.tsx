@@ -16,7 +16,7 @@ export const NewHeroSection = () => {
       >
         Your browser does not support the video tag.
       </video>
-      <div className="absolute z-10 inset-0 bg-black/60"></div>
+      <div className="absolute z-10 inset-0 bg-neutral-900/70"></div>
       
       <div className="relative z-20 container mx-auto px-4 text-center">
         <h2 className="text-5xl md:text-7xl font-bold text-foreground font-heading">
