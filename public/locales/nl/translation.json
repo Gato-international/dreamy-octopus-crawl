@@ -154,8 +154,9 @@
     "email": "Email",
     "web": "Web",
     "form": {
-      "firstName": "Voornaam",
-      "lastName": "Achternaam",
+      "name": "Naam",
+      "company": "Bedrijf",
+      "phoneNumber": "Telefoonnummer",
       "email": "Email",
       "subject": "Onderwerp",
       "message": "Bericht",

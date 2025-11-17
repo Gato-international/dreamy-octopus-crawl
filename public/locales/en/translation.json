@@ -154,8 +154,9 @@
     "email": "Email",
     "web": "Web",
     "form": {
-      "firstName": "First Name",
-      "lastName": "Last Name",
+      "name": "Name",
+      "company": "Company",
+      "phoneNumber": "Phone Number",
       "email": "Email",
       "subject": "Subject",
       "message": "Message",

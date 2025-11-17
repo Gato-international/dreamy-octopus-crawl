@@ -21,8 +21,9 @@ interface ContactFormProps {
     phone: string;
     email: string;
     web: string;
-    firstName: string;
-    lastName: string;
+    name: string;
+    company: string;
+    phoneNumber: string;
     subject: string;
     message: string;
     messagePlaceholder: string;
@@ -31,8 +32,9 @@ interface ContactFormProps {
 }
 
 const formSchema = z.object({
-  firstName: z.string().min(2, { message: "First name must be at least 2 characters." }),
-  lastName: z.string().min(2, { message: "Last name must be at least 2 characters." }),
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  company: z.string().optional(),
+  phoneNumber: z.string().optional(),
   email: z.string().email({ message: "Please enter a valid email address." }),
   subject: z.string().min(5, { message: "Subject must be at least 5 characters." }),
   message: z.string().min(10, { message: "Message must be at least 10 characters." }),
@@ -49,8 +51,9 @@ export const ContactForm = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
+      name: "",
+      company: "",
+      phoneNumber: "",
       email: "",
       subject: "",
       message: "",
@@ -116,34 +119,45 @@ export const ContactForm = ({
           <div className="mx-auto w-full max-w-screen-md flex-col gap-6 rounded-lg border p-10">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6">
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <FormField
-                    control={form.control}
-                    name="firstName"
-                    render={({ field }) => (
-                      <FormItem className="w-full">
-                        <FormLabel>{labels.firstName}</FormLabel>
-                        <FormControl>
-                          <Input placeholder={labels.firstName} {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="lastName"
-                    render={({ field }) => (
-                      <FormItem className="w-full">
-                        <FormLabel>{labels.lastName}</FormLabel>
-                        <FormControl>
-                          <Input placeholder={labels.lastName} {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{labels.name}</FormLabel>
+                      <FormControl>
+                        <Input placeholder={labels.name} {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="company"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{labels.company} (Optional)</FormLabel>
+                      <FormControl>
+                        <Input placeholder={labels.company} {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                 <FormField
+                  control={form.control}
+                  name="phoneNumber"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{labels.phoneNumber} (Optional)</FormLabel>
+                      <FormControl>
+                        <Input type="tel" placeholder={labels.phoneNumber} {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 <FormField
                   control={form.control}
                   name="email"
