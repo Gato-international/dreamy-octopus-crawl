@@ -80,35 +80,47 @@ export const SpecsSection = () => {
         {/* Desktop View */}
         <div className="hidden md:block">
           {viewMode === 'specs' && (
-            <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-8 max-w-6xl mx-auto">
-              {/* Left Column */}
-              <div className="space-y-12">
-                {leftFeatures.map((feature, index) => (
-                  <div key={index} className="text-right">
-                    <h3 className="font-bold text-lg">{feature.title}</h3>
-                    <p className="text-foreground/70 text-sm">{feature.description}</p>
-                  </div>
-                ))}
-              </div>
+            <div className="relative max-w-6xl mx-auto">
+              <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-8">
+                {/* Left Column */}
+                <div className="space-y-12">
+                  {leftFeatures.map((feature, index) => (
+                    <div key={index} className="text-right">
+                      <h3 className="font-bold text-lg">{feature.title}</h3>
+                      <p className="text-foreground/70 text-sm">{feature.description}</p>
+                    </div>
+                  ))}
+                </div>
 
-              {/* Center Column (Image) */}
-              <div className="px-8">
-                <img
-                  src="/fragrance-machine-specs.png"
-                  alt="Fragrance Vending Machine Features"
-                  className="w-full max-w-sm h-auto rounded-lg mx-auto"
-                />
-              </div>
+                {/* Center Column (Image) */}
+                <div className="px-8">
+                  <img
+                    src="/fragrance-machine-specs.png"
+                    alt="Fragrance Vending Machine Features"
+                    className="w-full max-w-sm h-auto rounded-lg mx-auto"
+                  />
+                </div>
 
-              {/* Right Column */}
-              <div className="space-y-12">
-                {rightFeatures.map((feature, index) => (
-                  <div key={index} className="text-left">
-                    <h3 className="font-bold text-lg">{feature.title}</h3>
-                    <p className="text-foreground/70 text-sm">{feature.description}</p>
-                  </div>
-                ))}
+                {/* Right Column */}
+                <div className="space-y-12">
+                  {rightFeatures.map((feature, index) => (
+                    <div key={index} className="text-left">
+                      <h3 className="font-bold text-lg">{feature.title}</h3>
+                      <p className="text-foreground/70 text-sm">{feature.description}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
+              <svg className="absolute top-0 left-0 w-full h-full pointer-events-none" aria-hidden="true">
+                {/* Lines from left features */}
+                <line x1="32%" y1="25%" x2="38%" y2="30%" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/30" />
+                <line x1="32%" y1="50%" x2="38%" y2="50%" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/30" />
+                <line x1="32%" y1="75%" x2="40%" y2="75%" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/30" />
+                
+                {/* Lines from right features */}
+                <line x1="68%" y1="33%" x2="60%" y2="28%" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/30" />
+                <line x1="68%" y1="66%" x2="60%" y2="40%" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/30" />
+              </svg>
             </div>
           )}
 
