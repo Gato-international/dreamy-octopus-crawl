@@ -193,15 +193,17 @@ export const SpecsSection = () => {
                           top: `${line.textPos.y}%`,
                           transform: 'translate(-50%, -50%)',
                           cursor: 'grab',
-                          backgroundColor: 'hsl(var(--background) / 0.7)',
-                          padding: '4px 8px',
-                          borderRadius: '4px',
-                          whiteSpace: 'nowrap',
+                          backgroundColor: 'hsl(var(--background) / 0.8)',
+                          padding: '0.5rem 0.75rem',
+                          borderRadius: 'var(--radius)',
                           userSelect: 'none',
+                          maxWidth: '220px',
+                          textAlign: 'center',
                         }}
-                        className="active:cursor-grabbing text-sm"
+                        className="active:cursor-grabbing"
                       >
-                        {features[index]?.title}
+                        <h4 className="font-bold text-sm mb-1">{features[index]?.title}</h4>
+                        <p className="text-xs text-foreground/80 whitespace-normal">{features[index]?.description}</p>
                       </div>
                     </React.Fragment>
                   ))}
