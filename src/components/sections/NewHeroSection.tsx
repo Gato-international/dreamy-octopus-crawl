@@ -19,7 +19,7 @@ export const NewHeroSection = () => {
       <div className="absolute z-10 inset-0 bg-black/60"></div>
       
       <div className="relative z-20 container mx-auto px-4 text-center">
-        <h2 className="text-xl md:text-2xl text-foreground/80 font-heading">
+        <h2 className="text-5xl md:text-7xl font-bold text-foreground font-heading">
           {t('homePage.hero.slogan')}
         </h2>
       </div>
