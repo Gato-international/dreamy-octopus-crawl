@@ -1,8 +1,15 @@
 import { useTranslation } from "react-i18next";
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Button } from "@/components/ui/button";
 
 const LOCAL_STORAGE_KEY = 'fragancao-metrics-positions-v2';
+
+const defaultLines = {
+  height: { p1: { x: 104, y: 0 }, p2: { x: 104, y: 100 }, text: "410mm" },
+  width: { p1: { x: 0, y: 104 }, p2: { x: 78, y: 104 }, text: "730mm" },
+  depth: { p1: { x: 78, y: 104 }, p2: { x: 100, y: 104 }, text: "222mm" },
+};
 
 // A helper component for the draggable points
 const DraggableHandle = ({ position, onMouseDown, cursor }: {
@@ -22,18 +29,29 @@ export const SpecsSection = () => {
   const [viewMode, setViewMode] = useState("specs");
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const defaultLines = {
-    height: { p1: { x: 104, y: 0 }, p2: { x: 104, y: 100 }, text: "410mm" },
-    width: { p1: { x: 0, y: 104 }, p2: { x: 78, y: 104 }, text: "730mm" },
-    depth: { p1: { x: 78, y: 104 }, p2: { x: 100, y: 104 }, text: "222mm" },
-  };
-
   const [lines, setLines] = useState(() => {
     try {
       const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
-      return saved ? JSON.parse(saved) : defaultLines;
+      if (!saved) return defaultLines;
+      const parsed = JSON.parse(saved);
+
+      const isValid = ['height', 'width', 'depth'].every(key => 
+        parsed[key] &&
+        typeof parsed[key].p1?.x === 'number' &&
+        typeof parsed[key].p1?.y === 'number' &&
+        typeof parsed[key].p2?.x === 'number' &&
+        typeof parsed[key].p2?.y === 'number'
+      );
+
+      if (!isValid) {
+        console.warn("Invalid metrics data in localStorage, resetting to default.");
+        localStorage.removeItem(LOCAL_STORAGE_KEY);
+        return defaultLines;
+      }
+      return parsed;
     } catch (error) {
-      console.error("Failed to parse metrics from localStorage", error);
+      console.error("Failed to parse metrics from localStorage, resetting.", error);
+      localStorage.removeItem(LOCAL_STORAGE_KEY);
       return defaultLines;
     }
   });
@@ -145,7 +163,7 @@ export const SpecsSection = () => {
           </h2>
         </div>
         
-        <div className="hidden md:flex justify-center mb-8">
+        <div className="hidden md:flex justify-center items-center gap-4 mb-8">
           <ToggleGroup 
             type="single" 
             defaultValue="specs" 
@@ -162,6 +180,18 @@ export const SpecsSection = () => {
               Metrics
             </ToggleGroupItem>
           </ToggleGroup>
+          {viewMode === 'metrics' && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                localStorage.removeItem(LOCAL_STORAGE_KEY);
+                setLines(defaultLines);
+              }}
+            >
+              Reset Positions
+            </Button>
+          )}
         </div>
 
         <div className="relative max-w-5xl mx-auto">
