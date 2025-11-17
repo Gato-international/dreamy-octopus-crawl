@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import { AnimatedBackground } from "@/components/ui/hero-section";
+import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { MobileNav } from "./MobileNav";
 import { CookieBanner } from "@/components/CookieBanner";
