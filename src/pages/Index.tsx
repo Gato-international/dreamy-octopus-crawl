@@ -5,6 +5,7 @@ import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
 import { SpecsSection } from "@/components/sections/SpecsSection";
 import { BenefitsSection } from "@/components/sections/BenefitsSection";
 import { CtaSection } from "@/components/sections/CtaSection";
+import { Hero } from "@/components/ui/animated-hero";
 
 const Index = () => {
   return (
@@ -19,6 +20,7 @@ const Index = () => {
       <HowItWorksSection />
       <SpecsSection />
       <BenefitsSection />
+      <Hero />
       <CtaSection />
     </>
   );
