@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
-const LOCAL_STORAGE_KEY = 'fragancao-metrics-positions';
+const LOCAL_STORAGE_KEY = 'fragancao-metrics-positions-v2';
 
 // A helper component for the draggable points
 const DraggableHandle = ({ position, onMouseDown, cursor }: {
@@ -23,9 +23,9 @@ export const SpecsSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const defaultLines = {
-    height: { x: 104, y1: 0, y2: 100, text: "410mm" },
-    width: { y: 104, x1: 0, x2: 78, text: "730mm" },
-    depth: { y: 104, x1: 78, x2: 100, text: "222mm" },
+    height: { p1: { x: 104, y: 0 }, p2: { x: 104, y: 100 }, text: "410mm" },
+    width: { p1: { x: 0, y: 104 }, p2: { x: 78, y: 104 }, text: "730mm" },
+    depth: { p1: { x: 78, y: 104 }, p2: { x: 100, y: 104 }, text: "222mm" },
   };
 
   const [lines, setLines] = useState(() => {
@@ -38,7 +38,7 @@ export const SpecsSection = () => {
     }
   });
 
-  const [dragging, setDragging] = useState<{ line: 'height' | 'width' | 'depth'; point: string } | null>(null);
+  const [dragging, setDragging] = useState<{ line: 'height' | 'width' | 'depth'; point: 'p1' | 'p2' } | null>(null);
 
   useEffect(() => {
     try {
@@ -48,7 +48,7 @@ export const SpecsSection = () => {
     }
   }, [lines]);
 
-  const handleMouseDown = (e: React.MouseEvent, line: 'height' | 'width' | 'depth', point: string) => {
+  const handleMouseDown = (e: React.MouseEvent, line: 'height' | 'width' | 'depth', point: 'p1' | 'p2') => {
     e.preventDefault();
     setDragging({ line, point });
   };
@@ -61,23 +61,12 @@ export const SpecsSection = () => {
     if (!dragging || !containerRef.current) return;
 
     const rect = containerRef.current.getBoundingClientRect();
-    const x = Math.max(0, Math.min(110, ((e.clientX - rect.left) / rect.width) * 100));
-    const y = Math.max(0, Math.min(110, ((e.clientY - rect.top) / rect.height) * 100));
+    const x = Math.max(-10, Math.min(110, ((e.clientX - rect.left) / rect.width) * 100));
+    const y = Math.max(-10, Math.min(110, ((e.clientY - rect.top) / rect.height) * 100));
 
     setLines(prevLines => {
       const newLines = JSON.parse(JSON.stringify(prevLines)); // Deep copy
-      const currentLine = newLines[dragging.line];
-
-      if (dragging.line === 'height') {
-        if (dragging.point === 'x') currentLine.x = x;
-        if (dragging.point === 'y1') currentLine.y1 = y;
-        if (dragging.point === 'y2') currentLine.y2 = y;
-      } else { // width or depth
-        if (dragging.point === 'y') currentLine.y = y;
-        if (dragging.point === 'x1') currentLine.x1 = x;
-        if (dragging.point === 'x2') currentLine.x2 = x;
-      }
-      
+      newLines[dragging.line][dragging.point] = { x, y };
       return newLines;
     });
   }, [dragging]);
@@ -187,35 +176,55 @@ export const SpecsSection = () => {
               
               {viewMode === 'metrics' && (
                 <div className="absolute top-0 left-0 w-full h-full text-sm text-foreground/80">
-                  {/* Height Line */}
-                  <div style={{ left: `${lines.height.x}%`, top: `${lines.height.y1}%`, height: `${lines.height.y2 - lines.height.y1}%` }} className="absolute w-px bg-current pointer-events-none">
-                    <div className="absolute top-0 -left-1 w-3 h-px bg-current"></div>
-                    <div className="absolute bottom-0 -left-1 w-3 h-px bg-current"></div>
-                  </div>
-                  <p style={{ left: `${lines.height.x + 2}%`, top: `${(lines.height.y1 + lines.height.y2) / 2}%`, transform: 'translateY(-50%) rotate(90deg)' }} className="absolute origin-center whitespace-nowrap pointer-events-none">{lines.height.text}</p>
-                  <DraggableHandle position={{ x: lines.height.x, y: lines.height.y1 }} onMouseDown={(e) => handleMouseDown(e, 'height', 'y1')} cursor="ns-resize" />
-                  <DraggableHandle position={{ x: lines.height.x, y: lines.height.y2 }} onMouseDown={(e) => handleMouseDown(e, 'height', 'y2')} cursor="ns-resize" />
-                  <DraggableHandle position={{ x: lines.height.x, y: (lines.height.y1 + lines.height.y2) / 2 }} onMouseDown={(e) => handleMouseDown(e, 'height', 'x')} cursor="ew-resize" />
+                  <svg width="100%" height="100%" className="absolute top-0 left-0 pointer-events-none overflow-visible">
+                    {Object.values(lines).map((line, index) => {
+                      const dx = line.p2.x - line.p1.x;
+                      const dy = line.p2.y - line.p1.y;
+                      const angle = Math.atan2(dy, dx);
+                      const perpAngle = angle + Math.PI / 2;
+                      const capLength = 1; // in percent of width/height
 
-                  {/* Width Line */}
-                  <div style={{ top: `${lines.width.y}%`, left: `${lines.width.x1}%`, width: `${lines.width.x2 - lines.width.x1}%` }} className="absolute h-px bg-current pointer-events-none">
-                    <div className="absolute left-0 -top-1 h-3 w-px bg-current"></div>
-                    <div className="absolute right-0 -top-1 h-3 w-px bg-current"></div>
-                  </div>
-                  <p style={{ top: `${lines.width.y + 2}%`, left: `${(lines.width.x1 + lines.width.x2) / 2}%`, transform: 'translateX(-50%)' }} className="absolute pointer-events-none">{lines.width.text}</p>
-                  <DraggableHandle position={{ x: lines.width.x1, y: lines.width.y }} onMouseDown={(e) => handleMouseDown(e, 'width', 'x1')} cursor="ew-resize" />
-                  <DraggableHandle position={{ x: lines.width.x2, y: lines.width.y }} onMouseDown={(e) => handleMouseDown(e, 'width', 'x2')} cursor="ew-resize" />
-                  <DraggableHandle position={{ x: (lines.width.x1 + lines.width.x2) / 2, y: lines.width.y }} onMouseDown={(e) => handleMouseDown(e, 'width', 'y')} cursor="ns-resize" />
+                      const p1Cap1 = { x: line.p1.x + capLength * Math.cos(perpAngle), y: line.p1.y + capLength * Math.sin(perpAngle) };
+                      const p1Cap2 = { x: line.p1.x - capLength * Math.cos(perpAngle), y: line.p1.y - capLength * Math.sin(perpAngle) };
+                      const p2Cap1 = { x: line.p2.x + capLength * Math.cos(perpAngle), y: line.p2.y + capLength * Math.sin(perpAngle) };
+                      const p2Cap2 = { x: line.p2.x - capLength * Math.cos(perpAngle), y: line.p2.y - capLength * Math.sin(perpAngle) };
 
-                  {/* Depth Line */}
-                  <div style={{ top: `${lines.depth.y}%`, left: `${lines.depth.x1}%`, width: `${lines.depth.x2 - lines.depth.x1}%` }} className="absolute h-px bg-current pointer-events-none">
-                    <div className="absolute left-0 -top-1 h-3 w-px bg-current"></div>
-                    <div className="absolute right-0 -top-1 h-3 w-px bg-current"></div>
-                  </div>
-                  <p style={{ top: `${lines.depth.y + 2}%`, left: `${(lines.depth.x1 + lines.depth.x2) / 2}%`, transform: 'translateX(-50%)' }} className="absolute pointer-events-none">{lines.depth.text}</p>
-                  <DraggableHandle position={{ x: lines.depth.x1, y: lines.depth.y }} onMouseDown={(e) => handleMouseDown(e, 'depth', 'x1')} cursor="ew-resize" />
-                  <DraggableHandle position={{ x: lines.depth.x2, y: lines.depth.y }} onMouseDown={(e) => handleMouseDown(e, 'depth', 'x2')} cursor="ew-resize" />
-                  <DraggableHandle position={{ x: (lines.depth.x1 + lines.depth.x2) / 2, y: lines.depth.y }} onMouseDown={(e) => handleMouseDown(e, 'depth', 'y')} cursor="ns-resize" />
+                      return (
+                        <g key={index}>
+                          <line x1={`${line.p1.x}%`} y1={`${line.p1.y}%`} x2={`${line.p2.x}%`} y2={`${line.p2.y}%`} stroke="currentColor" strokeWidth="1" />
+                          <line x1={`${p1Cap1.x}%`} y1={`${p1Cap1.y}%`} x2={`${p1Cap2.x}%`} y2={`${p1Cap2.y}%`} stroke="currentColor" strokeWidth="1" />
+                          <line x1={`${p2Cap1.x}%`} y1={`${p2Cap1.y}%`} x2={`${p2Cap2.x}%`} y2={`${p2Cap2.y}%`} stroke="currentColor" strokeWidth="1" />
+                        </g>
+                      )
+                    })}
+                  </svg>
+
+                  {Object.entries(lines).map(([key, line]) => {
+                    const dx = line.p2.x - line.p1.x;
+                    const dy = line.p2.y - line.p1.y;
+                    const isVertical = Math.abs(dy) > Math.abs(dx);
+                    const midX = (line.p1.x + line.p2.x) / 2;
+                    const midY = (line.p1.y + line.p2.y) / 2;
+                    
+                    const textStyle: React.CSSProperties = {
+                      position: 'absolute',
+                      top: `${midY}%`,
+                      left: `${midX}%`,
+                      transform: `translate(-50%, -50%) ${isVertical ? 'rotate(90deg)' : ''} translate(0, -15px)`,
+                      backgroundColor: 'hsl(var(--background) / 0.5)',
+                      padding: '2px 4px',
+                      borderRadius: '3px',
+                      whiteSpace: 'nowrap',
+                    };
+
+                    return (
+                      <React.Fragment key={key}>
+                        <p style={textStyle}>{line.text}</p>
+                        <DraggableHandle position={line.p1} onMouseDown={(e) => handleMouseDown(e, key as any, 'p1')} cursor="move" />
+                        <DraggableHandle position={line.p2} onMouseDown={(e) => handleMouseDown(e, key as any, 'p2')} cursor="move" />
+                      </React.Fragment>
+                    )
+                  })}
                 </div>
               )}
 
