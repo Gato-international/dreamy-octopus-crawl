@@ -33,8 +33,8 @@ interface ContactFormProps {
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  company: z.string().optional(),
-  phoneNumber: z.string().optional(),
+  company: z.string().min(1, { message: "Company name is required." }),
+  phoneNumber: z.string().min(10, { message: "Please enter a valid phone number." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
   subject: z.string().min(5, { message: "Subject must be at least 5 characters." }),
   message: z.string().min(10, { message: "Message must be at least 10 characters." }),
@@ -137,7 +137,7 @@ export const ContactForm = ({
                   name="company"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{labels.company} (Optional)</FormLabel>
+                      <FormLabel>{labels.company}</FormLabel>
                       <FormControl>
                         <Input placeholder={labels.company} {...field} />
                       </FormControl>
@@ -150,7 +150,7 @@ export const ContactForm = ({
                   name="phoneNumber"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{labels.phoneNumber} (Optional)</FormLabel>
+                      <FormLabel>{labels.phoneNumber}</FormLabel>
                       <FormControl>
                         <Input type="tel" placeholder={labels.phoneNumber} {...field} />
                       </FormControl>

@@ -18,7 +18,7 @@ serve(async (req) => {
     const resend = new Resend(Deno.env.get('RESEND_API_KEY'));
     const { name, company, phoneNumber, email, subject, message } = await req.json();
 
-    if (!name || !email || !subject || !message) {
+    if (!name || !company || !phoneNumber || !email || !subject || !message) {
       return new Response(JSON.stringify({ error: 'Missing required fields' }), {
         status: 400,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -33,8 +33,8 @@ serve(async (req) => {
       html: `
         <h1>New message from ${name}</h1>
         <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Company:</strong> ${company || 'N/A'}</p>
-        <p><strong>Phone Number:</strong> ${phoneNumber || 'N/A'}</p>
+        <p><strong>Company:</strong> ${company}</p>
+        <p><strong>Phone Number:</strong> ${phoneNumber}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Subject:</strong> ${subject}</p>
         <hr />
