@@ -29,7 +29,7 @@ export const SpecsSection = () => {
       title: t('homePage.specs.outlets'),
       description: t('homePage.specs.outletsDesc'),
       textPosition: { top: '75%', right: '0%' },
-      linePoints: { x1: '88%', y1: '80%', x2: '70%', y2: '88%' },
+      linePoints: { x1: '88%', y1: '80%', x2: '68%', y2: '82%' },
       textAlignment: 'text-right'
     },
   ];
