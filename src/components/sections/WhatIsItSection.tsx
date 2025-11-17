@@ -6,8 +6,8 @@ export const WhatIsItSection = () => {
   return (
     <section className="relative -mt-48 pt-64 sm:pt-80 pb-20 sm:pb-32">
       <div className="container mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
+        <div className="grid md:grid-cols-5 gap-12 items-center">
+          <div className="md:col-span-2">
             <h2 className="text-3xl sm:text-5xl font-bold mb-6 font-heading">
               {t('homePage.whatIsIt.title')}
             </h2>
@@ -18,7 +18,7 @@ export const WhatIsItSection = () => {
               <p>{t('homePage.whatIsIt.paragraph4')}</p>
             </div>
           </div>
-          <div>
+          <div className="md:col-span-3">
             <img 
               src="/fragrance-machine-with-model.png" 
               alt="Woman using the Fragrance Vending Machine" 
