@@ -12,16 +12,16 @@ const initialMetricLines = {
 };
 
 const initialSpecLines = {
-  line1: { p1: { x: 32, y: 25 }, p2: { x: 38, y: 30 } },
-  line2: { p1: { x: 32, y: 50 }, p2: { x: 38, y: 50 } },
-  line3: { p1: { x: 32, y: 75 }, p2: { x: 40, y: 75 } },
-  line4: { p1: { x: 68, y: 33 }, p2: { x: 60, y: 28 } },
-  line5: { p1: { x: 68, y: 66 }, p2: { x: 60, y: 40 } },
+  line1: { p1: { x: 32, y: 25 }, p2: { x: 38, y: 30 }, textPos: { x: 28, y: 23 } },
+  line2: { p1: { x: 32, y: 50 }, p2: { x: 38, y: 50 }, textPos: { x: 28, y: 48 } },
+  line3: { p1: { x: 32, y: 75 }, p2: { x: 40, y: 75 }, textPos: { x: 28, y: 73 } },
+  line4: { p1: { x: 68, y: 33 }, p2: { x: 60, y: 28 }, textPos: { x: 72, y: 31 } },
+  line5: { p1: { x: 68, y: 66 }, p2: { x: 60, y: 40 }, textPos: { x: 72, y: 64 } },
 };
 
 type Point = { x: number; y: number };
 type MetricLine = { p1: Point; p2: Point; text: string };
-type SpecLine = { p1: Point; p2: Point };
+type SpecLine = { p1: Point; p2: Point; textPos: Point };
 type MetricLines = { [key: string]: MetricLine };
 type SpecLines = { [key: string]: SpecLine };
 
@@ -35,6 +35,7 @@ export const SpecsSection = () => {
 
   const [specLines, setSpecLines] = useState<SpecLines>(initialSpecLines);
   const [draggingSpecPoint, setDraggingSpecPoint] = useState<{ lineKey: string; pointKey: 'p1' | 'p2' } | null>(null);
+  const [draggingSpecText, setDraggingSpecText] = useState<string | null>(null);
   const specContainerRef = useRef<HTMLDivElement>(null);
 
   // Handlers for Metric Lines
@@ -91,6 +92,41 @@ export const SpecsSection = () => {
     };
   }, [draggingSpecPoint]);
 
+  // Handlers for Spec Text
+  const handleSpecTextMouseDown = (e: React.MouseEvent, lineKey: string) => {
+    e.preventDefault();
+    setDraggingSpecText(lineKey);
+  };
+
+  const handleSpecTextMouseMove = (e: MouseEvent) => {
+    if (!draggingSpecText || !specContainerRef.current) return;
+    const rect = specContainerRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setSpecLines(prev => ({
+      ...prev,
+      [draggingSpecText]: {
+        ...prev[draggingSpecText],
+        textPos: { x, y },
+      },
+    }));
+  };
+
+  const handleSpecTextMouseUp = () => {
+    setDraggingSpecText(null);
+  };
+
+  useEffect(() => {
+    if (draggingSpecText) {
+      window.addEventListener("mousemove", handleSpecTextMouseMove);
+      window.addEventListener("mouseup", handleSpecTextMouseUp);
+    }
+    return () => {
+      window.removeEventListener("mousemove", handleSpecTextMouseMove);
+      window.removeEventListener("mouseup", handleSpecTextMouseUp);
+    };
+  }, [draggingSpecText]);
+
   const logCoordinates = () => {
     if (viewMode === 'metrics') {
       console.log("const finalMetricLines = ", JSON.stringify(metricLines, null, 2));
@@ -145,10 +181,28 @@ export const SpecsSection = () => {
                       <line key={index} x1={`${line.p1.x}%`} y1={`${line.p1.y}%`} x2={`${line.p2.x}%`} y2={`${line.p2.y}%`} stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-foreground/30" />
                     ))}
                   </svg>
-                  {Object.entries(specLines).map(([key, line]) => (
+                  {Object.entries(specLines).map(([key, line], index) => (
                     <React.Fragment key={key}>
                       <div onMouseDown={(e) => handleSpecMouseDown(e, key, 'p1')} style={{ left: `${line.p1.x}%`, top: `${line.p1.y}%` }} className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-full cursor-grab active:cursor-grabbing" />
                       <div onMouseDown={(e) => handleSpecMouseDown(e, key, 'p2')} style={{ left: `${line.p2.x}%`, top: `${line.p2.y}%` }} className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-full cursor-grab active:cursor-grabbing" />
+                      <div
+                        onMouseDown={(e) => handleSpecTextMouseDown(e, key)}
+                        style={{
+                          position: 'absolute',
+                          left: `${line.textPos.x}%`,
+                          top: `${line.textPos.y}%`,
+                          transform: 'translate(-50%, -50%)',
+                          cursor: 'grab',
+                          backgroundColor: 'hsl(var(--background) / 0.7)',
+                          padding: '4px 8px',
+                          borderRadius: '4px',
+                          whiteSpace: 'nowrap',
+                          userSelect: 'none',
+                        }}
+                        className="active:cursor-grabbing text-sm"
+                      >
+                        {features[index]?.title}
+                      </div>
                     </React.Fragment>
                   ))}
                 </div>
