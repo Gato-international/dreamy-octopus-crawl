@@ -28,7 +28,11 @@ export const SpecsSection = () => {
     { title: t('homePage.specs.step5_title'), description: t('homePage.specs.step5_desc') },
   ];
   
-  const mobileFeatures = features;
+  const mobileMetrics = [
+    { title: t('homePage.specs.metrics.height'), value: "410mm" },
+    { title: t('homePage.specs.metrics.width'), value: "730mm" },
+    { title: t('homePage.specs.metrics.depth'), value: "222mm" },
+  ];
 
   return (
     <section className="py-20 sm:py-32">
@@ -137,13 +141,27 @@ export const SpecsSection = () => {
         </div>
 
         {/* Mobile View */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:hidden mt-12">
-          {mobileFeatures.map((feature, index) => (
-            <div key={index} className="p-4 border rounded-lg bg-card/50">
-              <h3 className="font-bold text-lg text-center">{feature.title}</h3>
-              <p className="text-foreground/70 text-sm text-center mt-2">{feature.description}</p>
+        <div className="md:hidden mt-12">
+          {viewMode === 'specs' && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              {features.map((feature, index) => (
+                <div key={index} className="p-4 border rounded-lg bg-card/50">
+                  <h3 className="font-bold text-lg text-center">{feature.title}</h3>
+                  <p className="text-foreground/70 text-sm text-center mt-2">{feature.description}</p>
+                </div>
+              ))}
             </div>
-          ))}
+          )}
+          {viewMode === 'metrics' && (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+              {mobileMetrics.map((metric, index) => (
+                <div key={index} className="p-4 border rounded-lg bg-card/50 text-center">
+                  <h3 className="font-bold text-lg">{metric.title}</h3>
+                  <p className="text-2xl text-primary font-semibold mt-2">{metric.value}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>

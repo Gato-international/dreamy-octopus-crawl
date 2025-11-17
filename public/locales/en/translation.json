@@ -56,7 +56,12 @@
       "step4_title": "Position for Spray",
       "step4_desc": "Place your neck or wrist near the indicated perfume nozzle.",
       "step5_title": "Receive Your Fragrance",
-      "step5_desc": "The machine will automatically dispense your chosen scent."
+      "step5_desc": "The machine will automatically dispense your chosen scent.",
+      "metrics": {
+        "height": "Height",
+        "width": "Width",
+        "depth": "Depth"
+      }
     },
     "benefits": {
       "title": "Partners Benefits",

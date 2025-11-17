@@ -56,7 +56,12 @@
       "step4_title": "Positioneer voor de Spray",
       "step4_desc": "Plaats je nek of pols bij het aangegeven parfumspuitmondje.",
       "step5_title": "Ontvang Je Geur",
-      "step5_desc": "De machine geeft automatisch de door jou gekozen geur af."
+      "step5_desc": "De machine geeft automatisch de door jou gekozen geur af.",
+      "metrics": {
+        "height": "Hoogte",
+        "width": "Breedte",
+        "depth": "Diepte"
+      }
     },
     "benefits": {
       "title": "Voordelen voor Partners",
