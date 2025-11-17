@@ -5,8 +5,9 @@ export const NewHeroSection = () => {
   const videoSrc = "https://oqhvemhomwksenicoktf.supabase.co/storage/v1/object/public/assets/background1.mp4";
 
   return (
-    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-neutral-900">
+    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
       <video
+        key={videoSrc}
         src={videoSrc}
         autoPlay
         loop
