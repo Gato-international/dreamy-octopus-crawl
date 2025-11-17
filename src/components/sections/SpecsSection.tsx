@@ -98,7 +98,7 @@ export const SpecsSection = () => {
             <div className="absolute inset-8 md:inset-16 hidden md:block">
               
               {viewMode === 'metrics' && (
-                <div className="absolute -inset-4 text-sm text-foreground/80 font-mono pointer-events-none">
+                <div className="absolute -inset-4 text-sm text-foreground/80 pointer-events-none">
                   {/* Height Dimension */}
                   <div className="absolute top-0 bottom-0 -right-6 flex items-center">
                     <div className="w-px h-full bg-current relative">
@@ -108,22 +108,27 @@ export const SpecsSection = () => {
                     <p className="ml-2" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>410mm</p>
                   </div>
 
-                  {/* Width Dimension */}
-                  <div className="absolute -bottom-6 left-0 right-[25%] flex flex-col items-center">
-                    <div className="h-px w-full bg-current relative">
-                      <div className="absolute left-0 -top-1 h-3 w-px bg-current"></div>
-                      <div className="absolute right-0 -top-1 h-3 w-px bg-current"></div>
-                    </div>
-                    <p className="mt-2">730mm</p>
+                  {/* --- Bottom Dimensions --- */}
+                  {/* Width Text */}
+                  <p className="absolute -bottom-14 left-0 right-[25%] text-center">730mm</p>
+                  {/* Width Line */}
+                  <div className="absolute -bottom-8 left-0 right-[25%] h-px bg-current">
+                    {/* Left Cap */}
+                    <div className="absolute left-0 -top-1 h-3 w-px bg-current"></div>
                   </div>
 
-                  {/* Depth Dimension */}
-                  <div className="absolute -bottom-14 right-0 w-[22%] flex flex-col items-center">
-                      <div className="h-px w-full bg-current relative">
-                      <div className="absolute left-0 -top-1 h-3 w-px bg-current"></div>
-                      <div className="absolute right-0 -top-1 h-3 w-px bg-current"></div>
-                    </div>
-                    <p className="mt-2">222mm</p>
+                  {/* Depth Text */}
+                  <p className="absolute -bottom-14 right-0 w-[22%] text-center">222mm</p>
+                  {/* Depth Line */}
+                  <div className="absolute -bottom-8 right-0 w-[22%] h-px bg-current">
+                    {/* Right Cap */}
+                    <div className="absolute right-0 -top-1 h-3 w-px bg-current"></div>
+                  </div>
+
+                  {/* Corner Line */}
+                  <div className="absolute h-8 w-px bg-current right-[calc(25%-1px)] -bottom-8">
+                    {/* Top Cap */}
+                    <div className="absolute top-0 -left-1 w-3 h-px bg-current"></div>
                   </div>
                 </div>
               )}
