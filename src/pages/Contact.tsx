@@ -8,9 +8,9 @@ const Contact = () => {
   const contactProps = {
     title: t('contactPage.title'),
     description: t('contactPage.description'),
-    phone: "+31 6 12345678",
+    phone: "+31 6 34864953",
     email: "info@fragancao.com",
-    web: { label: "fragancao.com", url: "#" },
+    web: { label: "fragancao.nl", url: "https://fragancao.nl" },
     labels: {
       contactDetails: t('contactPage.contactDetails'),
       phone: t('contactPage.phone'),
