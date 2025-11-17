@@ -1,7 +1,10 @@
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 export const SpecsSection = () => {
   const { t } = useTranslation();
+  const [viewMode, setViewMode] = useState("specs");
 
   const features = [
     // Left side
@@ -59,54 +62,72 @@ export const SpecsSection = () => {
   return (
     <section className="py-20 sm:py-32">
       <div className="container mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-8">
           <h2 className="text-3xl sm:text-5xl font-bold mb-4 font-heading">
             {t('homePage.specs.title')}
           </h2>
         </div>
         
+        <div className="hidden md:flex justify-center mb-8">
+          <ToggleGroup 
+            type="single" 
+            defaultValue="specs" 
+            value={viewMode}
+            onValueChange={(value) => {
+              if (value) setViewMode(value);
+            }}
+            aria-label="View mode"
+          >
+            <ToggleGroupItem value="specs" aria-label="Toggle specs">
+              Specs
+            </ToggleGroupItem>
+            <ToggleGroupItem value="metrics" aria-label="Toggle metrics">
+              Metrics
+            </ToggleGroupItem>
+          </ToggleGroup>
+        </div>
+
         <div className="relative max-w-5xl mx-auto">
-          <div className="relative p-8 md:p-16"> {/* Padding for dimensions */}
+          <div className="relative p-8 md:p-16">
             <img
               src="/fragrance-machine-specs.png"
               alt="Fragrance Vending Machine Features"
               className="w-full h-auto rounded-lg"
             />
             
-            {/* Overlays for features and dimensions */}
             <div className="absolute inset-8 md:inset-16 hidden md:block">
               
-              {/* Dimension Metrics */}
-              <div className="absolute -inset-4 text-sm text-foreground/80 font-mono pointer-events-none">
-                {/* Height Dimension */}
-                <div className="absolute top-0 bottom-0 -right-6 flex items-center">
-                  <div className="w-px h-full bg-current relative">
-                    <div className="absolute top-0 -left-1 w-3 h-px bg-current"></div>
-                    <div className="absolute bottom-0 -left-1 w-3 h-px bg-current"></div>
+              {viewMode === 'metrics' && (
+                <div className="absolute -inset-4 text-sm text-foreground/80 font-mono pointer-events-none">
+                  {/* Height Dimension */}
+                  <div className="absolute top-0 bottom-0 -right-6 flex items-center">
+                    <div className="w-px h-full bg-current relative">
+                      <div className="absolute top-0 -left-1 w-3 h-px bg-current"></div>
+                      <div className="absolute bottom-0 -left-1 w-3 h-px bg-current"></div>
+                    </div>
+                    <p className="ml-2" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>410mm</p>
                   </div>
-                  <p className="ml-2" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>410mm</p>
-                </div>
 
-                {/* Width Dimension */}
-                <div className="absolute -bottom-6 left-0 right-[25%] flex flex-col items-center">
-                  <div className="h-px w-full bg-current relative">
-                    <div className="absolute left-0 -top-1 h-3 w-px bg-current"></div>
-                    <div className="absolute right-0 -top-1 h-3 w-px bg-current"></div>
-                  </div>
-                  <p className="mt-2">730mm</p>
-                </div>
-
-                {/* Depth Dimension */}
-                <div className="absolute -bottom-14 right-0 w-[22%] flex flex-col items-center">
+                  {/* Width Dimension */}
+                  <div className="absolute -bottom-6 left-0 right-[25%] flex flex-col items-center">
                     <div className="h-px w-full bg-current relative">
-                    <div className="absolute left-0 -top-1 h-3 w-px bg-current"></div>
-                    <div className="absolute right-0 -top-1 h-3 w-px bg-current"></div>
+                      <div className="absolute left-0 -top-1 h-3 w-px bg-current"></div>
+                      <div className="absolute right-0 -top-1 h-3 w-px bg-current"></div>
+                    </div>
+                    <p className="mt-2">730mm</p>
                   </div>
-                  <p className="mt-2">222mm</p>
-                </div>
-              </div>
 
-              {/* Feature Lines */}
+                  {/* Depth Dimension */}
+                  <div className="absolute -bottom-14 right-0 w-[22%] flex flex-col items-center">
+                      <div className="h-px w-full bg-current relative">
+                      <div className="absolute left-0 -top-1 h-3 w-px bg-current"></div>
+                      <div className="absolute right-0 -top-1 h-3 w-px bg-current"></div>
+                    </div>
+                    <p className="mt-2">222mm</p>
+                  </div>
+                </div>
+              )}
+
               <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none" className="overflow-visible">
                 {features.map((feature, index) => (
                   <g key={index}>
@@ -135,7 +156,6 @@ export const SpecsSection = () => {
                 ))}
               </svg>
 
-              {/* Feature Text */}
               {features.map((feature, index) => (
                 <div 
                   key={index} 
