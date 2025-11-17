@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { supabase } from "@/integrations/supabase/client";
@@ -85,19 +84,19 @@ export const ContactForm = ({
     <section className="py-24 sm:py-32">
       <div className="container">
         <div className="max-w-screen-xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 mb-16">
-            <div className="text-center lg:text-left flex flex-col justify-center">
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-20 mb-16">
+            <div className="text-center">
               <h1 className="mb-2 text-5xl font-semibold lg:mb-1 lg:text-6xl font-heading">
                 {title}
               </h1>
               <p className="text-muted-foreground">{description}</p>
             </div>
-            <div className="flex items-center justify-center lg:justify-start">
+            <div className="flex items-center justify-center">
               <div className="w-fit">
                 <h3 className="mb-6 text-center text-2xl font-semibold">
                   {labels.contactDetails}
                 </h3>
-                <ul className="ml-4 list-disc space-y-2">
+                <ul className="list-disc space-y-2 text-left">
                   <li>
                     <span className="font-bold">{labels.phone}: </span>
                     {phone}
