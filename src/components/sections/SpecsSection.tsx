@@ -29,21 +29,21 @@ export const SpecsSection = () => {
       endPoint: { x: 250, y: 550 },
       textAlignment: 'text-left'
     },
-    // Right side
+    // Right side - Reworked with Cubic Bézier curves
     {
       title: t('homePage.specs.step4_title'),
       description: t('homePage.specs.step4_desc'),
-      textPosition: { top: '20%', right: '0%' },
-      path: "M 880,250 Q 920,500 680,820",
-      endPoint: { x: 680, y: 820 },
+      textPosition: { top: '35%', right: '0%' },
+      path: "M 750,400 C 850,400 750,550 680,520",
+      endPoint: { x: 680, y: 520 },
       textAlignment: 'text-right'
     },
     {
       title: t('homePage.specs.step5_title'),
       description: t('homePage.specs.step5_desc'),
       textPosition: { top: '65%', right: '0%' },
-      path: "M 880,700 Q 920,850 650,950",
-      endPoint: { x: 650, y: 950 },
+      path: "M 750,700 C 900,700 800,850 700,800",
+      endPoint: { x: 700, y: 800 },
       textAlignment: 'text-right'
     },
   ];
