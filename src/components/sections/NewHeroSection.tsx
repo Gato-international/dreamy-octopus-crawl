@@ -1,33 +1,8 @@
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 
 export const NewHeroSection = () => {
   const { t } = useTranslation();
-  const [videoUrl, setVideoUrl] = useState('');
-
-  useEffect(() => {
-    const getVideoUrl = () => {
-      const { data } = supabase
-        .storage
-        .from('assets')
-        .getPublicUrl('background1.mp4');
-      
-      if (data) {
-        setVideoUrl(data.publicUrl);
-      }
-    };
-
-    getVideoUrl();
-  }, []);
-
-  if (!videoUrl) {
-    return (
-      <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-neutral-900">
-        {/* Fallback while video loads */}
-      </section>
-    );
-  }
+  const videoUrl = "https://oqhvemhomwksenicoktf.supabase.co/storage/v1/object/public/assets/background1.mp4";
 
   return (
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
