@@ -129,11 +129,15 @@ export const SpecsSection = () => {
 
   const logCoordinates = () => {
     if (viewMode === 'metrics') {
-      console.log("const finalMetricLines = ", JSON.stringify(metricLines, null, 2));
-      showSuccess("Metric coordinates logged to the developer console!");
+      const metricsString = JSON.stringify(metricLines, null, 2);
+      localStorage.setItem('metric-line-coordinates', metricsString);
+      console.log("const finalMetricLines = ", metricsString);
+      showSuccess("Metric coordinates saved to localStorage and logged to console!");
     } else {
-      console.log("const finalSpecLines = ", JSON.stringify(specLines, null, 2));
-      showSuccess("Spec coordinates logged to the developer console!");
+      const specsString = JSON.stringify(specLines, null, 2);
+      localStorage.setItem('spec-line-coordinates', specsString);
+      console.log("const finalSpecLines = ", specsString);
+      showSuccess("Spec coordinates saved to localStorage and logged to console!");
     }
   };
 
