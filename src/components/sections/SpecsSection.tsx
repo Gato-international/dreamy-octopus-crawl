@@ -9,36 +9,41 @@ export const SpecsSection = () => {
       title: t('homePage.specs.step1_title'),
       description: t('homePage.specs.step1_desc'),
       textPosition: { top: '10%', left: '0%' },
-      linePoints: { x1: '12%', y1: '15%', x2: '25%', y2: '20%' }, // Points to top of screen
+      path: "M 120,150 Q 180,120 250,200",
+      endPoint: { x: 250, y: 200 },
       textAlignment: 'text-left'
     },
     {
       title: t('homePage.specs.step2_title'),
       description: t('homePage.specs.step2_desc'),
       textPosition: { top: '40%', left: '0%' },
-      linePoints: { x1: '12%', y1: '45%', x2: '25%', y2: '35%' }, // Points to bottom of screen
+      path: "M 120,450 Q 180,480 250,350",
+      endPoint: { x: 250, y: 350 },
       textAlignment: 'text-left'
     },
     {
       title: t('homePage.specs.step3_title'),
       description: t('homePage.specs.step3_desc'),
       textPosition: { top: '70%', left: '0%' },
-      linePoints: { x1: '12%', y1: '75%', x2: '25%', y2: '55%' }, // Points to payment terminal
+      path: "M 120,750 Q 180,780 250,550",
+      endPoint: { x: 250, y: 550 },
       textAlignment: 'text-left'
     },
     // Right side
     {
       title: t('homePage.specs.step4_title'),
       description: t('homePage.specs.step4_desc'),
-      textPosition: { top: '30%', right: '0%' },
-      linePoints: { x1: '88%', y1: '35%', x2: '68%', y2: '82%' }, // Points to outlets
+      textPosition: { top: '20%', right: '0%' },
+      path: "M 880,250 Q 800,500 680,820",
+      endPoint: { x: 680, y: 820 },
       textAlignment: 'text-right'
     },
     {
       title: t('homePage.specs.step5_title'),
       description: t('homePage.specs.step5_desc'),
-      textPosition: { top: '70%', right: '0%' },
-      linePoints: { x1: '88%', y1: '75%', x2: '65%', y2: '88%' }, // Points to outlets area, but lower
+      textPosition: { top: '65%', right: '0%' },
+      path: "M 880,700 Q 800,800 650,880",
+      endPoint: { x: 650, y: 880 },
       textAlignment: 'text-right'
     },
   ];
@@ -68,29 +73,27 @@ export const SpecsSection = () => {
           />
           
           <div className="absolute inset-0 hidden md:block">
-            <svg width="100%" height="100%" className="overflow-visible">
+            <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none" className="overflow-visible">
               {features.map((feature, index) => (
                 <g key={index}>
-                  <line 
-                    x1={feature.linePoints.x1} 
-                    y1={feature.linePoints.y1} 
-                    x2={feature.linePoints.x2} 
-                    y2={feature.linePoints.y2} 
+                  <path 
+                    d={feature.path}
+                    fill="none"
                     stroke="hsl(var(--primary))" 
                     strokeWidth="1" 
                     strokeDasharray="4 4"
                     opacity="0.7"
                   />
                   <circle 
-                    cx={feature.linePoints.x2} 
-                    cy={feature.linePoints.y2} 
+                    cx={feature.endPoint.x} 
+                    cy={feature.endPoint.y} 
                     r="8" 
                     fill="hsl(var(--primary))"
                     className="opacity-30"
                   />
                    <circle 
-                    cx={feature.linePoints.x2} 
-                    cy={feature.linePoints.y2} 
+                    cx={feature.endPoint.x} 
+                    cy={feature.endPoint.y} 
                     r="4" 
                     fill="hsl(var(--primary))"
                   />
