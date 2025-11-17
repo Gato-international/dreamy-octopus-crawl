@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { AnimatedHero } from "@/components/ui/animated-hero";
+import { HeroWithGroupOfImagesTextAndTwoButtons } from "@/components/ui/hero-with-group-of-images-text-and-two-buttons";
 import { FeaturesSectionWithHoverEffects } from "@/components/ui/feature-section-with-hover-effects";
 import { TestimonialsColumn } from "@/components/ui/testimonials-columns-1";
 import { Button } from "@/components/ui/button";
@@ -48,10 +48,27 @@ const LegacyIndex = () => {
         <meta name="description" content="Discover the original Fragancao experience. Automated perfume vending for premium locations." />
       </Helmet>
       
-      <AnimatedHero />
+      <HeroWithGroupOfImagesTextAndTwoButtons
+        title="A Touch of Luxury, On Demand"
+        description="Discover Fragancao's classic automated perfume experience. We provide high-end fragrance vending machines that delight your guests and create a new, effortless revenue stream for your business."
+        buttons={[
+          { text: "View Partnership Models", link: "/pricing", variant: "default" },
+          { text: "Request a Consultation", link: "/contact", variant: "outline" }
+        ]}
+        images={[
+          '/fragrance-machine-gallery.png',
+          '/spray-bottle.png',
+          '/select-finger.png',
+          '/fragrance-spray.png'
+        ]}
+      />
 
       <div className="py-20">
-        <FeaturesSectionWithHoverEffects features={features} />
+        <FeaturesSectionWithHoverEffects 
+          features={features} 
+          title="Why Partner with Fragancao?"
+          description="Our solution is designed to be simple, profitable, and enhance your customer's experience."
+        />
       </div>
 
       <div className="py-20 bg-secondary/20">
