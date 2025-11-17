@@ -6,6 +6,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { MobileNav } from "./MobileNav";
 import { CookieBanner } from "@/components/CookieBanner";
 import { useLocation } from "react-router-dom";
+import { cn } from "@/lib/utils";
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -17,7 +18,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const isHomePage = location.pathname === '/';
 
   return (
-    <div className={`flex flex-col min-h-screen ${isMobile ? 'pb-16' : ''}`}>
+    <div className={cn(
+      "flex flex-col min-h-screen",
+      isMobile ? 'pb-16' : '',
+      isHomePage && 'bg-background'
+    )}>
       {!isHomePage && <AnimatedBackground />}
       <Header />
       <main className="flex-grow relative z-10">{children}</main>
