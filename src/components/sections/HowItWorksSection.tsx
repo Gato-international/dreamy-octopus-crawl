@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { MousePointerClick, CreditCard, Sparkles, PartyPopper } from "lucide-react";
 import React from "react";
-import CurvedDividerTop from "@/components/ui/CurvedDividerTop";
 
 const Step = ({ icon, title, description, stepNumber }: { icon: React.ReactNode, title: string, description: string, stepNumber: number }) => (
   <div className="flex flex-col items-center text-center">
@@ -45,8 +44,7 @@ export const HowItWorksSection = () => {
   ];
 
   return (
-    <section className="relative py-20 sm:py-32 bg-secondary/20">
-      <CurvedDividerTop />
+    <section className="relative py-20 sm:py-32 bg-secondary/20 fade-border-top">
       <div className="container mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl sm:text-5xl font-bold mb-4">

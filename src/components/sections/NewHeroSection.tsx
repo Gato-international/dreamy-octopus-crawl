@@ -1,12 +1,11 @@
 import { useTranslation } from "react-i18next";
-import CurvedDivider from "@/components/ui/CurvedDivider";
 
 export const NewHeroSection = () => {
   const { t } = useTranslation();
   const videoSrc = 'https://oqhvemhomwksenicoktf.supabase.co/storage/v1/object/public/assets/Untitled design (1).mp4';
 
   return (
-    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden fade-border-bottom">
       <video
         src={videoSrc}
         autoPlay
@@ -24,7 +23,6 @@ export const NewHeroSection = () => {
           {t('homePage.hero.slogan')}
         </h2>
       </div>
-      <CurvedDivider />
     </section>
   );
 };
