@@ -4,7 +4,7 @@ export const WhatIsItSection = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="relative bg-background -mt-[30vh] pt-[40vh] pb-20 sm:pb-32">
+    <section className="relative bg-background -mt-[25vh] pt-[30vh] pb-20 sm:pb-32">
       <div className="container mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
