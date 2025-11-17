@@ -3,7 +3,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { showSuccess } from '@/utils/toast';
 import { Helmet } from 'react-helmet-async';
-import DOMPurify from 'dompurify';
+import * as DOMPurify from 'dompurify';
 
 type Comment = {
   id: string;
