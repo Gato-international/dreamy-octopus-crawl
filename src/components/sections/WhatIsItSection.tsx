@@ -4,7 +4,7 @@ export const WhatIsItSection = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="relative -mt-24 pt-44 pb-20 sm:pt-56 sm:pb-32">
+    <section className="relative -mt-48 pt-64 sm:pt-80 pb-20 sm:pb-32">
       <div className="container mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
