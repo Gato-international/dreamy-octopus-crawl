@@ -7,14 +7,13 @@ export const NewHeroSection = () => {
   return (
     <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
       <video
-        key={videoSrc}
-        src={videoSrc}
         autoPlay
         loop
         muted
         playsInline
         className="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover"
       >
+        <source src={videoSrc} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div className="absolute z-10 inset-0 bg-neutral-900/70"></div>
