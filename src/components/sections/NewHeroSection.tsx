@@ -5,7 +5,7 @@ export const NewHeroSection = () => {
   const videoSrc = 'https://oqhvemhomwksenicoktf.supabase.co/storage/v1/object/public/assets/background1.mp4';
 
   return (
-    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden glow-border-bottom">
+    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
       <video
         src={videoSrc}
         autoPlay
@@ -26,6 +26,8 @@ export const NewHeroSection = () => {
           {t('homePage.hero.tagline')}
         </p>
       </div>
+
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent z-10"></div>
     </section>
   );
 };
