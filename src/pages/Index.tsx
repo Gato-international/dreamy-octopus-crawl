@@ -4,7 +4,6 @@ import { WhatIsItSection } from "@/components/sections/WhatIsItSection";
 import { HowItWorksSection } from "@/components/sections/HowItWorksSection";
 import { SpecsSection } from "@/components/sections/SpecsSection";
 import { BenefitsSection } from "@/components/sections/BenefitsSection";
-import { CtaSection } from "@/components/sections/CtaSection";
 import { Hero } from "@/components/ui/animated-hero";
 
 const Index = () => {
@@ -21,7 +20,6 @@ const Index = () => {
       <SpecsSection />
       <BenefitsSection />
       <Hero />
-      <CtaSection />
     </>
   );
 };
