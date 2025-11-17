@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check } from "lucide-react";
+import { Check, Crown, Palette, FlaskConical, DollarSign } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -68,28 +68,41 @@ const Pricing = () => {
           </p>
         </div>
 
-        <Card className="mb-12 lg:mb-20 max-w-4xl mx-auto bg-card/50 backdrop-blur-sm">
+        <Card className="mb-12 lg:mb-20 max-w-4xl mx-auto bg-card/50 backdrop-blur-sm text-center">
           <CardHeader>
-            <CardTitle className="text-2xl text-center">{t('pricingPage.revenueExample.title')}</CardTitle>
+            <CardTitle className="text-2xl sm:text-3xl font-bold font-heading">
+              {t('pricingPage.directPurchase.title')}
+            </CardTitle>
+            <CardDescription className="max-w-2xl mx-auto pt-2">
+              {t('pricingPage.directPurchase.description')}
+            </CardDescription>
           </CardHeader>
-          <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
-              <p className="text-4xl font-bold">40</p>
-              <p className="text-foreground/80">{t('pricingPage.revenueExample.spraysPerDay')}</p>
+          <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            <div className="flex flex-col items-center">
+              <DollarSign className="h-10 w-10 mb-3 text-primary" />
+              <h4 className="font-semibold">100% Revenue</h4>
+              <p className="text-sm text-foreground/70">Keep every euro from every spray.</p>
             </div>
-            <div>
-              <p className="text-4xl font-bold">€120</p>
-              <p className="text-foreground/80">{t('pricingPage.revenueExample.dailyRevenue')}</p>
+            <div className="flex flex-col items-center">
+              <Palette className="h-10 w-10 mb-3 text-primary" />
+              <h4 className="font-semibold">Full Branding</h4>
+              <p className="text-sm text-foreground/70">Customize the machine with your logo and colors.</p>
             </div>
-            <div>
-              <p className="text-4xl font-bold">€3.600</p>
-              <p className="text-foreground/80">{t('pricingPage.revenueExample.monthlyRevenue')}</p>
+            <div className="flex flex-col items-center">
+              <FlaskConical className="h-10 w-10 mb-3 text-primary" />
+              <h4 className="font-semibold">Curate Scents</h4>
+              <p className="text-sm text-foreground/70">Select the perfect fragrance lineup for your venue.</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <Crown className="h-10 w-10 mb-3 text-primary" />
+              <h4 className="font-semibold">Asset Ownership</h4>
+              <p className="text-sm text-foreground/70">The machine becomes a valuable asset for your business.</p>
             </div>
           </CardContent>
-          <CardFooter>
-            <p className="text-sm text-foreground/60 mx-auto text-center">
-              {t('pricingPage.revenueExample.disclaimer')}
-            </p>
+          <CardFooter className="flex justify-center">
+            <Button asChild size="lg">
+              <Link to="/contact">{t('pricingPage.directPurchase.cta')}</Link>
+            </Button>
           </CardFooter>
         </Card>
 

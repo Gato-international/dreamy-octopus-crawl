@@ -96,12 +96,10 @@
       "title": "Verdien met elke spray",
       "description": "Met de Parfum Vending Machine – Pay per Spray – bieden we uw bezoekers een luxe parfumervaring voor slechts €3 per spray. Ideaal voor een snelle opfrisser na het sporten, na het werk of voor een avondje uit."
     },
-    "revenueExample": {
-      "title": "Voorbeeld Omzetberekening",
-      "spraysPerDay": "Gem. sprays per dag",
-      "dailyRevenue": "Gem. dagomzet",
-      "monthlyRevenue": "Gem. maandomzet",
-      "disclaimer": "*De daadwerkelijke resultaten zijn afhankelijk van locatie, zichtbaarheid en passantenstroom."
+    "directPurchase": {
+      "title": "Directe Aankoop: Word Eigenaar",
+      "description": "Voor degenen die volledige controle en eigendom wensen, is de aankoop van een Fragancao-machine de ultieme investering in de zintuiglijke ervaring van uw merk.",
+      "cta": "Informeer naar Aankoop"
     },
     "tiers": {
       "placement": {

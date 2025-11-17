@@ -96,12 +96,10 @@
       "title": "Earn with every spray",
       "description": "With the Perfume Vending Machine – Pay per Spray – we offer your visitors a luxury perfume experience for just €3 per spray. Ideal for a quick refresh after sports, after work, or for a night out."
     },
-    "revenueExample": {
-      "title": "Example Revenue Calculation",
-      "spraysPerDay": "Avg. sprays per day",
-      "dailyRevenue": "Avg. daily revenue",
-      "monthlyRevenue": "Avg. monthly revenue",
-      "disclaimer": "*Actual results depend on location, visibility, and foot traffic."
+    "directPurchase": {
+      "title": "Direct Purchase: Own Your Machine",
+      "description": "For those who want full control and ownership, purchasing a Fragancao machine is the ultimate investment in your brand's sensory experience.",
+      "cta": "Inquire About Purchase"
     },
     "tiers": {
       "placement": {
