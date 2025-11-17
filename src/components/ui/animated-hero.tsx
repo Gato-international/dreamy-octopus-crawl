@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { MoveRight, PhoneCall } from "lucide-react";
 
 function Hero() {
   const { t } = useTranslation();
@@ -25,17 +24,18 @@ function Hero() {
   }, [titleNumber, titles]);
 
   return (
-    <div className="w-full h-screen flex items-center justify-center">
+    <div className="w-full">
       <div className="container mx-auto">
-        <div className="flex gap-8 items-center lg:items-start justify-center flex-col max-w-3xl mx-auto lg:mx-0 text-center lg:text-left">
+        <div className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
           <div className="flex gap-4 flex-col">
-            <h1 className="text-5xl md:text-7xl tracking-tighter font-heading">
-              {t('animatedHero.title')}
-              <span className="relative block h-16 md:h-24">
+            <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular">
+              <span className="text-foreground">{t('animatedHero.title')}</span>
+              <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
+                &nbsp;
                 {titles.map((title, index) => (
                   <motion.span
                     key={index}
-                    className="absolute w-full left-0"
+                    className="absolute font-semibold"
                     initial={{ opacity: 0, y: "-100" }}
                     transition={{ type: "spring", stiffness: 50 }}
                     animate={
@@ -56,22 +56,16 @@ function Hero() {
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl">
+            <p className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">
               {t('animatedHero.description')}
             </p>
           </div>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button asChild size="lg" variant="outline" className="gap-2">
-              <Link to="/contact">
-                {t('animatedHero.requestConsultation')}
-                <PhoneCall className="w-4 h-4" />
-              </Link>
+            <Button asChild size="lg">
+              <Link to="/contact">{t('homePage.cta.button1')}</Link>
             </Button>
-            <Button asChild size="lg" className="gap-2">
-              <Link to="/pricing">
-                {t('animatedHero.becomePartner')}
-                <MoveRight className="w-4 h-4" />
-              </Link>
+            <Button asChild variant="outline" size="lg">
+              <Link to="/pricing">{t('homePage.cta.button2')}</Link>
             </Button>
           </div>
         </div>
