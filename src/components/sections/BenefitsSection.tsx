@@ -4,7 +4,7 @@ import { TrendingUp, BadgePercent, MapPin, Smartphone } from "lucide-react";
 import React from "react";
 
 const BenefitCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
-  <Card className="bg-card/50 backdrop-blur-sm text-center hover:border-primary/50 transition-colors duration-300 h-full">
+  <Card className="bg-card text-center hover:border-primary/50 transition-colors duration-300 h-full">
     <CardHeader className="items-center">
       <div className="flex items-center justify-center h-16 w-16 rounded-full bg-secondary mb-4">
         {icon}
