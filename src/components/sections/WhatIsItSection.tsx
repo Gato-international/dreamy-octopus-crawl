@@ -20,8 +20,8 @@ export const WhatIsItSection = () => {
           </div>
           <div>
             <img 
-              src="/fragrance-machine-gallery.png" 
-              alt="Fragrance Vending Machine Close-up" 
+              src="/fragrance-machine-with-model.png" 
+              alt="Woman using the Fragrance Vending Machine" 
               className="rounded-lg w-full h-auto object-contain"
             />
           </div>
