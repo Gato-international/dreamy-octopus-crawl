@@ -19,14 +19,20 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
   return (
     <div className={cn(
-      "relative flex flex-col min-h-screen",
-      isMobile ? 'pb-16' : '',
+      "relative min-h-screen",
       isHomePage && 'bg-background'
     )}>
       {!isHomePage && <AnimatedBackground />}
-      <Header />
-      <main className="flex-grow relative z-10">{children}</main>
-      <Footer />
+      
+      <div className={cn(
+        "relative z-10 flex flex-col min-h-screen",
+        isMobile ? 'pb-16' : ''
+      )}>
+        <Header />
+        <main className="flex-grow">{children}</main>
+        <Footer />
+      </div>
+
       <MobileNav />
       <CookieBanner />
     </div>
