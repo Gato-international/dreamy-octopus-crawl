@@ -1,16 +1,87 @@
 import { useTranslation } from "react-i18next";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+
+const LOCAL_STORAGE_KEY = 'fragancao-metrics-positions-v2';
+
+// A helper component for the draggable points
+const DraggableHandle = ({ position, onMouseDown, cursor }: {
+  position: { x: number; y: number };
+  onMouseDown: (e: React.MouseEvent) => void;
+  cursor: string;
+}) => (
+  <div
+    style={{ top: `${position.y}%`, left: `${position.x}%`, cursor }}
+    className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-primary/70 rounded-full pointer-events-auto ring-2 ring-background"
+    onMouseDown={onMouseDown}
+  />
+);
 
 export const SpecsSection = () => {
   const { t } = useTranslation();
   const [viewMode, setViewMode] = useState("specs");
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const lines = {
+  const defaultLines = {
     height: { p1: { x: 104, y: 0 }, p2: { x: 104, y: 100 }, text: "410mm" },
     width: { p1: { x: 0, y: 104 }, p2: { x: 78, y: 104 }, text: "730mm" },
     depth: { p1: { x: 78, y: 104 }, p2: { x: 100, y: 104 }, text: "222mm" },
   };
+
+  const [lines, setLines] = useState(() => {
+    try {
+      const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+      return saved ? JSON.parse(saved) : defaultLines;
+    } catch (error) {
+      console.error("Failed to parse metrics from localStorage", error);
+      return defaultLines;
+    }
+  });
+
+  const [dragging, setDragging] = useState<{ line: 'height' | 'width' | 'depth'; point: 'p1' | 'p2' } | null>(null);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(lines));
+    } catch (error) {
+      console.error("Failed to save metrics to localStorage", error);
+    }
+  }, [lines]);
+
+  const handleMouseDown = (e: React.MouseEvent, line: 'height' | 'width' | 'depth', point: 'p1' | 'p2') => {
+    e.preventDefault();
+    setDragging({ line, point });
+  };
+
+  const handleMouseUp = useCallback(() => {
+    setDragging(null);
+  }, []);
+
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    if (!dragging || !containerRef.current) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = Math.max(-10, Math.min(110, ((e.clientX - rect.left) / rect.width) * 100));
+    const y = Math.max(-10, Math.min(110, ((e.clientY - rect.top) / rect.height) * 100));
+
+    setLines(prevLines => {
+      const newLines = JSON.parse(JSON.stringify(prevLines)); // Deep copy
+      newLines[dragging.line][dragging.point] = { x, y };
+      return newLines;
+    });
+  }, [dragging]);
+
+  useEffect(() => {
+    if (dragging) {
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
+    }
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [dragging, handleMouseMove, handleMouseUp]);
+
 
   const features = [
     // Left side
@@ -101,11 +172,11 @@ export const SpecsSection = () => {
               className="w-full h-auto rounded-lg"
             />
             
-            <div className="absolute inset-8 md:inset-16 hidden md:block">
+            <div ref={containerRef} className="absolute inset-8 md:inset-16 hidden md:block">
               
               {viewMode === 'metrics' && (
-                <div className="absolute top-0 left-0 w-full h-full text-sm text-foreground/80 pointer-events-none">
-                  <svg width="100%" height="100%" className="absolute top-0 left-0 overflow-visible">
+                <div className="absolute top-0 left-0 w-full h-full text-sm text-foreground/80">
+                  <svg width="100%" height="100%" className="absolute top-0 left-0 pointer-events-none overflow-visible">
                     {Object.values(lines).map((line, index) => {
                       const dx = line.p2.x - line.p1.x;
                       const dy = line.p2.y - line.p1.y;
@@ -147,7 +218,11 @@ export const SpecsSection = () => {
                     };
 
                     return (
-                      <p key={key} style={textStyle}>{line.text}</p>
+                      <React.Fragment key={key}>
+                        <p style={textStyle}>{line.text}</p>
+                        <DraggableHandle position={line.p1} onMouseDown={(e) => handleMouseDown(e, key as any, 'p1')} cursor="move" />
+                        <DraggableHandle position={line.p2} onMouseDown={(e) => handleMouseDown(e, key as any, 'p2')} cursor="move" />
+                      </React.Fragment>
                     )
                   })}
                 </div>
