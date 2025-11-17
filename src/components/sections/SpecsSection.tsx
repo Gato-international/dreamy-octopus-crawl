@@ -9,27 +9,27 @@ export const SpecsSection = () => {
       title: t('homePage.specs.step1_title'),
       description: t('homePage.specs.step1_desc'),
       textPosition: { top: '10%', left: '0%' },
-      path: "M 120,150 Q 180,120 250,200",
-      endPoint: { x: 250, y: 200 },
+      path: "M 250,150 C 350,150 350,250 450,250",
+      endPoint: { x: 450, y: 250 },
       textAlignment: 'text-left'
     },
     {
       title: t('homePage.specs.step2_title'),
       description: t('homePage.specs.step2_desc'),
       textPosition: { top: '40%', left: '0%' },
-      path: "M 120,450 Q 180,480 250,350",
-      endPoint: { x: 250, y: 350 },
+      path: "M 250,450 C 350,450 350,350 450,350",
+      endPoint: { x: 450, y: 350 },
       textAlignment: 'text-left'
     },
     {
       title: t('homePage.specs.step3_title'),
       description: t('homePage.specs.step3_desc'),
       textPosition: { top: '70%', left: '0%' },
-      path: "M 120,750 Q 180,780 250,550",
-      endPoint: { x: 250, y: 550 },
+      path: "M 250,750 C 350,750 350,550 450,550",
+      endPoint: { x: 450, y: 550 },
       textAlignment: 'text-left'
     },
-    // Right side - Reworked with Cubic Bézier curves
+    // Right side
     {
       title: t('homePage.specs.step4_title'),
       description: t('homePage.specs.step4_desc'),
