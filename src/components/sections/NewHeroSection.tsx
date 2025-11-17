@@ -23,9 +23,6 @@ export const NewHeroSection = () => {
           {t('homePage.hero.slogan')}
         </h2>
       </div>
-
-      {/* Smooth transition border */}
-      <div className="absolute bottom-0 left-0 right-0 h-px w-full bg-gradient-to-r from-transparent via-border to-transparent" />
     </section>
   );
 };
