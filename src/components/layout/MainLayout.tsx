@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import { AnimatedBackground } from "@/components/ui/hero-section";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { MobileNav } from "./MobileNav";
+import { CookieBanner } from "@/components/CookieBanner";
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -19,6 +20,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       <main className="flex-grow relative z-10">{children}</main>
       <Footer />
       <MobileNav />
+      <CookieBanner />
     </div>
   );
 };

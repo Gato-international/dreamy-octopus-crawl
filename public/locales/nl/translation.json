@@ -168,5 +168,10 @@
       "messagePlaceholder": "Typ hier uw bericht.",
       "submit": "Verstuur Bericht"
     }
+  },
+  "cookieBanner": {
+    "message": "Wij gebruiken cookies om uw surfervaring te verbeteren en ons verkeer te analyseren. Door op 'Alles accepteren' te klikken, stemt u in met ons gebruik van cookies.",
+    "accept": "Alles accepteren",
+    "decline": "Weigeren"
   }
 }
