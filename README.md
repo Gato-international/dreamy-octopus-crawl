@@ -34,18 +34,6 @@ Fragancao is a modern, elegant, and fully responsive website for a luxury automa
 
 ---
 
-## 🛡️ Security
-
-This website is built with security as a priority. Several measures have been implemented to protect the application and its users:
-
-- **Content Security Policy (CSP)**: A strict CSP is in place to prevent Cross-Site Scripting (XSS) and data injection attacks by controlling which resources the browser is allowed to load.
-- **HTTP Security Headers**: Additional headers like `X-Frame-Options` and `X-Content-Type-Options` are used to prevent clickjacking and MIME-type sniffing attacks.
-- **Supabase Row Level Security (RLS)**: All database tables are protected with RLS policies, ensuring that data access is strictly controlled and users can only perform actions they are authorized for.
-- **Input Sanitization**: User-generated content is sanitized before being rendered to prevent malicious scripts from being executed.
-- **Secure Backend Functions**: The contact form leverages a Supabase Edge Function, keeping sensitive keys and logic on the server-side, away from the client.
-
----
-
 ## 🛠️ Tech Stack
 
 This project is built with a range of modern technologies:

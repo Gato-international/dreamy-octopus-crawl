@@ -1,88 +1,91 @@
-"use client";
+import * as React from "react"
+import { motion } from "framer-motion"
+import { cn } from "@/lib/utils"
+import { LucideIcon } from "lucide-react"
 
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
-  MotionValue,
-} from "framer-motion";
-import React, { useRef, ElementType } from "react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+interface DockProps {
+  className?: string
+  items: {
+    icon: LucideIcon
+    label: string
+    onClick?: () => void
+  }[]
+}
 
-type DockItemData = {
-  icon: ElementType;
-  label: string;
-  onClick: () => void;
-};
+interface DockIconButtonProps {
+  icon: LucideIcon
+  label: string
+  onClick?: () => void
+  className?: string
+}
 
-type DockProps = {
-  items: DockItemData[];
-};
+const floatingAnimation = {
+  initial: { y: 0 },
+  animate: {
+    y: [-2, 2, -2],
+    transition: {
+      duration: 4,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  }
+}
 
-const DockItem = ({
-  mouseX,
-  item,
-}: {
-  mouseX: MotionValue;
-  item: DockItemData;
-}) => {
-  const ref = useRef<HTMLButtonElement>(null);
+const DockIconButton = React.forwardRef<HTMLButtonElement, DockIconButtonProps>(
+  ({ icon: Icon, label, onClick, className }, ref) => {
+    return (
+      <motion.button
+        ref={ref}
+        whileHover={{ scale: 1.1, y: -2 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={onClick}
+        className={cn(
+          "relative group p-3 rounded-lg",
+          "hover:bg-secondary transition-colors",
+          className
+        )}
+      >
+        <Icon className="w-5 h-5 text-foreground" />
+        <span className={cn(
+          "absolute -top-8 left-1/2 -translate-x-1/2",
+          "px-2 py-1 rounded text-xs",
+          "bg-popover text-popover-foreground",
+          "opacity-0 group-hover:opacity-100",
+          "transition-opacity whitespace-nowrap pointer-events-none"
+        )}>
+          {label}
+        </span>
+      </motion.button>
+    )
+  }
+)
+DockIconButton.displayName = "DockIconButton"
 
-  const distance = useTransform(mouseX, (val) => {
-    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
-    return Number(val) - bounds.x - bounds.width / 2;
-  });
-
-  const widthSync = useTransform(distance, [-100, 0, 100], [48, 80, 48]);
-  const width = useSpring(widthSync, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
-  });
-
-  return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <motion.button
-          ref={ref}
-          style={{ width }}
-          className="flex aspect-square w-12 cursor-pointer items-center justify-center rounded-full bg-background"
-          onClick={item.onClick}
-        >
-          <item.icon className="h-6 w-6" />
-        </motion.button>
-      </TooltipTrigger>
-      <TooltipContent>
-        <p>{item.label}</p>
-      </TooltipContent>
-    </Tooltip>
-  );
-};
-
-export const Dock = ({ items }: DockProps) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const mouseX = useMotionValue(Infinity);
-
-  return (
-    <TooltipProvider>
-      <div className="flex justify-center">
-        <div
-          ref={ref}
-          onMouseMove={(e) => mouseX.set(e.clientX)}
-          onMouseLeave={() => mouseX.set(Infinity)}
-          className="flex h-16 items-end justify-center gap-3 rounded-full bg-secondary/50 px-3 pb-3 backdrop-blur-md"
-        >
-          {items.map((item, i) => (
-            <DockItem key={i} mouseX={mouseX} item={item} />
-          ))}
+const Dock = React.forwardRef<HTMLDivElement, DockProps>(
+  ({ items, className }, ref) => {
+    return (
+      <div ref={ref} className={cn("w-full h-24 flex items-center justify-center p-2", className)}>
+        <div className="w-full max-w-4xl h-full rounded-2xl flex items-center justify-center relative">
+          <motion.div
+            initial="initial"
+            animate="animate"
+            variants={floatingAnimation}
+            className={cn(
+              "flex items-center gap-1 p-2 rounded-2xl",
+              "backdrop-blur-lg border shadow-lg",
+              "bg-background/90 border-border",
+              "hover:shadow-xl transition-shadow duration-300"
+            )}
+          >
+            {items.map((item) => (
+              <DockIconButton key={item.label} {...item} />
+            ))}
+          </motion.div>
         </div>
       </div>
-    </TooltipProvider>
-  );
-};
+    )
+  }
+)
+Dock.displayName = "Dock"
+
+export { Dock }

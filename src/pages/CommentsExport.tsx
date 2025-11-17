@@ -3,7 +3,6 @@ import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { showSuccess } from '@/utils/toast';
 import { Helmet } from 'react-helmet-async';
-import DOMPurify from 'dompurify';
 
 type Comment = {
   id: string;
@@ -92,7 +91,7 @@ const CommentsExport = () => {
                 <ul className="list-disc pl-5 space-y-4">
                   {comments.map((comment) => (
                     <li key={comment.id}>
-                      <p className="font-semibold" dangerouslySetInnerHTML={{ __html: `"${DOMPurify.sanitize(comment.content)}"` }} />
+                      <p className="font-semibold">"{comment.content}"</p>
                       <p className="text-sm text-muted-foreground">
                         Position: ({Math.round(comment.x_coordinate)}%, {Math.round(comment.y_coordinate)}%)
                         <br />
