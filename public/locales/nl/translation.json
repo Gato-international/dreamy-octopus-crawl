@@ -14,60 +14,89 @@
     "subscribe": "Inschrijven",
     "copyright": "© {{year}} Fragancao. Alle rechten voorbehouden."
   },
+  "homePage": {
+    "hero": {
+      "slogan": "Innovating the way the world experiences scent."
+    },
+    "whatIsIt": {
+      "title": "Eén spray, eindeloze beleving.",
+      "paragraph1": "De Parfum Vending Machine is een stijlvolle toevoeging aan elke locatie. Bezoekers kiezen met één aanraking hun favoriete geur en genieten direct van een korte, verfrissende spray --- een kleine beleving die groots aanvoelt.",
+      "paragraph2": "Het apparaat werkt volledig automatisch en contactloos, en is speciaal ontwikkeld voor plekken met veel bezoekers, zoals clubs, hotels, sportscholen en luchthavens.",
+      "paragraph3": "Elke machine bevat tot vijf zorgvuldig geselecteerde parfums, afgestemd op verschillende stijlen en doelgroepen.",
+      "paragraph4": "Zo geef je jouw gasten iets extra's: een moment van verfrissing, een glimlach, een herinnering --- én creëer je tegelijkertijd een nieuwe bron van omzet, zonder moeite of onderhoud."
+    },
+    "howItWorks": {
+      "title": "Slimme technologie, simpele werking",
+      "step1": {
+        "title": "Kies je geur",
+        "description": "Selecteer eenvoudig je favoriete parfum via het digitale touchscreen"
+      },
+      "step2": {
+        "title": "Betaal contactloos",
+        "description": "Betaal snel en veilig met je bankpas of smartphone"
+      },
+      "step3": {
+        "title": "Geniet van je geur",
+        "description": "Ontvang direct een verfrissende spray van jouw gekozen parfum"
+      },
+      "step4": {
+        "title": "Ga verder met je dag",
+        "description": "Ervaar de luxe van een signature geur, waar je ook bent"
+      }
+    },
+    "specs": {
+      "title": "Designed to be remembered",
+      "touchscreen": "Digitaal touchscreen",
+      "touchscreenDesc": "Gebruiksvriendelijke interface",
+      "payment": "Contactloos betaalsysteem",
+      "paymentDesc": "Pin & mobiel betalen",
+      "slots": "5 parfum slots",
+      "slotsDesc": "Zorgvuldig geselecteerde geuren",
+      "outlets": "Spray outlets",
+      "outletsDesc": "Hygiënische, contactloze spray",
+      "backend": "Smart backend systeem",
+      "backendDesc": "Real-time voorraad & verkoop tracking",
+      "dimensions": "Afmetingen",
+      "dimensionsDesc": "H: 180cm, B: 60cm, D: 40cm"
+    },
+    "benefits": {
+      "title": "Revolutionize your retail space",
+      "benefit1": {
+        "title": "Extra Inkomstenbron",
+        "description": "Genereer passief inkomen zonder extra inspanning of personeel"
+      },
+      "benefit2": {
+        "title": "Verbeterde Klantbeleving",
+        "description": "Bied je gasten een unieke, memorabele ervaring"
+      },
+      "benefit3": {
+        "title": "Volledig Geautomatiseerd",
+        "description": "Geen onderhoud, geen gedoe - alles verloopt automatisch"
+      },
+      "benefit4": {
+        "title": "Data & Inzichten",
+        "description": "Real-time dashboard met verkoopcijfers en populaire geuren"
+      },
+      "benefit5": {
+        "title": "Perfect voor Premium Locaties",
+        "description": "Ideaal voor clubs, hotels, sportscholen, restaurants, airports"
+      },
+      "benefit6": {
+        "title": "Betrouwbaar & Hygiënisch",
+        "description": "Contactloos en veilig in gebruik"
+      }
+    },
+    "cta": {
+      "button1": "Boek een Gratis Consultatie",
+      "button2": "Word Partner"
+    }
+  },
   "animatedHero": {
     "title": "Een Geurervaring, Heruitgevonden als",
     "adjectives": ["elegant", "luxueus", "innovatief", "boeiend", "verfijnd"],
     "description": "Verrijk uw locatie met een vleugje moderne luxe. Onze geautomatiseerde parfumautomaat biedt een unieke, gedenkwaardige ervaring voor uw gasten en creëert een nieuwe inkomstenbron zonder voorafgaande investering.",
     "requestConsultation": "Vraag een Consult aan",
     "becomePartner": "Word een Partner"
-  },
-  "indexPage": {
-    "mainHero": {
-      "title": "Fragancao – Waar Luxe en Innovatie samenkomen"
-    },
-    "engineeredForElegance": {
-      "title": "Ontworpen voor Elegantie",
-      "description": "Onze automaat is meer dan alleen een dispenser; het is een statement-stuk dat naadloos integreert in elke luxe omgeving. Elk detail is zorgvuldig vervaardigd voor een ongeëvenaarde gebruikerservaring.",
-      "features": {
-        "design": {
-          "title": "Strak & Compact Ontwerp",
-          "description": "Met een breedte van slechts 60 cm past de minimalistische esthetiek bij elk interieur, van hotellobby's tot exclusieve clubs."
-        },
-        "touchscreen": {
-          "title": "Interactief Touchscreen",
-          "description": "Een levendig, high-definition display leidt gebruikers door de geurselectie met prachtige visuals en intuïtieve navigatie."
-        },
-        "atomization": {
-          "title": "Geavanceerde Verneveling",
-          "description": "Onze gepatenteerde technologie zorgt telkens voor een perfecte, fijne neveltoepassing, waardoor de geurervaring wordt gemaximaliseerd zonder verspilling."
-        },
-        "payments": {
-          "title": "Veilige Contactloze Betalingen",
-          "description": "Uitgerust met de nieuwste NFC-technologie voor snelle, veilige en gemakkelijke tap-to-pay transacties."
-        }
-      }
-    },
-    "featuresSection": {
-      "title": "Wat Wij Bieden"
-    },
-    "seamlessExperience": {
-      "title": "Een Naadloze Ervaring voor Uw Gasten",
-      "description": "Onze machine biedt een eenvoudige, intuïtieve reis voor uw klanten, waardoor een gedenkwaardige, premium voorziening ontstaat die moeiteloos inkomsten genereert voor uw bedrijf.",
-      "steps": {
-        "selection": {
-          "title": "1. Intuïtieve Selectie",
-          "description": "Gasten bladeren door een samengestelde collectie van premium parfums op het levendige touchscreen en vinden de perfecte geur om hun ervaring op uw locatie te verbeteren."
-        },
-        "payment": {
-          "title": "2. Moeiteloze Betaling",
-          "description": "Met moderne contactloze betalingstechnologie zijn transacties snel, veilig en naadloos. Een simpele tik is alles wat nodig is."
-        },
-        "luxury": {
-          "title": "3. Een Vleugje Luxe",
-          "description": "Onze geavanceerde verneveling levert een perfecte nevel, wat zorgt voor een verfijnde geurervaring die een blijvende positieve indruk achterlaat."
-        }
-      }
-    }
   },
   "pricingPage": {
     "title": "Partnerships & Prijzen",

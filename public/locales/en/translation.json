@@ -14,60 +14,89 @@
     "subscribe": "Subscribe",
     "copyright": "© {{year}} Fragancao. All rights reserved."
   },
+  "homePage": {
+    "hero": {
+      "slogan": "Innovating the way the world experiences scent."
+    },
+    "whatIsIt": {
+      "title": "One spray, endless experience.",
+      "paragraph1": "The Perfume Vending Machine is a stylish addition to any location. Visitors select their favorite fragrance with a single touch and instantly enjoy a short, refreshing spray --- a small experience that feels grand.",
+      "paragraph2": "The device is fully automatic and contactless, specially developed for high-traffic areas such as clubs, hotels, gyms, and airports.",
+      "paragraph3": "Each machine contains up to five carefully selected perfumes, tailored to different styles and target audiences.",
+      "paragraph4": "This way, you offer your guests something extra: a moment of refreshment, a smile, a memory --- while simultaneously creating a new source of revenue, without effort or maintenance."
+    },
+    "howItWorks": {
+      "title": "Smart technology, simple operation",
+      "step1": {
+        "title": "Choose your scent",
+        "description": "Easily select your favorite perfume via the digital touchscreen"
+      },
+      "step2": {
+        "title": "Pay contactlessly",
+        "description": "Pay quickly and securely with your bank card or smartphone"
+      },
+      "step3": {
+        "title": "Enjoy your scent",
+        "description": "Instantly receive a refreshing spray of your chosen perfume"
+      },
+      "step4": {
+        "title": "Continue your day",
+        "description": "Experience the luxury of a signature scent, wherever you are"
+      }
+    },
+    "specs": {
+      "title": "Designed to be remembered",
+      "touchscreen": "Digital touchscreen",
+      "touchscreenDesc": "User-friendly interface",
+      "payment": "Contactless payment system",
+      "paymentDesc": "Card & mobile payments",
+      "slots": "5 perfume slots",
+      "slotsDesc": "Carefully selected fragrances",
+      "outlets": "Spray outlets",
+      "outletsDesc": "Hygienic, contactless spray",
+      "backend": "Smart backend system",
+      "backendDesc": "Real-time stock & sales tracking",
+      "dimensions": "Dimensions",
+      "dimensionsDesc": "H: 180cm, W: 60cm, D: 40cm"
+    },
+    "benefits": {
+      "title": "Revolutionize your retail space",
+      "benefit1": {
+        "title": "Extra Revenue Stream",
+        "description": "Generate passive income without extra effort or staff"
+      },
+      "benefit2": {
+        "title": "Enhanced Customer Experience",
+        "description": "Offer your guests a unique, memorable experience"
+      },
+      "benefit3": {
+        "title": "Fully Automated",
+        "description": "No maintenance, no hassle - everything runs automatically"
+      },
+      "benefit4": {
+        "title": "Data & Insights",
+        "description": "Real-time dashboard with sales figures and popular scents"
+      },
+      "benefit5": {
+        "title": "Perfect for Premium Locations",
+        "description": "Ideal for clubs, hotels, gyms, restaurants, airports"
+      },
+      "benefit6": {
+        "title": "Reliable & Hygienic",
+        "description": "Contactless and safe to use"
+      }
+    },
+    "cta": {
+      "button1": "Book a Free Consultation",
+      "button2": "Become a Partner"
+    }
+  },
   "animatedHero": {
     "title": "A Fragrance Experience, Reimagined as",
     "adjectives": ["elegant", "luxurious", "innovative", "captivating", "refined"],
     "description": "Elevate your venue with a touch of modern luxury. Our automated fragrance machine offers a unique, memorable experience for your guests, creating a new revenue stream with zero upfront investment.",
     "requestConsultation": "Request a Consultation",
     "becomePartner": "Become a Partner"
-  },
-  "indexPage": {
-    "mainHero": {
-      "title": "Fragancao – Where Luxury Meets Innovation"
-    },
-    "engineeredForElegance": {
-      "title": "Engineered for Elegance",
-      "description": "Our vending machine is more than just a dispenser; it's a statement piece designed to blend seamlessly into any luxury environment. Every detail has been meticulously crafted to offer an unparalleled user experience.",
-      "features": {
-        "design": {
-          "title": "Sleek & Compact Design",
-          "description": "With a width of just 60cm, its minimalist aesthetic complements any interior, from hotel lobbies to exclusive clubs."
-        },
-        "touchscreen": {
-          "title": "Interactive Touchscreen",
-          "description": "A vibrant, high-definition display guides users through scent selection with beautiful visuals and intuitive navigation."
-        },
-        "atomization": {
-          "title": "Advanced Atomization",
-          "description": "Our patented technology ensures a perfect, fine mist application every time, maximizing the fragrance experience without waste."
-        },
-        "payments": {
-          "title": "Secure Contactless Payments",
-          "description": "Equipped with the latest NFC technology for fast, secure, and convenient tap-to-pay transactions."
-        }
-      }
-    },
-    "featuresSection": {
-      "title": "What We Offer"
-    },
-    "seamlessExperience": {
-      "title": "A Seamless Experience for Your Guests",
-      "description": "Our machine offers a simple, intuitive journey for your customers, creating a memorable, premium amenity that generates effortless revenue for your business.",
-      "steps": {
-        "selection": {
-          "title": "1. Intuitive Selection",
-          "description": "Guests browse a curated collection of premium perfumes on the vibrant touchscreen, finding the perfect scent to elevate their experience at your venue."
-        },
-        "payment": {
-          "title": "2. Effortless Payment",
-          "description": "With modern contactless payment technology, transactions are quick, secure, and seamless. A simple tap is all it takes."
-        },
-        "luxury": {
-          "title": "3. A Touch of Luxury",
-          "description": "Our advanced atomization delivers a perfect mist, providing a sophisticated fragrance experience that leaves a lasting positive impression."
-        }
-      }
-    }
   },
   "pricingPage": {
     "title": "Partnerships & Pricing",
