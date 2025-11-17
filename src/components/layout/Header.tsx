@@ -6,6 +6,7 @@ import { Menu, X } from 'lucide-react'
 import { useScroll, motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { LanguageSwitcher } from '../LanguageSwitcher'
+import { VersionSwitcher } from '../VersionSwitcher'
 
 const Header = () => {
     const { t } = useTranslation();
@@ -66,7 +67,7 @@ const Header = () => {
                             </div>
                         </div>
 
-                        <div className={cn("mb-6 w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-2 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent", menuState ? "block bg-background" : "hidden")}>
+                        <div className={cn("mb-6 w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-4 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent", menuState ? "block bg-background" : "hidden")}>
                             <div className="lg:hidden">
                                 <ul className="space-y-6 text-base">
                                     {menuItems.map((item, index) => (
@@ -90,7 +91,10 @@ const Header = () => {
                                     </Link>
                                 </Button>
                             </div>
-                             <LanguageSwitcher />
+                             <div className="flex items-center justify-center gap-4 pt-4 lg:pt-0">
+                                <LanguageSwitcher />
+                                <VersionSwitcher />
+                             </div>
                         </div>
                     </motion.div>
                 </div>
