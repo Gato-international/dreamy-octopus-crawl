@@ -13,79 +13,29 @@ const initialMetricLines = {
 
 const initialSpecLines = {
   "line1": {
-    "anchor": {
-      "x": 29.25,
-      "y": 29.68
-    },
-    "end": {
-      "x": 10.97,
-      "y": 13.13
-    },
-    "textPos": {
-      "x": 82.06,
-      "y": 11.07,
-      "align": "left"
-    }
+    "anchor": { "x": 29.25, "y": 29.68 },
+    "end": { "x": 10.97, "y": 13.13 },
+    "textPos": { "x": 82.06, "y": 11.07, "align": "left" }
   },
   "line2": {
-    "anchor": {
-      "x": 28.8,
-      "y": 38.85
-    },
-    "end": {
-      "x": 15,
-      "y": 50
-    },
-    "textPos": {
-      "x": -7.29,
-      "y": 52.65,
-      "align": "left"
-    }
+    "anchor": { "x": 28.8, "y": 38.85 },
+    "end": { "x": 15, "y": 50 },
+    "textPos": { "x": -7.29, "y": 52.65, "align": "left" }
   },
   "line3": {
-    "anchor": {
-      "x": 28.6,
-      "y": 63.13
-    },
-    "end": {
-      "x": 14.68,
-      "y": 84.13
-    },
-    "textPos": {
-      "x": 3.35,
-      "y": 98.14,
-      "align": "left"
-    }
+    "anchor": { "x": 28.6, "y": 63.13 },
+    "end": { "x": 14.68, "y": 84.13 },
+    "textPos": { "x": 3.35, "y": 98.14, "align": "left" }
   },
   "line4": {
-    "anchor": {
-      "x": 60.77,
-      "y": 21.63
-    },
-    "end": {
-      "x": 82.26,
-      "y": 11.3
-    },
-    "textPos": {
-      "x": 10.97,
-      "y": 12.44,
-      "align": "right"
-    }
+    "anchor": { "x": 60.77, "y": 21.63 },
+    "end": { "x": 82.26, "y": 11.3 },
+    "textPos": { "x": 10.97, "y": 12.44, "align": "right" }
   },
   "line5": {
-    "anchor": {
-      "x": 73.67,
-      "y": 45.76
-    },
-    "end": {
-      "x": 85,
-      "y": 65
-    },
-    "textPos": {
-      "x": 101.2,
-      "y": 83.67,
-      "align": "right"
-    }
+    "anchor": { "x": 73.67, "y": 45.76 },
+    "end": { "x": 85, "y": 65 },
+    "textPos": { "x": 101.2, "y": 83.67, "align": "right" }
   }
 };
 
@@ -97,6 +47,13 @@ const DraggablePoint = ({ position, onMouseDown, isDragged }) => (
       "absolute -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-primary/20 border-2 border-primary cursor-grab",
       isDragged ? "cursor-grabbing ring-2 ring-primary ring-offset-2 ring-offset-background" : ""
     )}
+  />
+);
+
+const StaticPoint = ({ position }) => (
+  <div
+    style={{ left: `${position.x}%`, top: `${position.y}%` }}
+    className="absolute -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-primary/20 border border-primary"
   />
 );
 
@@ -140,12 +97,7 @@ export const SpecsSection = () => {
 
     const { type, key, point } = draggedPoint;
 
-    if (type === 'specs') {
-      setSpecLines(prev => ({
-        ...prev,
-        [key]: { ...prev[key], [point]: { ...prev[key][point], x, y } }
-      }));
-    } else if (type === 'metrics') {
+    if (type === 'metrics') {
       setMetricLines(prev => ({
         ...prev,
         [key]: { ...prev[key], [point]: { ...prev[key][point], x, y } }
@@ -221,9 +173,8 @@ export const SpecsSection = () => {
                       <h4 className="font-bold text-sm mb-1 pointer-events-none">{features[index]?.title}</h4>
                       <p className="text-xs text-foreground/80 whitespace-normal pointer-events-none">{features[index]?.description}</p>
                     </div>
-                    <DraggablePoint position={line.anchor} onMouseDown={(e) => handleMouseDown(e, 'specs', key, 'anchor')} isDragged={draggedPoint?.key === key && draggedPoint?.point === 'anchor'} />
-                    <DraggablePoint position={line.end} onMouseDown={(e) => handleMouseDown(e, 'specs', key, 'end')} isDragged={draggedPoint?.key === key && draggedPoint?.point === 'end'} />
-                    <DraggablePoint position={line.textPos} onMouseDown={(e) => handleMouseDown(e, 'specs', key, 'textPos')} isDragged={draggedPoint?.key === key && draggedPoint?.point === 'textPos'} />
+                    <StaticPoint position={line.anchor} />
+                    <StaticPoint position={line.end} />
                   </React.Fragment>
                 ))}
               </div>
