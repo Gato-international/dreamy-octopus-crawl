@@ -27,7 +27,7 @@ const Header = () => {
     }, [scrollYProgress])
 
     return (
-        <header>
+        <header className="hidden lg:block">
             <nav
                 data-state={menuState ? 'active' : 'inactive'}
                 className="group fixed z-20 w-full pt-2">
