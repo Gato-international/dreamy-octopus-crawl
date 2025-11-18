@@ -61,9 +61,9 @@ const Footer = () => {
             {t('footer.tagline')}
           </p>
           <div className="flex space-x-4">
-            <a href="#" aria-label="Facebook"><Facebook className="h-5 w-5 text-foreground/60 hover:text-foreground" /></a>
-            <a href="#" aria-label="Instagram"><Instagram className="h-5 w-5 text-foreground/60 hover:text-foreground" /></a>
-            <a href="#" aria-label="LinkedIn"><Linkedin className="h-5 w-5 text-foreground/60 hover:text-foreground" /></a>
+            <a href="#" aria-label="Facebook"><Facebook className="h-5 w-5 text-[#1877F2] hover:opacity-80 transition-opacity" /></a>
+            <a href="#" aria-label="Instagram"><Instagram className="h-5 w-5 text-[#E4405F] hover:opacity-80 transition-opacity" /></a>
+            <a href="#" aria-label="LinkedIn"><Linkedin className="h-5 w-5 text-[#0A66C2] hover:opacity-80 transition-opacity" /></a>
           </div>
         </div>
 
