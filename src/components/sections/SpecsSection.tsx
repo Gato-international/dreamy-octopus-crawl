@@ -6,9 +6,39 @@ import { showSuccess } from "@/utils/toast";
 import { cn } from "@/lib/utils";
 
 const initialMetricLines = {
-  "depth": { "p1": { "x": 66.24, "y": 85.94 }, "p2": { "x": 75.51, "y": 83.92 }, "text": "222mm" },
-  "height": { "p1": { "x": 78.35, "y": 14.17 }, "p2": { "x": 78.35, "y": 78.9 }, "text": "410mm" },
-  "width": { "p1": { "x": 24.54, "y": 80.31 }, "p2": { "x": 64, "y": 86.14 }, "text": "730mm" }
+  "depth": {
+    "p1": {
+      "x": 66.93,
+      "y": 89.41
+    },
+    "p2": {
+      "x": 75.42,
+      "y": 86.65
+    },
+    "text": "222mm"
+  },
+  "height": {
+    "p1": {
+      "x": 78.45,
+      "y": 9.69
+    },
+    "p2": {
+      "x": 78.35,
+      "y": 82.29
+    },
+    "text": "410mm"
+  },
+  "width": {
+    "p1": {
+      "x": 24.54,
+      "y": 84.58
+    },
+    "p2": {
+      "x": 63.8,
+      "y": 90.56
+    },
+    "text": "730mm"
+  }
 };
 
 const initialSpecLines = {
