@@ -6,7 +6,7 @@ const initialMetricLines = {
   "depth": {
     "p1": { "x": 66.93, "y": 89.41 },
     "p2": { "x": 75.42, "y": 86.65 },
-    "text": "222mm"
+    "text": "225mm"
   },
   "height": {
     "p1": { "x": 78.45, "y": 9.69 },
@@ -80,7 +80,7 @@ export const SpecsSection = () => {
   const mobileMetrics = [
     { title: t('homePage.specs.metrics.height'), value: "450mm" },
     { title: t('homePage.specs.metrics.width'), value: "750mm" },
-    { title: t('homePage.specs.metrics.depth'), value: "222mm" },
+    { title: t('homePage.specs.metrics.depth'), value: "225mm" },
   ];
 
   return (
