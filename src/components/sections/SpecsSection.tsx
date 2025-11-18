@@ -67,7 +67,7 @@ export const SpecsSection = () => {
   ];
 
   return (
-    <section className="py-20 sm:py-32">
+    <section className="pt-20 sm:pt-32">
       <div className="container mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-8">
           <h2 className="text-3xl sm:text-5xl font-bold mb-4 font-heading">
