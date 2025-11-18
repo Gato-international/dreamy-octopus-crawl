@@ -26,18 +26,6 @@ interface DockProps {
   items: (DockItem | DockCustomItem)[]
 }
 
-const floatingAnimation = {
-  initial: { y: 0 },
-  animate: {
-    y: [-2, 2, -2],
-    transition: {
-      duration: 4,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }
-  }
-}
-
 export const DockIconButton = React.forwardRef<HTMLButtonElement, DockIconButtonProps>(
   ({ icon: Icon, label, onClick, className }, ref) => {
     return (
@@ -73,10 +61,7 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
     return (
       <div ref={ref} className={cn("w-full h-24 flex items-center justify-center p-2", className)}>
         <div className="w-full max-w-4xl h-full rounded-2xl flex items-center justify-center relative">
-          <motion.div
-            initial="initial"
-            animate="animate"
-            variants={floatingAnimation}
+          <div
             className={cn(
               "flex items-center gap-1 p-2 rounded-2xl",
               "backdrop-blur-lg border shadow-lg",
@@ -90,7 +75,7 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
               }
               return <DockIconButton key={item.label} {...item as DockItem} />
             })}
-          </motion.div>
+          </div>
         </div>
       </div>
     )
