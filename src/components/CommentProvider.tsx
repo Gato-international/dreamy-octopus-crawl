@@ -41,8 +41,8 @@ const CommentingSystem = () => {
       return;
     }
 
-    const x = (event.clientX / window.innerWidth) * 100;
-    const y = (event.clientY / window.innerHeight) * 100;
+    const x = (event.pageX / document.documentElement.scrollWidth) * 100;
+    const y = (event.pageY / document.documentElement.scrollHeight) * 100;
     
     setPosition({ x, y });
     setIsOpen(true);
