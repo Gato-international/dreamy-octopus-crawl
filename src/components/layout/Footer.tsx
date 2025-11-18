@@ -67,34 +67,24 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <h3 className="font-semibold mb-4">{t('footer.navigation')}</h3>
-            <ul className="space-y-2">
-              <li><Link to="/" className="text-foreground/60 hover:text-foreground">{t('header.home')}</Link></li>
-              <li><Link to="/pricing" className="text-foreground/60 hover:text-foreground">{t('header.pricing')}</Link></li>
-              <li><Link to="/contact" className="text-foreground/60 hover:text-foreground">{t('header.contact')}</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold mb-4">{t('contactPage.contactDetails')}</h3>
-            <ul className="space-y-2 text-foreground/60">
-              <li>
-                <span className="font-semibold text-foreground/80">{t('contactPage.phone')}: </span>
-                +31 6 34864953
-              </li>
-              <li>
-                <span className="font-semibold text-foreground/80">{t('contactPage.email')}: </span>
-                <a href="mailto:info@fragancao.nl" className="hover:text-foreground underline">
-                  info@fragancao.nl
-                </a>
-              </li>
-              <li>
-                <span className="font-semibold text-foreground/80">{t('footer.kvk')}: </span>
-                [Coming Soon]
-              </li>
-            </ul>
-          </div>
+        <div>
+          <h3 className="font-semibold mb-4">{t('contactPage.contactDetails')}</h3>
+          <ul className="space-y-2 text-foreground/60">
+            <li>
+              <span className="font-semibold text-foreground/80">{t('contactPage.phone')}: </span>
+              +31 6 34864953
+            </li>
+            <li>
+              <span className="font-semibold text-foreground/80">{t('contactPage.email')}: </span>
+              <a href="mailto:info@fragancao.nl" className="hover:text-foreground underline">
+                info@fragancao.nl
+              </a>
+            </li>
+            <li>
+              <span className="font-semibold text-foreground/80">{t('footer.kvk')}: </span>
+              [Coming Soon]
+            </li>
+          </ul>
         </div>
 
         <div>
