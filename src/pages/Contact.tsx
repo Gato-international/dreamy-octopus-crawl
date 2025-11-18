@@ -15,7 +15,7 @@ const Contact = () => {
       </>
     ),
     phone: "+31 6 34864953",
-    email: "info@fragancao.com",
+    email: "info@fragancao.nl",
     web: { label: "fragancao.nl", url: "https://fragancao.nl" },
     labels: {
       contactDetails: t('contactPage.contactDetails'),

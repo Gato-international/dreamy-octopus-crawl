@@ -83,8 +83,8 @@ const Footer = () => {
             </li>
             <li>
               <span className="font-semibold text-foreground/80">{t('contactPage.email')}: </span>
-              <a href="mailto:info@fragancao.com" className="hover:text-foreground underline">
-                info@fragancao.com
+              <a href="mailto:info@fragancao.nl" className="hover:text-foreground underline">
+                info@fragancao.nl
               </a>
             </li>
             <li>

@@ -7,7 +7,7 @@ const corsHeaders = {
 }
 
 // IMPORTANT: Replace this with your actual admin email address
-const ADMIN_EMAIL = "info@fragancao.com";
+const ADMIN_EMAIL = "info@fragancao.nl";
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
