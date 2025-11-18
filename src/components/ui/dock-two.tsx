@@ -3,20 +3,27 @@ import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { LucideIcon } from "lucide-react"
 
-interface DockProps {
-  className?: string
-  items: {
-    icon: LucideIcon
-    label: string
-    onClick?: () => void
-  }[]
-}
-
 interface DockIconButtonProps {
   icon: LucideIcon
   label: string
   onClick?: () => void
   className?: string
+}
+
+type DockItem = {
+  icon: LucideIcon
+  label: string
+  onClick?: () => void
+}
+
+type DockCustomItem = {
+  label: string // for key
+  component: React.ReactNode
+}
+
+interface DockProps {
+  className?: string
+  items: (DockItem | DockCustomItem)[]
 }
 
 const floatingAnimation = {
@@ -31,7 +38,7 @@ const floatingAnimation = {
   }
 }
 
-const DockIconButton = React.forwardRef<HTMLButtonElement, DockIconButtonProps>(
+export const DockIconButton = React.forwardRef<HTMLButtonElement, DockIconButtonProps>(
   ({ icon: Icon, label, onClick, className }, ref) => {
     return (
       <motion.button
@@ -77,9 +84,12 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
               "hover:shadow-xl transition-shadow duration-300"
             )}
           >
-            {items.map((item) => (
-              <DockIconButton key={item.label} {...item} />
-            ))}
+            {items.map((item) => {
+              if ("component" in item) {
+                return <React.Fragment key={item.label}>{item.component}</React.Fragment>
+              }
+              return <DockIconButton key={item.label} {...item as DockItem} />
+            })}
           </motion.div>
         </div>
       </div>

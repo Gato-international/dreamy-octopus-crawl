@@ -2,6 +2,7 @@ import { Dock } from "@/components/ui/dock-two";
 import { Home, DollarSign, Mail } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { DockLanguageSwitcher } from "@/components/DockLanguageSwitcher";
 
 export const MobileNav = () => {
   const navigate = useNavigate();
@@ -23,6 +24,10 @@ export const MobileNav = () => {
       label: t('header.contact'),
       onClick: () => navigate('/contact') 
     },
+    {
+      label: "LanguageSwitcher",
+      component: <DockLanguageSwitcher />
+    }
   ];
 
   return (
