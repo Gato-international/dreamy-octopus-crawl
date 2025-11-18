@@ -61,7 +61,7 @@ export const SpecsSection = () => {
           <div className="flex flex-col items-center gap-4">
             {viewMode === 'specs' && (
               <div className="relative w-full">
-                <img src="/fragrance-machine-specs-new.png" alt="Fragrance Vending Machine Specs" className="w-full h-auto rounded-lg" />
+                <img src="/fragrance-machine-specs.png" alt="Fragrance Vending Machine Specs" className="w-full h-auto rounded-lg" />
                 <div className="absolute inset-0">
                   <svg className="w-full h-full pointer-events-none" aria-hidden="true">
                     {Object.values(initialSpecLines).map((line, index) => (
@@ -97,7 +97,7 @@ export const SpecsSection = () => {
 
             {viewMode === 'metrics' && (
               <div className="relative w-full">
-                <img src="/fragrance-machine-specs-new.png" alt="Fragrance Vending Machine Metrics" className="w-full h-auto rounded-lg" />
+                <img src="/fragrance-machine-specs.png" alt="Fragrance Vending Machine Metrics" className="w-full h-auto rounded-lg" />
                 <div className="absolute inset-0">
                   <svg width="100%" height="100%" className="absolute top-0 left-0 pointer-events-none overflow-visible">
                     {Object.values(initialMetricLines).map((line, index) => {

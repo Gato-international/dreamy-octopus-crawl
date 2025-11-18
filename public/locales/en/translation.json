@@ -16,47 +16,47 @@
   },
   "homePage": {
     "hero": {
-      "slogan": "Fragancao – Where Luxury Meets Innovation"
+      "slogan": "Fragancao – Innovating the way the world experiences scent"
     },
     "whatIsIt": {
-      "title": "What is Fragancao?",
-      "paragraph1": "Fragancao introduces a revolutionary perfume vending machine, a sleek and stylish addition designed to elevate any high-traffic venue. It offers guests a unique opportunity to discover and enjoy luxury fragrances with a simple, contactless payment.",
-      "paragraph2": "Our fully automated machine is engineered for seamless operation in bustling environments like exclusive clubs, premium hotels, modern gyms, and international airports. It provides a moment of affordable luxury, enhancing the guest experience.",
-      "paragraph3": "Each unit is stocked with five curated, high-end perfumes, allowing you to tailor the scent selection to match your clientele's preferences and your brand's identity.",
-      "paragraph4": "By partnering with Fragancao, you provide an unforgettable amenity that leaves a lasting impression. More than just a convenience, it's a new, hassle-free revenue stream that requires no effort or maintenance on your part.",
-      "mobile_paragraph": "Fragancao's automated perfume machine is a stylish, high-tech solution for busy venues. It allows guests to instantly enjoy one of five premium fragrances, adding a touch of luxury to their day while creating a new, effortless revenue stream for your business."
+      "title": "One spray, endless experience.",
+      "paragraph1": "The Perfume Vending Machine is a stylish addition to any location. Visitors select their favorite fragrance with a single touch and instantly enjoy a short, refreshing spray, a small experience that feels grand.",
+      "paragraph2": "The device is fully automatic and contactless, specially developed for high-traffic areas such as clubs, hotels, gyms, and airports.",
+      "paragraph3": "Each machine contains up to five carefully selected perfumes, tailored to different styles and target audiences.",
+      "paragraph4": "This way, you offer your guests something extra: a moment of refreshment, a smile, a memory, while simultaneously creating a new source of revenue, without effort or maintenance.",
+      "mobile_paragraph": "The Perfume Vending Machine is a stylish, automatic solution for high-traffic locations. Visitors choose from five premium fragrances with a single touch and instantly receive a refreshing spray. A brief experience that stands out, adds value for your guests, and effortlessly generates extra revenue."
     },
     "howItWorks": {
-      "title": "Effortless Experience in Four Steps",
+      "title": "Smart technology, simple operation",
       "step1": {
-        "title": "Select Your Fragrance",
-        "description": "Browse our curated selection of luxury perfumes on the vibrant touchscreen display."
+        "title": "Choose your scent",
+        "description": "Easily select your favorite perfume via the digital touchscreen"
       },
       "step2": {
-        "title": "Tap to Pay",
-        "description": "Complete your purchase in seconds with a secure contactless payment."
+        "title": "Pay contactlessly",
+        "description": "Pay quickly and securely with your bank card or smartphone"
       },
       "step3": {
-        "title": "Spray & Refresh",
-        "description": "The machine dispenses a perfect, fine mist of your chosen fragrance."
+        "title": "Enjoy your scent",
+        "description": "Instantly receive a refreshing spray of your chosen perfume"
       },
       "step4": {
-        "title": "Elevate Your Moment",
-        "description": "Step out with confidence, feeling refreshed and ready for anything."
+        "title": "Continue your day",
+        "description": "Experience the luxury of a signature scent, wherever you are"
       }
     },
     "specs": {
-      "title": "Advanced Features, Sleek Design",
-      "step1_title": "Interactive Touchscreen",
-      "step1_desc": "A high-definition screen offers an intuitive and engaging user interface.",
-      "step2_title": "Secure Payment Terminal",
-      "step2_desc": "Accepts all major contactless payment methods, including cards and mobile wallets.",
-      "step3_title": "Five Fragrance Canisters",
-      "step3_desc": "Holds up to five distinct, easily replaceable perfume cartridges.",
-      "step4_title": "Precision Nozzle",
-      "step4_desc": "Engineered to deliver a perfect, even mist with every spray.",
-      "step5_title": "Durable Steel Frame",
-      "step5_desc": "Constructed with high-quality materials for longevity and security.",
+      "title": "Designed to be remembered",
+      "step1_title": "Choose Your Perfume",
+      "step1_desc": "Select your desired perfume and quantity of sprays on the touchscreen.",
+      "step2_title": "Proceed to Checkout",
+      "step2_desc": "Review your selection in the cart and proceed to payment.",
+      "step3_title": "Make The Payment",
+      "step3_desc": "Pay securely using your card or other contactless payment methods.",
+      "step4_title": "Position for Spray",
+      "step4_desc": "Place your neck or wrist near the indicated perfume nozzle.",
+      "step5_title": "Receive Your Fragrance",
+      "step5_desc": "The machine will automatically dispense your chosen scent.",
       "metrics": {
         "height": "Height",
         "width": "Width",
@@ -64,22 +64,22 @@
       }
     },
     "benefits": {
-      "title": "A Partnership That Pays",
+      "title": "Partners Benefits",
       "benefit1": {
-        "title": "New Revenue Stream",
-        "description": "Generate passive income with zero upfront cost and attractive revenue sharing."
+        "title": "Boost Foot Traffic",
+        "description": "Innovative tech draws in curious shoppers."
       },
       "benefit2": {
-        "title": "Enhanced Guest Experience",
-        "description": "Offer a unique luxury amenity that sets your venue apart and delights your guests."
+        "title": "Low Overhead, High Return",
+        "description": "Minimal setup. No retail employees. Quick ROI."
       },
       "benefit3": {
-        "title": "Zero Maintenance",
-        "description": "We handle all installation, refills, and maintenance, so you can focus on your business."
+        "title": "Flexible Placement",
+        "description": "Ideal for malls, airports, hotels, gyms, and high-traffic areas."
       },
       "benefit4": {
-        "title": "Data-Driven Insights",
-        "description": "Access a powerful analytics dashboard to track sales, popularity, and usage patterns."
+        "title": "Remote Monitoring",
+        "description": "Track inventory, performance, and usage in real time from any device."
       }
     },
     "cta": {
@@ -88,12 +88,12 @@
     }
   },
   "animatedHero": {
-    "title1": "Ready to Elevate",
-    "title2": "Your Venue?",
-    "adjectives": [],
-    "description": "Join the growing network of premium locations that are delighting their guests and boosting their revenue with Fragancao. Let's discuss how we can tailor a solution for you.",
-    "requestConsultation": "Get in Touch",
-    "becomePartner": "Learn More"
+    "title1": "A Fragrance Experience,",
+    "title2": "Reimagined as",
+    "adjectives": ["elegant", "luxurious", "innovative", "captivating", "refined"],
+    "description": "Elevate your venue with a touch of modern luxury. Our automated fragrance machine offers a unique, memorable experience for your guests, creating a new revenue stream with zero upfront investment.",
+    "requestConsultation": "Request a Consultation",
+    "becomePartner": "Become a Partner"
   },
   "pricingPage": {
     "title": "Partnerships & Pricing",
