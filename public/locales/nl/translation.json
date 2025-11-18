@@ -16,47 +16,47 @@
   },
   "homePage": {
     "hero": {
-      "slogan": "Fragancao – Innoveren in de wereld van geurbeleving"
+      "slogan": "Fragancao – Waar Luxe en Innovatie Samenkomen"
     },
     "whatIsIt": {
-      "title": "Eén spray, eindeloze beleving.",
-      "paragraph1": "De Parfum Vending Machine is een stijlvolle toevoeging aan elke locatie. Bezoekers kiezen met één aanraking hun favoriete geur en genieten direct van een korte, verfrissende spray, een kleine beleving die groots aanvoelt.",
-      "paragraph2": "Het apparaat werkt volledig automatisch en contactloos, en is speciaal ontwikkeld voor plekken met veel bezoekers, zoals clubs, hotels, sportscholen en luchthavens.",
-      "paragraph3": "Elke machine bevat tot vijf zorgvuldig geselecteerde parfums, afgestemd op verschillende stijlen en doelgroepen.",
-      "paragraph4": "Zo geef je jouw gasten iets extra's: een moment van verfrissing, een glimlach, een herinnering, én creëer je tegelijkkeertijd een nieuwe bron van omzet, zonder moeite of onderhoud.",
-      "mobile_paragraph": "De Parfum Vending Machine is een stijlvolle, automatische oplossing voor high-traffic locaties. Bezoekers kiezen met één aanraking uit vijf premium geuren en ontvangen direct een verfrissende spray. Een korte beleving die opvalt, waarde toevoegt voor je gasten én zonder moeite extra omzet oplevert."
+      "title": "Wat is Fragancao?",
+      "paragraph1": "Fragancao introduceert een revolutionaire parfumautomaat, een strakke en stijlvolle toevoeging ontworpen om elke drukbezochte locatie te verheffen. Het biedt gasten een unieke kans om luxe geuren te ontdekken en ervan te genieten met een simpele, contactloze betaling.",
+      "paragraph2": "Onze volledig geautomatiseerde machine is ontworpen voor naadloze werking in levendige omgevingen zoals exclusieve clubs, premium hotels, moderne sportscholen en internationale luchthavens. Het biedt een moment van betaalbare luxe, wat de gastervaring verbetert.",
+      "paragraph3": "Elke unit is gevuld met vijf zorgvuldig geselecteerde, hoogwaardige parfums, zodat u de geurselectie kunt afstemmen op de voorkeuren van uw klanten en de identiteit van uw merk.",
+      "paragraph4": "Door samen te werken met Fragancao, biedt u een onvergetelijke voorziening die een blijvende indruk achterlaat. Meer dan alleen een gemak, het is een nieuwe, zorgeloze inkomstenstroom die geen inspanning of onderhoud van uw kant vereist.",
+      "mobile_paragraph": "De geautomatiseerde parfumautomaat van Fragancao is een stijlvolle, hightech oplossing voor drukke locaties. Het stelt gasten in staat om direct te genieten van een van de vijf premium geuren, wat een vleugje luxe toevoegt aan hun dag en tegelijkertijd een nieuwe, moeiteloze inkomstenstroom voor uw bedrijf creëert."
     },
     "howItWorks": {
-      "title": "Slimme technologie, simpele werking",
+      "title": "Moeiteloze Ervaring in Vier Stappen",
       "step1": {
-        "title": "Kies je geur",
-        "description": "Selecteer eenvoudig je favoriete parfum via het digitale touchscreen"
+        "title": "Selecteer Uw Geur",
+        "description": "Blader door onze zorgvuldig geselecteerde luxe parfums op het levendige touchscreen."
       },
       "step2": {
-        "title": "Betaal contactloos",
-        "description": "Betaal snel en veilig met je bankpas of smartphone"
+        "title": "Tik om te Betalen",
+        "description": "Voltooi uw aankoop in seconden met een veilige contactloze betaling."
       },
       "step3": {
-        "title": "Geniet van je geur",
-        "description": "Ontvang direct een verfrissende spray van jouw gekozen parfum"
+        "title": "Spray & Verfris",
+        "description": "De machine verspreidt een perfecte, fijne nevel van de door u gekozen geur."
       },
       "step4": {
-        "title": "Ga verder met je dag",
-        "description": "Ervaar de luxe van een signature geur, waar je ook bent"
+        "title": "Verhef Uw Moment",
+        "description": "Stap vol vertrouwen naar buiten, verfrist en klaar voor alles."
       }
     },
     "specs": {
-      "title": "Ontworpen om herinnerd te worden",
-      "step1_title": "Kies Je Parfum",
-      "step1_desc": "Selecteer je gewenste parfum en het aantal sprays op het touchscreen.",
-      "step2_title": "Ga naar de Kassa",
-      "step2_desc": "Controleer je selectie in de winkelwagen en ga verder met betalen.",
-      "step3_title": "Voer de Betaling Uit",
-      "step3_desc": "Betaal veilig met je kaart of andere contactloze betaalmethoden.",
-      "step4_title": "Positioneer voor de Spray",
-      "step4_desc": "Plaats je nek of pols bij het aangegeven parfumspuitmondje.",
-      "step5_title": "Ontvang Je Geur",
-      "step5_desc": "De machine geeft automatisch de door jou gekozen geur af.",
+      "title": "Geavanceerde Functies, Strak Design",
+      "step1_title": "Interactief Touchscreen",
+      "step1_desc": "Een high-definition scherm biedt een intuïtieve en boeiende gebruikersinterface.",
+      "step2_title": "Veilige Betaalterminal",
+      "step2_desc": "Accepteert alle gangbare contactloze betaalmethoden, inclusief kaarten en mobiele portemonnees.",
+      "step3_title": "Vijf Parfumflacons",
+      "step3_desc": "Biedt plaats aan maximaal vijf verschillende, eenvoudig te vervangen parfumcartridges.",
+      "step4_title": "Precisie Spuitmond",
+      "step4_desc": "Ontworpen om bij elke spray een perfecte, gelijkmatige nevel te leveren.",
+      "step5_title": "Duurzaam Stalen Frame",
+      "step5_desc": "Gemaakt van hoogwaardige materialen voor een lange levensduur en veiligheid.",
       "metrics": {
         "height": "Hoogte",
         "width": "Breedte",
@@ -64,22 +64,22 @@
       }
     },
     "benefits": {
-      "title": "Voordelen voor Partners",
+      "title": "Een Partnerschap Dat Loont",
       "benefit1": {
-        "title": "Verhoog het Aantal Bezoekers",
-        "description": "Innovatieve technologie trekt nieuwsgierige shoppers aan."
+        "title": "Nieuwe Inkomstenstroom",
+        "description": "Genereer passief inkomen zonder voorafgaande kosten en met een aantrekkelijke omzetdeling."
       },
       "benefit2": {
-        "title": "Lage Kosten, Hoog Rendement",
-        "description": "Minimale installatie. Geen winkelpersoneel. Snelle ROI."
+        "title": "Verbeterde Gastervaring",
+        "description": "Bied een unieke luxe voorziening die uw locatie onderscheidt en uw gasten verrukt."
       },
       "benefit3": {
-        "title": "Flexibele Plaatsing",
-        "description": "Ideaal voor winkelcentra, luchthavens, hotels, sportscholen en drukbezochte gebieden."
+        "title": "Geen Onderhoud",
+        "description": "Wij zorgen voor alle installatie, navullingen en onderhoud, zodat u zich kunt concentreren op uw bedrijf."
       },
       "benefit4": {
-        "title": "Monitoring op Afstand",
-        "description": "Volg voorraad, prestaties en gebruik in realtime vanaf elk apparaat."
+        "title": "Data-Gedreven Inzichten",
+        "description": "Krijg toegang tot een krachtig analytics dashboard om verkopen, populariteit en gebruikspatronen te volgen."
       }
     },
     "cta": {
@@ -88,12 +88,12 @@
     }
   },
   "animatedHero": {
-    "title1": "Een Geurervaring,",
-    "title2": "Heruitgevonden als",
-    "adjectives": ["elegant", "luxueus", "innovatief", "boeiend", "verfijnd"],
-    "description": "Verrijk uw locatie met een vleugje moderne luxe. Onze geautomatiseerde parfumautomaat biedt een unieke, gedenkwaardige ervaring voor uw gasten en creëert een nieuwe inkomstenbron zonder voorafgaande investering.",
-    "requestConsultation": "Vraag een Consult aan",
-    "becomePartner": "Word een Partner"
+    "title1": "Klaar om Uw Locatie",
+    "title2": "te Verheffen?",
+    "adjectives": [],
+    "description": "Sluit u aan bij het groeiende netwerk van premium locaties die hun gasten verrassen en hun omzet verhogen met Fragancao. Laten we bespreken hoe we een oplossing op maat voor u kunnen maken.",
+    "requestConsultation": "Neem Contact Op",
+    "becomePartner": "Meer Informatie"
   },
   "pricingPage": {
     "title": "Partnerships & Prijzen",

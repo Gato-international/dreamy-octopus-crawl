@@ -28,7 +28,7 @@ export const WhatIsItSection = () => {
           </div>
           <div className="md:col-span-3">
             <img 
-              src="/fragrance-machine-with-model.png" 
+              src="/fragrance-machine-in-lounge.png" 
               alt="Woman using the Fragrance Vending Machine" 
               className="rounded-lg w-full h-auto object-contain"
             />
@@ -37,4 +37,3 @@ export const WhatIsItSection = () => {
       </div>
     </section>
   );
-};
