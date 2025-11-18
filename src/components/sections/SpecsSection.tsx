@@ -224,7 +224,6 @@ export const SpecsSection = () => {
                   <h3 className="font-bold text-lg text-center">{feature.title}</h3>
                   <p className="text-foreground/70 text-sm text-center mt-2">{feature.description}</p>
                 </div>
-              </div>
               ))}
             </div>
           )}
