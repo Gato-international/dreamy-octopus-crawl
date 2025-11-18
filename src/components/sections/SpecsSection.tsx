@@ -20,7 +20,13 @@ const initialSpecLines = {
   line5: { anchor: { x: 62.46, y: 70.41 }, end: { x: 85, y: 65 }, textPos: { x: 97, y: 65, align: 'right' } },
 };
 
-const DraggablePoint = ({ onMouseDown, position, className = "bg-primary" }: { onMouseDown: (e: React.MouseEvent) => void, position: { x: number, y: number }, className?: string }) => (
+interface DraggablePointProps {
+  onMouseDown: (e: React.MouseEvent) => void;
+  position: { x: number; y: number };
+  className?: string;
+}
+
+const DraggablePoint: React.FC<DraggablePointProps> = ({ onMouseDown, position, className = "bg-primary" }) => (
   <div
     onMouseDown={onMouseDown}
     style={{ left: `${position.x}%`, top: `${position.y}%` }}
