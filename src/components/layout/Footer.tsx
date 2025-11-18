@@ -67,7 +67,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div>
+        <div className="md:text-right">
           <h3 className="font-semibold mb-4">{t('contactPage.contactDetails')}</h3>
           <ul className="space-y-2 text-foreground/60">
             <li>
@@ -87,18 +87,18 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div>
+        <div className="md:text-right">
           <h3 className="font-semibold mb-4">{t('footer.stayUpdated')}</h3>
           <p className="text-foreground/60 mb-4">
             {t('footer.newsletterPrompt')}
           </p>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col sm:flex-row gap-2">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col sm:flex-row gap-2 sm:justify-end">
               <FormField
                 control={form.control}
                 name="phoneNumber"
                 render={({ field }) => (
-                  <FormItem className="w-full">
+                  <FormItem className="w-full sm:w-auto">
                     <FormControl>
                       <Input type="tel" placeholder={t('footer.phonePlaceholder')} {...field} />
                     </FormControl>
