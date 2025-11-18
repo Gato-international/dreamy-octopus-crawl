@@ -9,6 +9,7 @@ import Contact from "./pages/Contact";
 import Pricing from "./pages/Pricing";
 import NotFound from "./pages/NotFound";
 import CommentsExport from "./pages/CommentsExport";
+import { CommentProvider } from "./components/CommentProvider";
 
 const queryClient = new QueryClient();
 
@@ -18,13 +19,15 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/contact" element={<MainLayout><Contact /></MainLayout>} />
-          <Route path="/pricing" element={<MainLayout><Pricing /></MainLayout>} />
-          <Route path="/comments-export" element={<MainLayout><CommentsExport /></MainLayout>} />
-          <Route path="*" element={<MainLayout><NotFound /></MainLayout>} />
-        </Routes>
+        <CommentProvider>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/contact" element={<MainLayout><Contact /></MainLayout>} />
+            <Route path="/pricing" element={<MainLayout><Pricing /></MainLayout>} />
+            <Route path="/comments-export" element={<MainLayout><CommentsExport /></MainLayout>} />
+            <Route path="*" element={<MainLayout><NotFound /></MainLayout>} />
+          </Routes>
+        </CommentProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
