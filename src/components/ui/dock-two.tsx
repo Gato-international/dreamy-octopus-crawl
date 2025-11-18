@@ -3,11 +3,9 @@ import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { LucideIcon } from "lucide-react"
 
-interface DockIconButtonProps {
+interface DockIconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon: LucideIcon
   label: string
-  onClick?: () => void
-  className?: string
 }
 
 type DockItem = {
@@ -27,18 +25,18 @@ interface DockProps {
 }
 
 export const DockIconButton = React.forwardRef<HTMLButtonElement, DockIconButtonProps>(
-  ({ icon: Icon, label, onClick, className }, ref) => {
+  ({ icon: Icon, label, className, ...props }, ref) => {
     return (
       <motion.button
         ref={ref}
         whileHover={{ scale: 1.1, y: -2 }}
         whileTap={{ scale: 0.95 }}
-        onClick={onClick}
         className={cn(
           "relative group p-3 rounded-lg",
           "hover:bg-secondary transition-colors",
           className
         )}
+        {...props}
       >
         <Icon className="w-5 h-5 text-foreground" />
         <span className={cn(
