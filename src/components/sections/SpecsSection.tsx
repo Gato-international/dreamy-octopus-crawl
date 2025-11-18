@@ -59,9 +59,14 @@ export const SpecsSection = () => {
         {/* Desktop View */}
         <div className="hidden md:block">
           <div className="flex flex-col items-center gap-4">
-            {viewMode === 'specs' && (
-              <div className="relative w-full">
-                <img src="/fragrance-machine-specs.png" alt="Fragrance Vending Machine Specs" className="w-full h-auto rounded-lg" />
+            <div className="relative w-full max-w-5xl mx-auto">
+              <img 
+                src="/fragrance-machine-specs.png" 
+                alt="Fragrance Vending Machine" 
+                className="w-full h-auto rounded-lg" 
+              />
+              
+              {viewMode === 'specs' && (
                 <div className="absolute inset-0">
                   <svg className="w-full h-full pointer-events-none" aria-hidden="true">
                     {Object.values(initialSpecLines).map((line, index) => (
@@ -92,12 +97,9 @@ export const SpecsSection = () => {
                     </React.Fragment>
                   ))}
                 </div>
-              </div>
-            )}
+              )}
 
-            {viewMode === 'metrics' && (
-              <div className="relative w-full">
-                <img src="/fragrance-machine-specs.png" alt="Fragrance Vending Machine Metrics" className="w-full h-auto rounded-lg" />
+              {viewMode === 'metrics' && (
                 <div className="absolute inset-0">
                   <svg width="100%" height="100%" className="absolute top-0 left-0 pointer-events-none overflow-visible">
                     {Object.values(initialMetricLines).map((line, index) => {
@@ -111,7 +113,7 @@ export const SpecsSection = () => {
                       return (
                         <g key={index}>
                           <line x1={`${line.p1.x}%`} y1={`${line.p1.y}%`} x2={`${line.p2.x}%`} y2={`${line.p2.y}%`} stroke="currentColor" strokeWidth="1" />
-                          <line x1={`${p1Cap1.x}%`} y1={`${p1Cap1.y}%`} x2={`${p1Cap2.x}%`} y2={`${p1Cap2.y}%`} stroke="currentColor" strokeWidth="1" />
+                          <line x1={`${p1Cap1.x}%`} y1={`${p1Cap1.y}%`} x2={`${p1Cap2.x}%`} y2={`${p2Cap2.y}%`} stroke="currentColor" strokeWidth="1" />
                           <line x1={`${p2Cap1.x}%`} y1={`${p2Cap1.y}%`} x2={`${p2Cap2.x}%`} y2={`${p2Cap2.y}%`} stroke="currentColor" strokeWidth="1" />
                         </g>
                       )
@@ -135,8 +137,8 @@ export const SpecsSection = () => {
                     )
                   })}
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
 
