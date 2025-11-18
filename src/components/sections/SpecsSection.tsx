@@ -1,9 +1,6 @@
 import { useTranslation } from "react-i18next";
 import React, { useState, useRef } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { Button } from "@/components/ui/button";
-import { showSuccess } from "@/utils/toast";
-import { cn } from "@/lib/utils";
 
 const initialMetricLines = {
   "depth": {
@@ -14,12 +11,12 @@ const initialMetricLines = {
   "height": {
     "p1": { "x": 78.45, "y": 9.69 },
     "p2": { "x": 78.35, "y": 82.29 },
-    "text": "410mm"
+    "text": "450mm"
   },
   "width": {
     "p1": { "x": 24.54, "y": 84.58 },
     "p2": { "x": 63.8, "y": 90.56 },
-    "text": "730mm"
+    "text": "750mm"
   }
 };
 
@@ -81,16 +78,10 @@ export const SpecsSection = () => {
   ];
   
   const mobileMetrics = [
-    { title: t('homePage.specs.metrics.height'), value: "410mm" },
-    { title: t('homePage.specs.metrics.width'), value: "730mm" },
+    { title: t('homePage.specs.metrics.height'), value: "450mm" },
+    { title: t('homePage.specs.metrics.width'), value: "750mm" },
     { title: t('homePage.specs.metrics.depth'), value: "222mm" },
   ];
-
-  const copyCoordinates = () => {
-    const coords = viewMode === 'specs' ? specLines : metricLines;
-    navigator.clipboard.writeText(JSON.stringify(coords, null, 2));
-    showSuccess("Coordinates copied to clipboard!");
-  };
 
   return (
     <section className="py-20 sm:py-32">
@@ -112,7 +103,6 @@ export const SpecsSection = () => {
             <ToggleGroupItem value="specs" aria-label="Toggle specs">Specs</ToggleGroupItem>
             <ToggleGroupItem value="metrics" aria-label="Toggle metrics">Metrics</ToggleGroupItem>
           </ToggleGroup>
-          <Button onClick={copyCoordinates} variant="outline" size="sm" className="hidden md:inline-flex">Copy Coordinates</Button>
         </div>
 
         {/* Desktop View */}
