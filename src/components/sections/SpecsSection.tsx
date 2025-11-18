@@ -1,16 +1,18 @@
 import { useTranslation } from "react-i18next";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Button } from "@/components/ui/button";
+import { Clipboard } from "lucide-react";
+import { showSuccess } from "@/utils/toast";
 
-// Transformed coordinates for a smaller, centered image within a larger relative container.
-const metricLines = {
+// Initial coordinates from the last static version
+const initialMetricLines = {
   depth: { p1: { x: 66.24, y: 85.94 }, p2: { x: 75.51, y: 83.92 }, text: "222mm" },
   height: { p1: { x: 78.35, y: 14.17 }, p2: { x: 78.35, y: 78.90 }, text: "410mm" },
   width: { p1: { x: 24.54, y: 80.31 }, p2: { x: 64.00, y: 86.14 }, text: "730mm" },
 };
 
-// New coordinates to place text outside the image.
-const specLines = {
+const initialSpecLines = {
   line1: { anchor: { x: 29.25, y: 29.68 }, end: { x: 15, y: 20 }, textPos: { x: 3, y: 20, align: 'left' } },
   line2: { anchor: { x: 28.80, y: 38.85 }, end: { x: 15, y: 50 }, textPos: { x: 3, y: 50, align: 'left' } },
   line3: { anchor: { x: 28.60, y: 63.13 }, end: { x: 15, y: 80 }, textPos: { x: 3, y: 80, align: 'left' } },
@@ -18,9 +20,22 @@ const specLines = {
   line5: { anchor: { x: 62.46, y: 70.41 }, end: { x: 85, y: 65 }, textPos: { x: 97, y: 65, align: 'right' } },
 };
 
+const DraggablePoint = ({ onMouseDown, position, className = "bg-primary" }: { onMouseDown: (e: React.MouseEvent) => void, position: { x: number, y: number }, className?: string }) => (
+  <div
+    onMouseDown={onMouseDown}
+    style={{ left: `${position.x}%`, top: `${position.y}%` }}
+    className={`absolute w-4 h-4 -translate-x-1/2 -translate-y-1/2 rounded-full cursor-move border-2 border-background ${className}`}
+  />
+);
+
 export const SpecsSection = () => {
   const { t } = useTranslation();
   const [viewMode, setViewMode] = useState("specs");
+
+  const [metricLines, setMetricLines] = useState(initialMetricLines);
+  const [specLines, setSpecLines] = useState(initialSpecLines);
+  const [dragTarget, setDragTarget] = useState<any>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const features = [
     { title: t('homePage.specs.step1_title'), description: t('homePage.specs.step1_desc') },
@@ -35,6 +50,44 @@ export const SpecsSection = () => {
     { title: t('homePage.specs.metrics.width'), value: "730mm" },
     { title: t('homePage.specs.metrics.depth'), value: "222mm" },
   ];
+
+  const handleMouseDown = (e: React.MouseEvent, type: string, key: string, point: string) => {
+    e.preventDefault();
+    setDragTarget({ type, key, point });
+  };
+
+  const handleMouseUp = () => {
+    setDragTarget(null);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!dragTarget || !containerRef.current) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = parseFloat(((e.clientX - rect.left) / rect.width * 100).toFixed(2));
+    const y = parseFloat(((e.clientY - rect.top) / rect.height * 100).toFixed(2));
+
+    const { type, key, point } = dragTarget;
+
+    if (type === 'spec') {
+      setSpecLines(prev => ({
+        ...prev,
+        [key]: { ...prev[key], [point]: { ...prev[key][point], x, y } }
+      }));
+    } else if (type === 'metric') {
+      setMetricLines(prev => ({
+        ...prev,
+        [key]: { ...prev[key], [point]: { x, y } }
+      }));
+    }
+  };
+
+  const copyCoordinatesToClipboard = () => {
+    const jsonString = `const initialMetricLines = ${JSON.stringify(metricLines, null, 2)};\n\nconst initialSpecLines = ${JSON.stringify(specLines, null, 2)};`;
+    navigator.clipboard.writeText(jsonString);
+    showSuccess("Coordinates copied to clipboard!");
+    console.log(jsonString);
+  };
 
   return (
     <section className="py-20 sm:py-32">
@@ -60,11 +113,17 @@ export const SpecsSection = () => {
 
         {/* Desktop View */}
         <div className="hidden md:block">
-          <div className="relative w-full max-w-5xl mx-auto">
+          <div 
+            ref={containerRef}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            className="relative w-full max-w-5xl mx-auto select-none"
+          >
             <img 
               src="/fragrance-machine-specs.png" 
               alt="Fragrance Vending Machine" 
-              className="w-full max-w-4xl h-auto rounded-lg mx-auto" 
+              className="w-full max-w-4xl h-auto rounded-lg mx-auto pointer-events-none" 
             />
             
             {viewMode === 'specs' && (
@@ -76,9 +135,10 @@ export const SpecsSection = () => {
                 </svg>
                 {Object.entries(specLines).map(([key, line], index) => (
                   <React.Fragment key={key}>
-                    <div style={{ left: `${line.anchor.x}%`, top: `${line.anchor.y}%` }} className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-full" />
-                    <div style={{ left: `${line.end.x}%`, top: `${line.end.y}%` }} className="absolute w-2 h-2 -translate-x-1/2 -translate-y-1/2 bg-foreground/50 rounded-full" />
+                    <DraggablePoint onMouseDown={(e) => handleMouseDown(e, 'spec', key, 'anchor')} position={line.anchor} />
+                    <DraggablePoint onMouseDown={(e) => handleMouseDown(e, 'spec', key, 'end')} position={line.end} className="bg-foreground/50" />
                     <div
+                      onMouseDown={(e) => handleMouseDown(e, 'spec', key, 'textPos')}
                       style={{
                         position: 'absolute',
                         left: `${line.textPos.x}%`,
@@ -87,13 +147,13 @@ export const SpecsSection = () => {
                         backgroundColor: 'hsl(var(--background) / 0.8)',
                         padding: '0.5rem 0.75rem',
                         borderRadius: 'var(--radius)',
-                        userSelect: 'none',
+                        cursor: 'move',
                         width: '220px',
                         textAlign: line.textPos.align === 'left' ? 'left' : 'right',
                       }}
                     >
-                      <h4 className="font-bold text-sm mb-1">{features[index]?.title}</h4>
-                      <p className="text-xs text-foreground/80 whitespace-normal">{features[index]?.description}</p>
+                      <h4 className="font-bold text-sm mb-1 pointer-events-none">{features[index]?.title}</h4>
+                      <p className="text-xs text-foreground/80 whitespace-normal pointer-events-none">{features[index]?.description}</p>
                     </div>
                   </React.Fragment>
                 ))}
@@ -114,7 +174,7 @@ export const SpecsSection = () => {
                     return (
                       <g key={index}>
                         <line x1={`${line.p1.x}%`} y1={`${line.p1.y}%`} x2={`${line.p2.x}%`} y2={`${line.p2.y}%`} stroke="currentColor" strokeWidth="1" />
-                        <line x1={`${p1Cap1.x}%`} y1={`${p1Cap1.y}%`} x2={`${p1Cap2.x}%`} y2={`${p2Cap2.y}%`} stroke="currentColor" strokeWidth="1" />
+                        <line x1={`${p1Cap1.x}%`} y1={`${p1Cap1.y}%`} x2={`${p1Cap2.x}%`} y2={`${p1Cap2.y}%`} stroke="currentColor" strokeWidth="1" />
                         <line x1={`${p2Cap1.x}%`} y1={`${p2Cap1.y}%`} x2={`${p2Cap2.x}%`} y2={`${p2Cap2.y}%`} stroke="currentColor" strokeWidth="1" />
                       </g>
                     )
@@ -128,17 +188,24 @@ export const SpecsSection = () => {
                     position: 'absolute', top: `${midY}%`, left: `${midX}%`,
                     transform: `translate(-50%, -50%) ${isVertical ? 'rotate(90deg)' : ''} translate(0, -15px)`,
                     backgroundColor: 'hsl(var(--background) / 0.5)', padding: '2px 4px', borderRadius: '3px', whiteSpace: 'nowrap',
+                    pointerEvents: 'none'
                   };
                   return (
                     <React.Fragment key={key}>
-                      <div style={{ left: `${line.p1.x}%`, top: `${line.p1.y}%` }} className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-full" />
-                      <div style={{ left: `${line.p2.x}%`, top: `${line.p2.y}%` }} className="absolute w-3 h-3 -translate-x-1/2 -translate-y-1/2 bg-primary rounded-full" />
+                      <DraggablePoint onMouseDown={(e) => handleMouseDown(e, 'metric', key, 'p1')} position={line.p1} />
+                      <DraggablePoint onMouseDown={(e) => handleMouseDown(e, 'metric', key, 'p2')} position={line.p2} />
                       <p style={textStyle}>{line.text}</p>
                     </React.Fragment>
                   )
                 })}
               </div>
             )}
+          </div>
+          <div className="mt-4 text-center">
+            <Button onClick={copyCoordinatesToClipboard}>
+              <Clipboard className="w-4 h-4 mr-2" />
+              Copy Coordinates
+            </Button>
           </div>
         </div>
 
@@ -151,6 +218,7 @@ export const SpecsSection = () => {
                   <h3 className="font-bold text-lg text-center">{feature.title}</h3>
                   <p className="text-foreground/70 text-sm text-center mt-2">{feature.description}</p>
                 </div>
+              </div>
               ))}
             </div>
           )}
