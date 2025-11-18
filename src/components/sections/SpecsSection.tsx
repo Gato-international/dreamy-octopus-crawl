@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Button } from "@/components/ui/button";
 import { showSuccess } from "@/utils/toast";
@@ -7,36 +7,18 @@ import { cn } from "@/lib/utils";
 
 const initialMetricLines = {
   "depth": {
-    "p1": {
-      "x": 66.93,
-      "y": 89.41
-    },
-    "p2": {
-      "x": 75.42,
-      "y": 86.65
-    },
+    "p1": { "x": 66.93, "y": 89.41 },
+    "p2": { "x": 75.42, "y": 86.65 },
     "text": "222mm"
   },
   "height": {
-    "p1": {
-      "x": 78.45,
-      "y": 9.69
-    },
-    "p2": {
-      "x": 78.35,
-      "y": 82.29
-    },
+    "p1": { "x": 78.45, "y": 9.69 },
+    "p2": { "x": 78.35, "y": 82.29 },
     "text": "410mm"
   },
   "width": {
-    "p1": {
-      "x": 24.54,
-      "y": 84.58
-    },
-    "p2": {
-      "x": 63.8,
-      "y": 90.56
-    },
+    "p1": { "x": 24.54, "y": 84.58 },
+    "p2": { "x": 63.8, "y": 90.56 },
     "text": "730mm"
   }
 };
@@ -69,17 +51,6 @@ const initialSpecLines = {
   }
 };
 
-const DraggablePoint = ({ position, onMouseDown, isDragged }) => (
-  <div
-    onMouseDown={onMouseDown}
-    style={{ left: `${position.x}%`, top: `${position.y}%` }}
-    className={cn(
-      "absolute -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-primary/20 border-2 border-primary cursor-grab",
-      isDragged ? "cursor-grabbing ring-2 ring-primary ring-offset-2 ring-offset-background" : ""
-    )}
-  />
-);
-
 const StaticPoint = ({ position }) => (
   <div
     style={{ left: `${position.x}%`, top: `${position.y}%` }}
@@ -87,12 +58,18 @@ const StaticPoint = ({ position }) => (
   />
 );
 
+const MetricPoint = ({ position }) => (
+  <div
+    style={{ left: `${position.x}%`, top: `${position.y}%` }}
+    className="absolute -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-primary/20 border-2 border-primary"
+  />
+);
+
 export const SpecsSection = () => {
   const { t } = useTranslation();
   const [viewMode, setViewMode] = useState("specs");
-  const [specLines, setSpecLines] = useState(initialSpecLines);
-  const [metricLines, setMetricLines] = useState(initialMetricLines);
-  const [draggedPoint, setDraggedPoint] = useState(null);
+  const [specLines] = useState(initialSpecLines);
+  const [metricLines] = useState(initialMetricLines);
   const containerRef = useRef(null);
 
   const features = [
@@ -108,41 +85,6 @@ export const SpecsSection = () => {
     { title: t('homePage.specs.metrics.width'), value: "730mm" },
     { title: t('homePage.specs.metrics.depth'), value: "222mm" },
   ];
-
-  const handleMouseDown = (e, type, key, point) => {
-    e.preventDefault();
-    setDraggedPoint({ type, key, point });
-  };
-
-  const handleMouseUp = useCallback(() => {
-    setDraggedPoint(null);
-  }, []);
-
-  const handleMouseMove = useCallback((e) => {
-    if (!draggedPoint || !containerRef.current) return;
-
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = parseFloat(((e.clientX - rect.left) / rect.width * 100).toFixed(2));
-    const y = parseFloat(((e.clientY - rect.top) / rect.height * 100).toFixed(2));
-
-    const { type, key, point } = draggedPoint;
-
-    if (type === 'metrics') {
-      setMetricLines(prev => ({
-        ...prev,
-        [key]: { ...prev[key], [point]: { ...prev[key][point], x, y } }
-      }));
-    }
-  }, [draggedPoint]);
-
-  useEffect(() => {
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseup', handleMouseUp);
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', handleMouseUp);
-    };
-  }, [handleMouseMove, handleMouseUp]);
 
   const copyCoordinates = () => {
     const coords = viewMode === 'specs' ? specLines : metricLines;
@@ -243,8 +185,8 @@ export const SpecsSection = () => {
                   return (
                     <React.Fragment key={key}>
                       <p style={textStyle}>{line.text}</p>
-                      <DraggablePoint position={line.p1} onMouseDown={(e) => handleMouseDown(e, 'metrics', key, 'p1')} isDragged={draggedPoint?.key === key && draggedPoint?.point === 'p1'} />
-                      <DraggablePoint position={line.p2} onMouseDown={(e) => handleMouseDown(e, 'metrics', key, 'p2')} isDragged={draggedPoint?.key === key && draggedPoint?.point === 'p2'} />
+                      <MetricPoint position={line.p1} />
+                      <MetricPoint position={line.p2} />
                     </React.Fragment>
                   )
                 })}
