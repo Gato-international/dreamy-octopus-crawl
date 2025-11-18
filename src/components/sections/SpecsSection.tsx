@@ -7,17 +7,117 @@ import { showSuccess } from "@/utils/toast";
 
 // Initial coordinates from the last static version
 const initialMetricLines = {
-  depth: { p1: { x: 66.24, y: 85.94 }, p2: { x: 75.51, y: 83.92 }, text: "222mm" },
-  height: { p1: { x: 78.35, y: 14.17 }, p2: { x: 78.35, y: 78.90 }, text: "410mm" },
-  width: { p1: { x: 24.54, y: 80.31 }, p2: { x: 64.00, y: 86.14 }, text: "730mm" },
+  "depth": {
+    "p1": {
+      "x": 66.24,
+      "y": 85.94
+    },
+    "p2": {
+      "x": 75.51,
+      "y": 83.92
+    },
+    "text": "222mm"
+  },
+  "height": {
+    "p1": {
+      "x": 78.35,
+      "y": 14.17
+    },
+    "p2": {
+      "x": 78.35,
+      "y": 78.9
+    },
+    "text": "410mm"
+  },
+  "width": {
+    "p1": {
+      "x": 24.54,
+      "y": 80.31
+    },
+    "p2": {
+      "x": 64,
+      "y": 86.14
+    },
+    "text": "730mm"
+  }
 };
 
 const initialSpecLines = {
-  line1: { anchor: { x: 29.25, y: 29.68 }, end: { x: 15, y: 20 }, textPos: { x: 3, y: 20, align: 'left' } },
-  line2: { anchor: { x: 28.80, y: 38.85 }, end: { x: 15, y: 50 }, textPos: { x: 3, y: 50, align: 'left' } },
-  line3: { anchor: { x: 28.60, y: 63.13 }, end: { x: 15, y: 80 }, textPos: { x: 3, y: 80, align: 'left' } },
-  line4: { anchor: { x: 62.33, y: 44.39 }, end: { x: 85, y: 35 }, textPos: { x: 97, y: 35, align: 'right' } },
-  line5: { anchor: { x: 62.46, y: 70.41 }, end: { x: 85, y: 65 }, textPos: { x: 97, y: 65, align: 'right' } },
+  "line1": {
+    "anchor": {
+      "x": 29.25,
+      "y": 29.68
+    },
+    "end": {
+      "x": 12.14,
+      "y": 20.36
+    },
+    "textPos": {
+      "x": 2.08,
+      "y": 7.49,
+      "align": "left"
+    }
+  },
+  "line2": {
+    "anchor": {
+      "x": 28.8,
+      "y": 38.85
+    },
+    "end": {
+      "x": 15,
+      "y": 50
+    },
+    "textPos": {
+      "x": 1.01,
+      "y": 60.56,
+      "align": "left"
+    }
+  },
+  "line3": {
+    "anchor": {
+      "x": 28.6,
+      "y": 63.13
+    },
+    "end": {
+      "x": 15,
+      "y": 80
+    },
+    "textPos": {
+      "x": -0.36,
+      "y": 91.81,
+      "align": "left"
+    }
+  },
+  "line4": {
+    "anchor": {
+      "x": 62.92,
+      "y": 43.79
+    },
+    "end": {
+      "x": 85,
+      "y": 35
+    },
+    "textPos": {
+      "x": 99.94,
+      "y": 22.2,
+      "align": "right"
+    }
+  },
+  "line5": {
+    "anchor": {
+      "x": 62.46,
+      "y": 70.41
+    },
+    "end": {
+      "x": 85,
+      "y": 65
+    },
+    "textPos": {
+      "x": 99.94,
+      "y": 50.68,
+      "align": "right"
+    }
+  }
 };
 
 interface DraggablePointProps {
