@@ -82,7 +82,7 @@ const Footer = () => {
             </li>
             <li>
               <span className="font-semibold text-foreground/80">{t('footer.kvk')}: </span>
-              [Coming Soon]
+              98648241
             </li>
           </ul>
         </div>
