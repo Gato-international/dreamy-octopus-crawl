@@ -37,3 +37,4 @@ export const WhatIsItSection = () => {
       </div>
     </section>
   );
+};
