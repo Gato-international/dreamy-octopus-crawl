@@ -12,7 +12,8 @@
     "newsletterPrompt": "Laat uw nummer achter en we bellen u terug om partnerschapsmogelijkheden te bespreken.",
     "phonePlaceholder": "Voer uw telefoonnummer in",
     "requestCall": "Belverzoek indienen",
-    "copyright": "© {{year}} Fragancao. Alle rechten voorbehouden."
+    "copyright": "© {{year}} Fragancao. Alle rechten voorbehouden.",
+    "kvk": "KVK"
   },
   "homePage": {
     "hero": {

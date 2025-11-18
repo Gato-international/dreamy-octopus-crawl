@@ -12,7 +12,8 @@
     "newsletterPrompt": "Leave your number and we'll call you back to discuss partnership opportunities.",
     "phonePlaceholder": "Enter your phone number",
     "requestCall": "Request Call",
-    "copyright": "© {{year}} Fragancao. All rights reserved."
+    "copyright": "© {{year}} Fragancao. All rights reserved.",
+    "kvk": "Chamber of Commerce"
   },
   "homePage": {
     "hero": {
