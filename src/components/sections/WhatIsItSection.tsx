@@ -27,11 +27,16 @@ export const WhatIsItSection = () => {
             </div>
           </div>
           <div className="md:col-span-3">
-            <img 
-              src="/fragrance-machine-with-model.png" 
-              alt="Woman using the Fragrance Vending Machine" 
+            <video 
+              src="https://oqhvemhomwksenicoktf.supabase.co/storage/v1/object/public/assets/promomachine.mp4" 
+              autoPlay
+              loop
+              muted
+              playsInline
               className="rounded-lg w-full h-auto object-contain"
-            />
+            >
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </div>
