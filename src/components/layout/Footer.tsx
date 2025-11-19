@@ -69,28 +69,23 @@ const Footer = () => {
 
         <div className="md:text-right">
           <h3 className="font-semibold mb-4">{t('contactPage.contactDetails')}</h3>
-          <ul className="space-y-2 text-foreground/60">
-            <li>
-              <span className="font-semibold text-foreground/80">{t('contactPage.phone')}: </span>
-              +31 6 34864953
-            </li>
-            <li>
-              <span className="font-semibold text-foreground/80">{t('contactPage.email')}: </span>
-              <a href="mailto:info@fragancao.nl" className="hover:text-foreground underline">
-                info@fragancao.nl
-              </a>
-            </li>
-            <li>
-              <span className="font-semibold text-foreground/80">{t('contactPage.web')}: </span>
-              <a href="https://www.fragancao.nl" target="_blank" rel="noopener noreferrer" className="hover:text-foreground underline">
-                fragancao.nl
-              </a>
-            </li>
-            <li>
-              <span className="font-semibold text-foreground/80">{t('footer.kvk')}: </span>
-              98648241
-            </li>
-          </ul>
+          <div className="inline-grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-foreground/60">
+            <span className="font-semibold text-foreground/80 text-left md:text-right">{t('contactPage.phone')}:</span>
+            <span className="text-left">+31 6 34864953</span>
+
+            <span className="font-semibold text-foreground/80 text-left md:text-right">{t('contactPage.email')}:</span>
+            <a href="mailto:info@fragancao.nl" className="hover:text-foreground underline text-left">
+              info@fragancao.nl
+            </a>
+
+            <span className="font-semibold text-foreground/80 text-left md:text-right">{t('contactPage.web')}:</span>
+            <a href="https://www.fragancao.nl" target="_blank" rel="noopener noreferrer" className="hover:text-foreground underline text-left">
+              fragancao.nl
+            </a>
+
+            <span className="font-semibold text-foreground/80 text-left md:text-right">{t('footer.kvk')}:</span>
+            <span className="text-left">98648241</span>
+          </div>
         </div>
 
         <div className="md:text-right">
