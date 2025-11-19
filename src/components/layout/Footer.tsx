@@ -89,7 +89,7 @@ const Footer = () => {
 
         <div className="md:text-right">
           <h3 className="font-semibold mb-4">{t('footer.stayUpdated')}</h3>
-          <p className="text-foreground/60 mb-4">
+          <p className="text-foreground/60 mb-4 whitespace-pre-line">
             {t('footer.newsletterPrompt')}
           </p>
           <Form {...form}>
