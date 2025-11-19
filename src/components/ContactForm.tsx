@@ -12,17 +12,11 @@ import { showLoading, showSuccess, showError, dismissToast } from "@/utils/toast
 interface ContactFormProps {
   title: string;
   description: React.ReactNode;
-  phone: string;
-  email: string;
-  web: { label: string; url: string };
   labels: {
-    contactDetails: string;
-    phone: string;
-    email: string;
-    web: string;
     name: string;
     company: string;
     phoneNumber: string;
+    email: string;
     subject: string;
     message: string;
     messagePlaceholder: string;
@@ -42,9 +36,6 @@ const formSchema = z.object({
 export const ContactForm = ({
   title,
   description,
-  phone,
-  email,
-  web,
   labels,
 }: ContactFormProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -84,38 +75,11 @@ export const ContactForm = ({
     <section className="py-24 sm:py-32">
       <div className="container">
         <div className="max-w-screen-xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-20 mb-16">
-            <div className="text-center">
-              <h1 className="mb-2 text-5xl font-semibold lg:mb-1 lg:text-6xl font-heading">
-                {title}
-              </h1>
-              <p className="text-muted-foreground">{description}</p>
-            </div>
-            <div className="flex items-center justify-center">
-              <div className="w-fit">
-                <h3 className="mb-6 text-center text-2xl font-semibold">
-                  {labels.contactDetails}
-                </h3>
-                <ul className="list-disc space-y-2 text-left">
-                  <li>
-                    <span className="font-bold">{labels.phone}: </span>
-                    {phone}
-                  </li>
-                  <li>
-                    <span className="font-bold">{labels.email}: </span>
-                    <a href={`mailto:${email}`} className="underline">
-                      {email}
-                    </a>
-                  </li>
-                  <li>
-                    <span className="font-bold">{labels.web}: </span>
-                    <a href={web.url} target="_blank" rel="noopener noreferrer" className="underline">
-                      {web.label}
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+          <div className="text-center mb-16">
+            <h1 className="mb-2 text-5xl font-semibold lg:mb-1 lg:text-6xl font-heading">
+              {title}
+            </h1>
+            <p className="text-muted-foreground max-w-3xl mx-auto">{description}</p>
           </div>
 
           <div className="mx-auto w-full max-w-screen-md flex-col gap-6 rounded-lg border p-10">

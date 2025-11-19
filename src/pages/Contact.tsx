@@ -14,17 +14,11 @@ const Contact = () => {
         {t('contactPage.description_part2')}
       </>
     ),
-    phone: "+31 6 34864953",
-    email: "info@fragancao.nl",
-    web: { label: "fragancao.nl", url: "https://fragancao.nl" },
     labels: {
-      contactDetails: t('contactPage.contactDetails'),
-      phone: t('contactPage.phone'),
-      email: t('contactPage.email'),
-      web: t('contactPage.web'),
       name: t('contactPage.form.name'),
       company: t('contactPage.form.company'),
       phoneNumber: t('contactPage.form.phoneNumber'),
+      email: t('contactPage.form.email'),
       subject: t('contactPage.form.subject'),
       message: t('contactPage.form.message'),
       messagePlaceholder: t('contactPage.form.messagePlaceholder'),
