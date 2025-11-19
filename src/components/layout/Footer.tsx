@@ -81,6 +81,12 @@ const Footer = () => {
               </a>
             </li>
             <li>
+              <span className="font-semibold text-foreground/80">{t('contactPage.web')}: </span>
+              <a href="https://www.fragancao.nl" target="_blank" rel="noopener noreferrer" className="hover:text-foreground underline">
+                fragancao.nl
+              </a>
+            </li>
+            <li>
               <span className="font-semibold text-foreground/80">{t('footer.kvk')}: </span>
               98648241
             </li>
