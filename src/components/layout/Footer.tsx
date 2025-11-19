@@ -54,12 +54,9 @@ const Footer = () => {
             <img 
               src="/Fragancao-Logo-TEXT-TRANSPARANT.png" 
               alt="Fragancao Logo" 
-              className="h-6 w-auto"
+              className="h-8 w-auto"
             />
           </Link>
-          <p className="text-foreground/60">
-            {t('footer.tagline')}
-          </p>
           <div className="flex space-x-4">
             <a href="#" aria-label="Facebook"><Facebook className="h-5 w-5 text-[#1877F2] hover:opacity-80 transition-opacity" /></a>
             <a href="#" aria-label="Instagram"><Instagram className="h-5 w-5 text-[#E4405F] hover:opacity-80 transition-opacity" /></a>
